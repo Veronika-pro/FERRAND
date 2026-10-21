@@ -7,7 +7,7 @@
 <meta name="description" content="Aesthetic dentistry by Dr. Claire Ferrand. Veneers, implants, whitening and aligners, made to look like nothing was done.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..600&family=Fraunces:opsz,wght@9..144,300..400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..600&family=Fraunces:opsz,wght@9..144,300..500&display=swap" rel="stylesheet">
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%23111214%27/%3E%3Ctext x=%2732%27 y=%2746%27 text-anchor=%27middle%27 font-family=%27Times New Roman,serif%27 font-size=%2740%27 fill=%27%23FAFAFA%27%3EF%3C/text%3E%3C/svg%3E">
 <link rel="icon" href="favicon.ico" sizes="32x32">
@@ -23,7 +23,7 @@
 <meta property="og:image:height" content="630">
 <link rel="canonical" href="https://ferrand.vercel.app/">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preload" as="image" href="images/hero.webp">
+<link rel="preload" as="image" href="images/muse-hero.jpg">
 <style>
 /* ---------- tokens (passport v2) ---------- */
 :root{
@@ -958,9 +958,11 @@ body{font-size:var(--t-body);line-height:24px}
     linear-gradient(0deg, rgba(255,255,255,.66) 0%, rgba(255,255,255,0) 28%)}
 .hero-photo::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.2;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 1.4 -.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.hero-mask{position:absolute;inset:0;width:100%;height:100%;transform:scale(var(--ms,1));transform-origin:var(--mo,50% 50%);will-change:transform}
+/* the letters grow inside the SVG (see #hm-g), not by scaling this layer: a 12x composited layer ran out of GPU tiles
+   and left white blocks behind when scrolling back up */
+.hero-mask{position:absolute;inset:0;width:100%;height:100%}
 .hm-paper{fill:var(--porcelain);opacity:var(--mp,1)}
-#hm-text{font-family:var(--serif);font-weight:400;font-variation-settings:'opsz' 144}
+#hm-text{font-family:var(--serif);font-weight:500;font-variation-settings:'opsz' 144}
 .hero-copy{grid-template-rows:auto 1fr auto;padding-top:120px}
 .h1 .pre{display:block;color:var(--ink);font-size:var(--t-h2);line-height:var(--lh-h2);letter-spacing:-1px}
 .hero-side{grid-column:2 / 7;grid-row:3;align-self:end}
@@ -1170,6 +1172,106 @@ body{font-size:var(--t-body);line-height:24px}
 @media (min-width:761px) and (max-width:1080px){ .rv-pin{padding-inline:var(--c2)} .rv-notes{margin:0 calc(-1 * var(--c2));padding:0 var(--c2) var(--s-3);scroll-padding-inline:var(--c2)} }
 @media (max-width:760px){ .bk-title,.bk-lead{grid-column:1} }@media (prefers-reduced-motion:reduce){ .hero{height:100vh;height:100svh} .reviews{height:auto} .rv-pin{position:relative} }
 
+/* =================== BEST OF «ICE ON INK» (2026-10-21) ===================
+   The light site stays; from the dark trial we keep: one radius, facts as cards, no captions on photographs,
+   and Book as the one deep-ink finale with the founder above and a porcelain ticket. */
+:root{--r:24px}
+/* one radius for every framed photograph and card */
+.tr-img,.compare,.case .compare,.jr-media,.jr-thumb,.note,.pr-tiles li{border-radius:var(--r)}
+.doc-lead .doc-img{border-radius:var(--r);overflow:hidden}
+@media (min-width:761px){ .doc-lead{margin-left:0} }
+/* no captions on photographs: they read as AI */
+.pin,.at-note,.jr-cap{display:none}
+/* the muse (real Pexels series C, backdrop already ice): no film grade, it would warm the ice towards beige */
+img.muse,.hero-photo img.muse,.tr-img img.muse,.jr-img img.muse,.jr-thumb img.muse{filter:none}
+/* her empty backdrop is on the left of the frame: anchor the crop there, so the copy sits on the backdrop and the face on axis B */
+/* inside the letters the face shows (62%); as the paper opens the frame pans to 0% (--hx is set by the hero scene) */
+.hero-photo img.muse{object-position:var(--hx, 62%) 30%}
+@media (max-width:760px){ .hero-photo img.muse{object-position:44% 30%} }
+.tr-img img.muse{object-position:42% 50%}
+.jr-img img.muse,.jr-thumb img.muse{object-position:52% 40%}
+/* facts as quiet ice cards */
+.facts.team-facts,.facts.case-notes{grid-template-columns:repeat(3, minmax(0, 1fr));border-top:0;padding-top:0;gap:var(--s-3)}
+.team-facts div,.case-notes div{min-width:0;padding:var(--s-5);border-radius:var(--r);background:var(--paper)}
+@media (max-width:760px){
+  .facts.team-facts,.facts.case-notes{grid-template-columns:1fr}
+  .team-facts div,.case-notes div{display:grid;grid-template-columns:88px minmax(0, 1fr);align-items:baseline;gap:var(--s-4);padding:var(--s-4) var(--s-5)}
+  .team-facts dt,.case-notes dt{margin:0}
+}
+
+/* ---------- book: deep ink, steps as cards, days as ice tiles, a porcelain ticket that sends the request ---------- */
+.bk4{--deep:#030304; --deep-2:#0E0F11; --ice:#E6EDF3; --on:#FFFFFF; --on-soft:rgba(230,237,243,.62); --on-dim:rgba(230,237,243,.36); --hair:rgba(230,237,243,.12); --hair-2:rgba(230,237,243,.26)}
+.book.bk4,.book.bk4 .bk-hero{background:var(--deep)}
+.bk4 .bk-body{padding-top:var(--s-9);padding-bottom:160px;row-gap:var(--gap);align-items:start;background:var(--deep)}
+.bk4 .bk-form,.bk4 .bk-done{grid-column:2 / 8;display:grid;gap:var(--gap)}
+.bk4 .bk-form fieldset,.bk4 .bk-done{margin:0;padding:var(--s-6);border-radius:var(--r);background:var(--deep-2);box-shadow:0 0 0 1px var(--hair) inset}
+.bk4 .bk-done[hidden],.bk4 .bk-form[hidden]{display:none}
+.bk4 .bk-step legend{float:left;width:100%;display:flex;align-items:baseline;gap:var(--s-4);margin:0 0 var(--s-5);padding:0;color:var(--on)}
+.bk4 .bk-step legend + *{clear:both}
+.bk4 .bk-n{display:inline;width:auto;height:auto;border:0;border-radius:0;background:none;font:300 var(--t-num)/1 var(--sans);letter-spacing:-1px;color:var(--on-dim);font-variant-numeric:tabular-nums;transition:color .3s ease}
+.bk4 .bk-step:has(input:checked) .bk-n{background:none;color:var(--ice)}
+.bk4 .pref span{background:rgba(230,237,243,.06);border-color:var(--hair-2);color:var(--on)}
+.bk4 .pref:hover span{border-color:var(--ice)}
+.bk4 .pref input:checked + span{background:var(--ice);border-color:var(--ice);color:var(--deep);box-shadow:0 0 32px rgba(230,237,243,.35)}
+.bk4 .days{grid-template-columns:repeat(10, minmax(0, 1fr));gap:var(--s-2);border-top:0;margin-bottom:0}
+.bk4 .day{gap:4px;padding:var(--s-3) 10px;border-left:0;border-radius:16px;background:rgba(230,237,243,.05);box-shadow:0 0 0 1px var(--hair) inset;color:var(--on-soft);transition:background .3s ease, box-shadow .3s ease}
+.bk4 .day:first-child,.bk4 .day:nth-child(5n+1){padding-left:10px}
+.bk4 .day::before{display:none}
+.bk4 .day b{color:var(--on);font-size:var(--t-num);line-height:1;letter-spacing:-1px}
+.bk4 .day small{color:var(--on-soft)}
+.bk4 .day:hover:not(:disabled){box-shadow:0 0 0 1px var(--hair-2) inset}
+.bk4 .day[aria-pressed="true"]{background:linear-gradient(170deg, #FFFFFF, var(--ice));box-shadow:0 0 40px rgba(230,237,243,.4);color:rgba(3,3,4,.6)}
+.bk4 .day[aria-pressed="true"] b{color:var(--deep)}
+.bk4 .day[aria-pressed="true"] small{color:rgba(3,3,4,.6)}
+.bk4 .day:disabled{background:none}
+.bk4 .day:disabled b,.bk4 .day:disabled small{color:var(--on-dim)}
+.bk4 .fld{color:var(--on-soft)}
+.bk4 .fld input{border-bottom-color:var(--hair-2)}
+.bk4 .hint,.bk4 .bk-done p{color:var(--on-soft)}
+.bk4 .bk-side{grid-column:8 / 12;position:sticky;top:var(--s-9);display:block;filter:drop-shadow(0 0 48px rgba(230,237,243,.14)) drop-shadow(0 32px 48px rgba(0,0,0,.5))}
+.bk4 .bk-card{position:relative;gap:var(--s-5);padding:var(--s-6);border-radius:var(--r);color:var(--deep);box-shadow:none;
+  background:linear-gradient(160deg, #FFFFFF 0%, #F4F7FA 45%, var(--ice) 100%);--cut:60%;
+  -webkit-mask:radial-gradient(circle 14px at 0 var(--cut), #0000 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle 14px at 100% var(--cut), #0000 98%, #000) right / 51% 100% no-repeat;
+          mask:radial-gradient(circle 14px at 0 var(--cut), #0000 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle 14px at 100% var(--cut), #0000 98%, #000) right / 51% 100% no-repeat}
+.bk4 .bk-card::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg, rgba(255,255,255,0) 30%, rgba(255,255,255,.7) 42%, rgba(255,255,255,0) 54%);opacity:.6}
+.bk4 .bc-head{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s-4);flex-wrap:wrap}
+.bk4 .bc-mark,.bk4 .bc-sub{margin:0}
+.bk4 .bc-sub,.bk4 .bc-rows dt{color:rgba(3,3,4,.56)}
+.bk4 .bc-rows div{border-bottom-color:rgba(3,3,4,.12)}
+.bk4 .bc-rows dd:empty::after{content:"\2014";color:rgba(3,3,4,.2)}
+.bk4 .bc-perf{height:0;margin:var(--s-2) calc(-1 * var(--s-6)) 0;border-top:1px dashed rgba(3,3,4,.24)}
+.bk4 .bc-foot{padding-top:0;color:rgba(3,3,4,.56);box-shadow:none}
+.bk4 .bk-card.is-sent .bc-foot{color:var(--deep);font-weight:500;box-shadow:none;letter-spacing:1px}
+.bk4 .bk-card.is-sent .bk-submit{display:none}
+.bk4 .bk-submit{display:grid;gap:var(--s-3);justify-items:stretch}
+.bk4 .bk-submit .btn{justify-content:center;height:56px;background:var(--deep);color:#FAFAFA}
+.bk4 .bk-submit .btn:hover{background:#25262B}
+.bk4 .bk-submit .btn:focus-visible{outline-color:var(--deep)}
+.bk4 .bk-submit .hint{color:rgba(3,3,4,.56);text-align:center}
+.bk4 .bk-submit .bk-form-err{color:#B3261E;text-align:center}
+.bk4 .bk-info{grid-column:2 / 12;display:grid;grid-template-columns:repeat(3, 1fr);gap:var(--gap);margin:var(--s-9) 0 0;padding-top:var(--s-5);border-top:1px solid var(--hair)}
+.bk4 .bk-info dt{color:var(--on-soft)}
+.bk4 .bk-info dd{color:var(--on)}
+@media (max-width:1279px){
+  .bk4 .bc-head{flex-direction:column;gap:4px}
+  .bk4 .bc-rows div{grid-template-columns:72px minmax(0, 1fr)}
+  .bk4 .bc-rows dd{white-space:normal;line-height:32px;padding-top:4px}
+  .bk4 .days{grid-template-columns:repeat(5, minmax(0, 1fr))}
+}
+@media (max-width:1080px){
+  .bk4 .bk-form,.bk4 .bk-done,.bk4 .bk-card{grid-column:2 / 12}
+  .bk4 .bk-side{display:none}
+  .bk4 .bk-card{margin:0;filter:drop-shadow(0 32px 48px rgba(0,0,0,.5))}
+}
+@media (max-width:760px){
+  .bk4 .bk-body{padding:var(--s-7) 20px var(--s-9)}
+  .bk4 .bk-form,.bk4 .bk-done,.bk4 .bk-card,.bk4 .bk-info{grid-column:1}
+  .bk4 .bk-form fieldset,.bk4 .bk-done,.bk4 .bk-card{padding:var(--s-5)}
+  .bk4 .bc-perf{margin:var(--s-2) calc(-1 * var(--s-5)) 0}
+  .bk4 .day:nth-child(n+6){border-top:0}
+  .bk4 .bk-info{grid-template-columns:1fr}
+}
+
 /* smooth scroll (Lenis) */
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto !important}
@@ -1215,10 +1317,10 @@ html.lenis,html.lenis body{height:auto}
 <main id="top" tabindex="-1">
   <section class="hero" id="hero" aria-label="Introduction">
     <div class="hero-pin">
-      <div class="hero-photo"><img src="images/hero.webp" width="2000" height="1116" alt="A woman in a white silk blouse smiling quietly by a window in a Paris apartment" decoding="async" fetchpriority="high"></div>
+      <div class="hero-photo"><img class="muse" src="images/muse-hero.jpg" width="2000" height="1116" alt="A woman with her hair pulled back smiling and looking up, her hand resting on her cheek, against a pale ice-grey backdrop" decoding="async" fetchpriority="high"></div>
       <!-- paper with the headline cut out of it: the photograph shows through the letters; on scroll the paper scales away -->
       <svg class="hero-mask" id="hero-mask" aria-hidden="true" focusable="false">
-        <defs><mask id="hm" maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%"><rect width="100%" height="100%" fill="#fff"/><text id="hm-text" fill="#000"></text></mask></defs>
+        <defs><mask id="hm" maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%"><rect width="100%" height="100%" fill="#fff"/><g id="hm-g"><text id="hm-text" fill="#000"></text></g></mask></defs>
         <rect class="hm-paper" width="100%" height="100%" mask="url(#hm)"/>
       </svg>
       <div class="hero-copy">
@@ -1287,7 +1389,7 @@ html.lenis,html.lenis body{height:auto}
           <div><dt>3</dt><dd>weeks, start to finish</dd></div>
           <div><dt>&euro;1,200</dt><dd>from, per tooth</dd></div>
         </dl>
-        <figure class="tr-img"><img width="2000" height="1342" class="gloss" src="images/r1-after-ice.webp" alt="Close-up of finished porcelain veneers on the front teeth" loading="lazy" decoding="async"></figure>
+        <figure class="tr-img"><img width="2000" height="1116" class="muse" src="images/muse-smile.webp" alt="Close-up of a natural smile with even, softly white front teeth" loading="lazy" decoding="async"></figure>
       </article>
 
       <article class="tr-card" id="t-implants" aria-labelledby="t-implants-h">
@@ -1384,7 +1486,7 @@ html.lenis,html.lenis body{height:auto}
         <li class="jr-step">
           <div class="jr-head"><h3>Preview</h3><span>Same visit</span></div>
           <div class="jr-body"><p>You see the planned smile on screen, then wear it as a temporary mock-up and look in the mirror before anything is touched.</p></div>
-          <div class="jr-thumb" aria-hidden="true"><img width="1600" height="1986" alt="" loading="lazy" decoding="async" src="images/j2-ice.webp" onerror="this.onerror=null;this.src='images/j2-preview.webp'" onload="if(/-ice\./.test(this.src))this.classList.add('gloss')"></div>
+          <div class="jr-thumb" aria-hidden="true"><img width="2000" height="1116" class="muse" alt="" loading="lazy" decoding="async" src="images/muse-gaze.webp"></div>
         </li>
         <li class="jr-step">
           <div class="jr-head"><h3>Craft</h3><span>Weeks 1 to 3</span></div>
@@ -1394,15 +1496,15 @@ html.lenis,html.lenis body{height:auto}
         <li class="jr-step">
           <div class="jr-head"><h3>Reveal</h3><span>Week 3</span></div>
           <div class="jr-body"><p>We fit, adjust and polish in one visit. You leave with a smile that looks like it was always yours.</p></div>
-          <div class="jr-thumb" aria-hidden="true"><img width="1600" height="1986" class="gloss" alt="" loading="lazy" decoding="async" src="images/j4-ice.webp"></div>
+          <div class="jr-thumb" aria-hidden="true"><img width="2000" height="1116" class="muse" alt="" loading="lazy" decoding="async" src="images/muse-reveal.jpg"></div>
         </li>
       </ol>
       <!-- one frame per step -->
       <div class="jr-media" data-step="0" aria-hidden="true">
         <figure class="jr-img on" data-ph="J1"><img width="1600" height="1986" class="gloss" alt="" loading="lazy" decoding="async" src="images/j1-ice.webp"></figure>
-        <figure class="jr-img" data-ph="J2 · the mock-up in the mirror"><img width="1600" height="1986" alt="" loading="lazy" decoding="async" src="images/j2-ice.webp" onerror="this.onerror=null;this.src='images/j2-preview.webp'" onload="if(/-ice\./.test(this.src))this.classList.add('gloss')"></figure>
+        <figure class="jr-img" data-ph="J2 · the mock-up in the mirror"><img width="2000" height="1116" class="muse" alt="" loading="lazy" decoding="async" src="images/muse-gaze.webp"></figure>
         <figure class="jr-img" data-ph="J3 · porcelain in the lab"><img width="1600" height="1986" alt="" loading="lazy" decoding="async" src="images/j3-ice.webp" onerror="this.onerror=null;this.src='images/j3-lab.webp'" onload="if(/-ice\./.test(this.src))this.classList.add('gloss')"></figure>
-        <figure class="jr-img" data-ph="J4"><img width="1600" height="1986" class="gloss" alt="" loading="lazy" decoding="async" src="images/j4-ice.webp"></figure>
+        <figure class="jr-img" data-ph="J4"><img width="2000" height="1116" class="muse" alt="" loading="lazy" decoding="async" src="images/muse-reveal.jpg"></figure>
         <p class="jr-cap"><span>Digital scan, 20 microns</span><span>Planned on your face</span><span>Layered by hand</span><span>Shade BL1, finished</span></p>
       </div>
     </div>
@@ -1462,7 +1564,7 @@ html.lenis,html.lenis body{height:auto}
     </div>
   </section>
 
-  <section class="book has-photo" id="book" aria-labelledby="bk-title">
+  <section class="book has-photo bk4" id="book" aria-labelledby="bk-title">
     <div class="bk-hero">
       <div class="bk-img" aria-hidden="true"><img width="2000" height="1116" class="gloss" src="images/p2-ice.webp" alt="" loading="lazy" decoding="async"></div>
       <div class="g12 bk-head" data-dark="on">
@@ -1473,7 +1575,7 @@ html.lenis,html.lenis body{height:auto}
     <div class="g12 bk-body" data-dark="on">
       <form class="bk-form" id="bk-form" novalidate>
         <fieldset class="bk-step">
-          <legend><span class="bk-n">1</span>What are you thinking about?</legend>
+          <legend><span class="bk-n">01</span>What are you thinking about?</legend>
           <div class="prefs">
             <label class="pref"><input type="radio" name="what" value="veneers"><span>Veneers</span></label>
             <label class="pref"><input type="radio" name="what" value="implants"><span>Implants</span></label>
@@ -1484,14 +1586,14 @@ html.lenis,html.lenis body{height:auto}
           <span class="err" id="err-what" aria-live="polite"></span>
         </fieldset>
         <fieldset class="bk-step" id="bk-when">
-          <legend><span class="bk-n">2</span>When suits you?</legend>
+          <legend><span class="bk-n">02</span>When suits you?</legend>
           <div class="days" id="bk-days" hidden></div>
           <div class="prefs bk-times" id="bk-times" role="radiogroup" aria-label="Free times" hidden></div>
           <p class="hint bk-state" id="bk-state" aria-live="polite">Loading free times&hellip;</p>
           <span class="err" id="err-slot" aria-live="polite"></span>
         </fieldset>
         <fieldset class="bk-step">
-          <legend><span class="bk-n">3</span>Who is coming?</legend>
+          <legend><span class="bk-n">03</span>Who is coming?</legend>
           <div class="fields">
             <label class="fld">Name<input name="name" id="bk-name" autocomplete="name" maxlength="80" aria-required="true" aria-describedby="err-name"><span class="err" id="err-name"></span></label>
             <label class="fld">Phone<input name="phone" id="bk-phone" type="tel" autocomplete="tel" maxlength="20" placeholder="+33 6 12 34 56 78" aria-required="true" aria-describedby="err-phone"><span class="err" id="err-phone"></span></label>
@@ -1499,11 +1601,6 @@ html.lenis,html.lenis body{height:auto}
             <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
           </div>
         </fieldset>
-        <div class="bk-submit">
-          <button class="btn btn-light" type="submit" id="bk-send">Request this time <span class="arr" aria-hidden="true">&rarr;</span></button>
-          <p class="hint">Monday to Saturday. No payment now.</p>
-          <p class="err bk-form-err" id="err-form" role="alert"></p>
-        </div>
       </form>
       <div class="bk-done" id="bk-done" tabindex="-1" hidden>
         <h3 id="bk-done-title">Requested.</h3>
@@ -1512,23 +1609,29 @@ html.lenis,html.lenis body{height:auto}
         <p class="hint">With this code and your email you can check or cancel the visit any time at <a class="tlink" href="status/">ferrand.vercel.app/status</a>. Concept project. No real appointments or medical data.</p>
         <button class="tlink" type="button" id="bk-again">Book another time</button>
       </div>
+      <!-- the ticket: a porcelain card the answers write themselves into; the request is sent from it -->
       <div class="bk-side">
-        <div class="bk-card" id="bk-card" aria-live="polite">
-          <p class="bc-mark">FERRAND</p>
-          <p class="bc-sub">Dr. Claire Ferrand &middot; 12 rue de Miromesnil, Paris 8e</p>
-          <dl class="bc-rows">
+        <div class="bk-card" id="bk-card">
+          <div class="bc-head"><p class="bc-mark">FERRAND</p><p class="bc-sub">12 rue de Miromesnil, Paris 8e</p></div>
+          <dl class="bc-rows" aria-live="polite">
             <div><dt>Treatment</dt><dd id="bc-what"></dd></div>
             <div><dt>When</dt><dd id="bc-when"></dd></div>
             <div><dt>Name</dt><dd id="bc-name"></dd></div>
           </dl>
+          <div class="bc-perf" aria-hidden="true"></div>
           <p class="bc-foot"><span id="bc-foot">Consultation, 60 minutes &middot; &euro;150, credited to your treatment</span></p>
+          <div class="bk-submit">
+            <button class="btn" type="submit" form="bk-form" id="bk-send">Request this time <span class="arr" aria-hidden="true">&rarr;</span></button>
+            <p class="hint">Monday to Saturday. The clinic confirms within two hours.</p>
+            <p class="err bk-form-err" id="err-form" role="alert"></p>
+          </div>
         </div>
-        <dl class="bk-info">
-          <div><dt>Address</dt><dd>12 rue de Miromesnil<br>75008 Paris<br>Metro Miromesnil, lines 9 and 13</dd></div>
-          <div><dt>Hours</dt><dd>Mon to Fri, 9:00 to 19:30<br>Saturday, 10:00 to 14:00</dd></div>
-          <div><dt>Phone</dt><dd><a class="tlink" href="tel:+33184000000">+33 1 84 00 00 00</a></dd></div>
-        </dl>
       </div>
+      <dl class="bk-info">
+        <div><dt>Address</dt><dd>12 rue de Miromesnil, 75008 Paris<br>Metro Miromesnil, lines 9 and 13</dd></div>
+        <div><dt>Hours</dt><dd>Mon to Fri, 9:00 to 19:30<br>Saturday, 10:00 to 14:00</dd></div>
+        <div><dt>Phone</dt><dd><a class="tlink" href="tel:+33184000000">+33 1 84 00 00 00</a></dd></div>
+      </dl>
     </div>
   </section>
 </main>
@@ -1559,7 +1662,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
   <div class="g12 foot-bot">
     <p>&copy; 2026 Ferrand Aesthetic Dentistry</p>
-    <p>Concept project. Names, prices and reviews are fictional; photos are AI-generated.</p>
+    <p>Concept project. Names, prices and reviews are fictional. Portraits: Pexels, models are not patients; objects and the case are AI-generated.</p>
     <a href="#top">Back to top <span aria-hidden="true">&uarr;</span></a>
   </div>
 </footer>
@@ -1682,11 +1785,15 @@ html.lenis,html.lenis body{height:auto}
   var done = document.getElementById('bk-done'), card = document.getElementById('bk-card');
   var cw = document.getElementById('bc-what'), ct = document.getElementById('bc-when'), cn = document.getElementById('bc-name'), foot = document.getElementById('bc-foot');
   var footText = foot.innerHTML;
-  // phone: the card moves right above the button, so it fills in where the eyes are; wide screens keep it on axis B
-  var side = document.querySelector('.bk-side'), submit = form.querySelector('.bk-submit'), mq = matchMedia('(max-width: 760px)');
-  function place(){ if(mq.matches){ if(card.parentNode !== form) form.insertBefore(card, submit); } else if(card.parentNode !== side){ side.insertBefore(card, side.firstChild); } }
+  // phone: the ticket follows step 3 (after the success panel), so it fills in where the eyes are; wide screens keep it on axis B
+  var side = document.querySelector('.bk-side'), mq = matchMedia('(max-width: 1080px)');
+  function place(){ if(mq.matches){ if(card.previousElementSibling !== done) done.after(card); } else if(card.parentNode !== side){ side.insertBefore(card, side.firstChild); } }
   if(mq.addEventListener) mq.addEventListener('change', place); else mq.addListener(place);
   place();
+  // the side notches of the ticket always sit on its tear line
+  var perf = card.querySelector('.bc-perf');
+  function cut(){ card.style.setProperty('--cut', perf.offsetTop + 'px'); }
+  if('ResizeObserver' in window) new ResizeObserver(cut).observe(card); cut();
   var api = window.FerrandAPI;
   var daysEl = document.getElementById('bk-days'), timesEl = document.getElementById('bk-times'), stateEl = document.getElementById('bk-state');
   var errSlot = document.getElementById('err-slot'), errForm = document.getElementById('err-form'), send = document.getElementById('bk-send');
@@ -1781,6 +1888,9 @@ html.lenis,html.lenis body{height:auto}
     io.observe(form);
   } else loadSlots();
   form.addEventListener('focusin', function(){ if(!days.length) loadSlots(); });
+  // belt and braces: some embedded browsers never report the intersection
+  function near(){ if(days.length || loading) return; if(form.getBoundingClientRect().top < innerHeight + 800){ removeEventListener('scroll', near); loadSlots(); } }
+  addEventListener('scroll', near, {passive:true}); near();
 
   form.addEventListener('change', function(e){
     var r = e.target; if(r.type !== 'radio') return;
@@ -1917,14 +2027,18 @@ html.lenis,html.lenis body{height:auto}
     if(!pin || !svg) return;
     var h1 = hero.querySelector('.h1'), side = hero.querySelector('.hero-side'), copy = hero.querySelector('.hero-copy');
     var ctx = document.createElement('canvas').getContext('2d');
+    var g = document.getElementById('hm-g'), ox = 0, oy = 0, last = 1;
+    function grow(k){ g.setAttribute('transform', k === 1 ? '' : 'translate(' + ox + ' ' + oy + ') scale(' + k + ') translate(' + (-ox) + ' ' + (-oy) + ')'); }
     function layout(){
       var W = document.documentElement.clientWidth, phone = W < 761;
       var lines = phone ? ['Everyone', 'will', 'notice.'] : ['Everyone', 'will notice.'];
       var pad = parseFloat(getComputedStyle(copy).paddingLeft);
-      var a = h1.getBoundingClientRect().left, col = a - pad - parseFloat(getComputedStyle(copy).columnGap || 24);
+      // measured against the pinned stage, not the window: phones fire resize mid-scroll (address bar), and window coordinates then threw the letters off screen
+      var P = pin.getBoundingClientRect();
+      var a = h1.getBoundingClientRect().left - P.left, col = a - pad - parseFloat(getComputedStyle(copy).columnGap || 24);
       var x1 = phone ? W - pad : W - pad - col - parseFloat(getComputedStyle(copy).columnGap || 24);
-      var top = h1.getBoundingClientRect().bottom + 24, bottom = side.getBoundingClientRect().top - 24;
-      ctx.font = '400 100px Fraunces';
+      var top = h1.getBoundingClientRect().bottom - P.top + 24, bottom = side.getBoundingClientRect().top - P.top - 24;
+      ctx.font = '500 100px Fraunces';
       var w = Math.max.apply(null, lines.map(function(l){ return ctx.measureText(l).width - l.length * 2; }));
       var fs = Math.min(100 * (x1 - a) / w, (bottom - top) / (lines.length * .92));
       fs = Math.max(48, Math.floor(fs / 4) * 4);
@@ -1936,13 +2050,15 @@ html.lenis,html.lenis body{height:auto}
         var t = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
         t.setAttribute('x', a); t.setAttribute('y', Math.round(y0 + i * step)); t.textContent = l; txt.appendChild(t);
       });
-      pin.style.setProperty('--mo', Math.round(a + (x1 - a) * .42) + 'px ' + Math.round(y0 - fs * .3) + 'px');
+      ox = Math.round(a + (x1 - a) * .42); oy = Math.round(y0 - fs * .3);
+      grow(last);
     }
     function render(p){
       var e = ease(seg(p, .04, .8)), s = pin.style;
-      s.setProperty('--ms', (1 + 11 * e * e).toFixed(3));
+      last = +(1 + 11 * e * e).toFixed(3); grow(last);
       s.setProperty('--mp', (1 - seg(p, .3, .7)).toFixed(3));
       s.setProperty('--hp', (1.12 - .12 * e).toFixed(4));
+      s.setProperty('--hx', (62 * (1 - e)).toFixed(1) + '%');
       s.setProperty('--veil', seg(p, .45, .85).toFixed(3));
       s.setProperty('--trust', (1 - seg(p, .3, .55)).toFixed(3));
     }
@@ -1952,7 +2068,7 @@ html.lenis,html.lenis body{height:auto}
       var r = hero.getBoundingClientRect();
       render(clamp(-r.top / Math.max(1, r.height - innerHeight), 0, 1));
     });
-    (document.fonts ? document.fonts.load('400 100px Fraunces') : Promise.resolve()).then(layout, layout);
+    (document.fonts ? document.fonts.load('500 100px Fraunces') : Promise.resolve()).then(layout, layout);
     addEventListener('resize', layout);
     layout();
   })();
