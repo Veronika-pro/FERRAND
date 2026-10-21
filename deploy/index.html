@@ -1089,6 +1089,25 @@ body{font-size:var(--t-body);line-height:24px}
 .bc-foot{margin:0;padding-top:var(--s-3);font-size:var(--t-small);line-height:24px;color:var(--ink-soft)}
 .bk-card.is-sent .bc-foot{color:var(--ink);font-weight:500;box-shadow:inset 0 2px 0 var(--ink)}
 @media (prefers-reduced-motion:reduce){ .bc-rows dd.fill{animation:none} .brand small{transition:none} }
+/* booking on live slots (2026-10-21): calendar of ten days, times as pills, states, code */
+.day small{font-size:var(--t-label);line-height:16px;letter-spacing:1px;text-transform:none;color:rgba(250,250,250,.5)}
+.day:disabled{cursor:default;color:rgba(250,250,250,.3)}
+.day:disabled b,.day:disabled small{color:rgba(250,250,250,.3)}
+.day:hover:not(:disabled)::before{transform:none}
+.day:focus-visible{outline:2px solid var(--porcelain);outline-offset:-2px}
+.bk-times{margin-top:var(--s-5)}
+.bk-state{margin-top:var(--s-4)}
+.bk-state[hidden],.days[hidden],.bk-times[hidden]{display:none}
+.fld-wide{grid-column:1 / -1}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.bk-form-err{flex-basis:100%;margin:0;font-size:var(--t-small);line-height:24px;color:#F0B4AC}
+.bk-form-err:empty{display:none}
+.btn[disabled]{opacity:.6;cursor:progress}
+.bk-code{display:grid;justify-items:start;gap:var(--s-2);margin:0 0 var(--s-6);padding:var(--s-5) 0;border-top:1px solid rgba(250,250,250,.18);border-bottom:1px solid rgba(250,250,250,.18)}
+.bk-code span{font-size:var(--t-small);color:rgba(250,250,250,.62)}
+.bk-code b{font-family:var(--serif);font-weight:300;font-size:var(--t-h2);line-height:var(--lh-h2);letter-spacing:2px;color:var(--porcelain)}
+.bk-done .hint{margin-bottom:var(--s-5)}
+@media (max-width:760px){ .day:nth-child(5n+1){border-left:0;padding-left:0} .day:nth-child(n+6){border-top:1px solid rgba(250,250,250,.18)} }
 @media (max-width:760px){
   .bk-side{display:grid;grid-column:1;margin-top:var(--s-7)}
   .bk-form .bk-card{margin:0 0 var(--s-6)}
@@ -1456,40 +1475,42 @@ html.lenis,html.lenis body{height:auto}
         <fieldset class="bk-step">
           <legend><span class="bk-n">1</span>What are you thinking about?</legend>
           <div class="prefs">
-            <label class="pref"><input type="radio" name="what" value="Veneers"><span>Veneers</span></label>
-            <label class="pref"><input type="radio" name="what" value="Implants"><span>Implants</span></label>
-            <label class="pref"><input type="radio" name="what" value="Whitening"><span>Whitening</span></label>
-            <label class="pref"><input type="radio" name="what" value="Aligners"><span>Aligners</span></label>
-            <label class="pref"><input type="radio" name="what" value="Not sure yet"><span>Not sure yet</span></label>
+            <label class="pref"><input type="radio" name="what" value="veneers"><span>Veneers</span></label>
+            <label class="pref"><input type="radio" name="what" value="implants"><span>Implants</span></label>
+            <label class="pref"><input type="radio" name="what" value="whitening"><span>Whitening</span></label>
+            <label class="pref"><input type="radio" name="what" value="aligners"><span>Aligners</span></label>
+            <label class="pref"><input type="radio" name="what" value="general"><span>Not sure yet</span></label>
           </div>
           <span class="err" id="err-what" aria-live="polite"></span>
         </fieldset>
-        <fieldset class="bk-step">
+        <fieldset class="bk-step" id="bk-when">
           <legend><span class="bk-n">2</span>When suits you?</legend>
-          <div class="prefs">
-            <label class="pref"><input type="radio" name="when" value="a weekday morning"><span>Weekday morning</span></label>
-            <label class="pref"><input type="radio" name="when" value="a weekday afternoon"><span>Weekday afternoon</span></label>
-            <label class="pref"><input type="radio" name="when" value="a Saturday"><span>Saturday</span></label>
-          </div>
-          <span class="err" id="err-when" aria-live="polite"></span>
+          <div class="days" id="bk-days" hidden></div>
+          <div class="prefs bk-times" id="bk-times" role="radiogroup" aria-label="Free times" hidden></div>
+          <p class="hint bk-state" id="bk-state" aria-live="polite">Loading free times&hellip;</p>
+          <span class="err" id="err-slot" aria-live="polite"></span>
         </fieldset>
         <fieldset class="bk-step">
-          <legend><span class="bk-n">3</span>Where do we call you?</legend>
+          <legend><span class="bk-n">3</span>Who is coming?</legend>
           <div class="fields">
-            <label class="fld">Name<input name="name" id="bk-name" autocomplete="name" aria-required="true" aria-describedby="err-name"><span class="err" id="err-name"></span></label>
-            <label class="fld">Phone<input name="phone" id="bk-phone" type="tel" autocomplete="tel" placeholder="+33 6 12 34 56 78" aria-required="true" aria-describedby="err-phone"><span class="err" id="err-phone"></span></label>
+            <label class="fld">Name<input name="name" id="bk-name" autocomplete="name" maxlength="80" aria-required="true" aria-describedby="err-name"><span class="err" id="err-name"></span></label>
+            <label class="fld">Phone<input name="phone" id="bk-phone" type="tel" autocomplete="tel" maxlength="20" placeholder="+33 6 12 34 56 78" aria-required="true" aria-describedby="err-phone"><span class="err" id="err-phone"></span></label>
+            <label class="fld fld-wide">Email, to check your booking later<input name="email" id="bk-email" type="email" autocomplete="email" maxlength="254" aria-required="true" aria-describedby="err-email"><span class="err" id="err-email"></span></label>
+            <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
           </div>
         </fieldset>
         <div class="bk-submit">
-          <button class="btn btn-light" type="submit">Request a call back <span class="arr" aria-hidden="true">&rarr;</span></button>
+          <button class="btn btn-light" type="submit" id="bk-send">Request this time <span class="arr" aria-hidden="true">&rarr;</span></button>
           <p class="hint">Monday to Saturday. No payment now.</p>
+          <p class="err bk-form-err" id="err-form" role="alert"></p>
         </div>
       </form>
       <div class="bk-done" id="bk-done" tabindex="-1" hidden>
-        <h3 id="bk-done-title">Thank you.</h3>
+        <h3 id="bk-done-title">Requested.</h3>
         <p id="bk-done-text"></p>
-        <p class="hint">Concept site: no request was sent.</p>
-        <button class="tlink" type="button" id="bk-again">Send another request</button>
+        <div class="bk-code"><span>Your booking code</span><b id="bk-code"></b><button class="tlink" type="button" id="bk-copy">Copy code</button></div>
+        <p class="hint">With this code and your email you can check or cancel the visit any time at <a class="tlink" href="status/">ferrand.vercel.app/status</a>. Concept project. No real appointments or medical data.</p>
+        <button class="tlink" type="button" id="bk-again">Book another time</button>
       </div>
       <div class="bk-side">
         <div class="bk-card" id="bk-card" aria-live="polite">
@@ -1543,6 +1564,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 </footer>
 
+<script src="api.js"></script>
 <script>
 (function(){
   // hero is one screen now: the nav turns solid and shows its Book button once the hero button has scrolled away
@@ -1653,7 +1675,7 @@ html.lenis,html.lenis body{height:auto}
   show(0);
 })();
 
-/* book: the request in three steps; the appointment card on B fills in as the answers come. Concept: nothing is sent */
+/* book: three steps on live slots (api.js → Supabase); the appointment card on B fills in as the answers come */
 (function(){
   var form = document.getElementById('bk-form');
   if(!form) return;
@@ -1665,31 +1687,157 @@ html.lenis,html.lenis body{height:auto}
   function place(){ if(mq.matches){ if(card.parentNode !== form) form.insertBefore(card, submit); } else if(card.parentNode !== side){ side.insertBefore(card, side.firstChild); } }
   if(mq.addEventListener) mq.addEventListener('change', place); else mq.addListener(place);
   place();
+  var api = window.FerrandAPI;
+  var daysEl = document.getElementById('bk-days'), timesEl = document.getElementById('bk-times'), stateEl = document.getElementById('bk-state');
+  var errSlot = document.getElementById('err-slot'), errForm = document.getElementById('err-form'), send = document.getElementById('bk-send');
+  var PHONE = '<a class="tlink" href="tel:+33184000000">+33 1 84 00 00 00</a>';
+  var byDay = {}, days = [], dayKey = '', slotAt = {}, loading = null, busy = false;
+
   function val(n){ var r = form.querySelector('input[name="' + n + '"]:checked'); return r ? r.value : ''; }
+  function whatLabel(){ var r = form.querySelector('input[name="what"]:checked'); return r ? r.nextElementSibling.textContent : ''; }
   function put(el, text){ if(el.textContent === text) return; el.textContent = text; el.classList.remove('fill'); void el.offsetWidth; if(text) el.classList.add('fill'); }
   function paint(){
-    var w = val('what'), t = val('when');
-    put(cw, w ? (w === 'Not sure yet' ? 'A first look' : w) : '');
-    put(ct, t ? t.charAt(0).toUpperCase() + t.slice(1) : '');
+    var w = val('what'), s = val('slot');
+    put(cw, w ? (w === 'general' ? 'A first look' : whatLabel()) : '');
+    put(ct, s && slotAt[s] ? api.dayShort(slotAt[s]) + ', ' + api.time(slotAt[s]) : '');
   }
-  [].forEach.call(form.querySelectorAll('input[type="radio"]'), function(r){ r.addEventListener('change', function(){ document.getElementById('err-' + r.name).textContent = ''; paint(); }); });
+  function state(html){ stateEl.innerHTML = html || ''; stateEl.hidden = !html; }
+
+  // the next ten clinic days (Mon–Sat, Paris), starting today unless today has nothing left
+  function buildDays(){
+    var out = [], d = new Date(api.dayKey(new Date()) + 'T12:00:00Z');
+    for(var i = 0; out.length < 10 && i < 21; i++, d = new Date(d.getTime() + 864e5)){
+      if(d.getUTCDay() === 0) continue;
+      var k = api.dayKey(d);
+      if(i === 0 && !byDay[k]) continue;
+      out.push({ key: k, date: d, count: (byDay[k] || []).length });
+    }
+    return out;
+  }
+  function renderDays(){
+    daysEl.innerHTML = '';
+    days.forEach(function(x){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'day'; b.dataset.key = x.key;
+      b.setAttribute('aria-pressed', x.key === dayKey ? 'true' : 'false');
+      b.setAttribute('aria-label', api.dayLong(x.date) + (x.count ? ', ' + x.count + (x.count === 1 ? ' free time' : ' free times') : ', fully booked'));
+      b.innerHTML = '<span>' + api.weekday(x.date) + '</span><b>' + api.dayNum(x.date) + '</b><small>' + (x.count ? api.month(x.date) : 'Full') + '</small>';
+      if(!x.count) b.disabled = true;
+      daysEl.appendChild(b);
+    });
+    daysEl.hidden = false;
+  }
+  function renderTimes(keep){
+    timesEl.innerHTML = '';
+    (byDay[dayKey] || []).forEach(function(s){
+      var l = document.createElement('label'); l.className = 'pref';
+      l.innerHTML = '<input type="radio" name="slot" value="' + s.id + '"' + (String(s.id) === keep ? ' checked' : '') + '><span>' + api.time(s.at) + '</span>';
+      timesEl.appendChild(l);
+    });
+    timesEl.hidden = !timesEl.children.length;
+    paint();
+  }
+  function pickDay(k, keep){
+    dayKey = k;
+    [].forEach.call(daysEl.children, function(b){ b.setAttribute('aria-pressed', b.dataset.key === k ? 'true' : 'false'); });
+    renderTimes(keep);
+  }
+
+  // free slots straight from the database; the slot only counts once the server books it
+  function loadSlots(){
+    if(loading) return loading;
+    var keep = val('slot');
+    if(!days.length) state('Loading free times&hellip;');
+    loading = api.rpc('free_slots', { p_days: 14 }).then(function(rows){
+      byDay = {}; slotAt = {};
+      (rows || []).forEach(function(r){
+        var at = new Date(r.slot_starts_at), k = api.dayKey(at);
+        (byDay[k] = byDay[k] || []).push({ id: r.slot_id, at: at });
+        slotAt[r.slot_id] = at;
+      });
+      days = buildDays();
+      var open = days.filter(function(x){ return x.count; });
+      if(!open.length){ daysEl.hidden = true; timesEl.hidden = true; state('No free times in the next two weeks. Call us on ' + PHONE + ' and we will find one.'); return; }
+      if(!byDay[dayKey]) dayKey = open[0].key;
+      renderDays(); state(''); pickDay(dayKey, slotAt[keep] ? keep : '');
+    }, function(){
+      if(!days.length){ daysEl.hidden = true; timesEl.hidden = true; }
+      state('We could not load free times. <button class="tlink" type="button" id="bk-retry">Try again</button> or call ' + PHONE + '.');
+    }).then(function(){ loading = null; });
+    return loading;
+  }
+  stateEl.addEventListener('click', function(e){ if(e.target.id === 'bk-retry') loadSlots(); });
+  daysEl.addEventListener('click', function(e){ var b = e.target.closest('.day'); if(b && !b.disabled){ errSlot.textContent = ''; pickDay(b.dataset.key, ''); } });
+  // arrows move along the calendar like a tab list
+  daysEl.addEventListener('keydown', function(e){
+    if(e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    var bs = [].filter.call(daysEl.children, function(b){ return !b.disabled; }), i = bs.indexOf(document.activeElement);
+    if(i < 0) return; e.preventDefault();
+    var n = bs[(i + (e.key === 'ArrowRight' ? 1 : bs.length - 1)) % bs.length]; n.focus(); n.click();
+  });
+  // fetch when the chapter comes near, not on page load
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){ if(es[0].isIntersecting){ io.disconnect(); loadSlots(); } }, { rootMargin: '800px 0px' });
+    io.observe(form);
+  } else loadSlots();
+  form.addEventListener('focusin', function(){ if(!days.length) loadSlots(); });
+
+  form.addEventListener('change', function(e){
+    var r = e.target; if(r.type !== 'radio') return;
+    document.getElementById('err-' + r.name).textContent = ''; errForm.textContent = ''; paint();
+  });
   form.elements.name.addEventListener('input', function(){ cn.textContent = form.elements.name.value.trim(); });
   function setErr(input, msg){ input.setAttribute('aria-invalid', msg ? 'true' : 'false'); document.getElementById(input.getAttribute('aria-describedby')).textContent = msg; }
+  function sending(on){ busy = on; send.disabled = on; send.setAttribute('aria-busy', on ? 'true' : 'false'); send.firstChild.textContent = on ? 'Sending… ' : 'Request this time '; }
+
   form.addEventListener('submit', function(e){
     e.preventDefault();
-    var name = form.elements.name, phone = form.elements.phone, w = val('what'), t = val('when'), ok = true, first = null;
+    if(busy) return;
+    var name = form.elements.name, phone = form.elements.phone, email = form.elements.email, w = val('what'), s = val('slot'), ok = true, first = null;
+    errForm.textContent = '';
     document.getElementById('err-what').textContent = w ? '' : 'Please choose what you are thinking about.'; if(!w){ ok = false; first = first || form.querySelector('input[name="what"]'); }
-    document.getElementById('err-when').textContent = t ? '' : 'Please choose when suits you.'; if(!t){ ok = false; first = first || form.querySelector('input[name="when"]'); }
-    if(!name.value.trim()){ setErr(name, 'Please enter your name.'); ok = false; first = first || name; } else setErr(name, '');
-    if(phone.value.replace(/\D/g, '').length < 8){ setErr(phone, 'Please enter a phone number we can call.'); ok = false; first = first || phone; } else setErr(phone, '');
-    if(!ok){ first.focus(); return; }
-    document.getElementById('bk-done-title').textContent = 'Thank you, ' + name.value.trim().split(' ')[0] + '.';
-    document.getElementById('bk-done-text').textContent = 'We will call you on ' + phone.value.trim() + ' within two hours to talk about ' + (w === 'Not sure yet' ? 'what suits you' : w.toLowerCase()) + ' and find ' + t + ' for your consultation.';
-    card.classList.add('is-sent'); foot.textContent = 'Requested. We call you within two hours.';
-    form.hidden = true; done.hidden = false; done.focus();
+    errSlot.textContent = s ? '' : 'Please choose a day and a time.'; if(!s){ ok = false; first = first || timesEl.querySelector('input') || daysEl.querySelector('.day:not(:disabled)') || stateEl; }
+    if(name.value.trim().length < 2){ setErr(name, 'Please enter your name.'); ok = false; first = first || name; } else setErr(name, '');
+    if(!/^\+?[0-9 ().-]{6,20}$/.test(phone.value.trim()) || phone.value.replace(/\D/g, '').length < 8){ setErr(phone, 'Please enter a phone number we can call.'); ok = false; first = first || phone; } else setErr(phone, '');
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value.trim())){ setErr(email, 'Please enter an email like name@example.com.'); ok = false; first = first || email; } else setErr(email, '');
+    if(!ok){ if(first.focus) first.focus(); return; }
+    if(form.elements.website.value) return; // bots fill every field
+
+    sending(true);
+    api.rpc('book_slot', { p_slot_id: Number(s), p_treatment: w, p_name: name.value.trim(), p_phone: phone.value.trim(), p_email: email.value.trim() })
+      .then(function(r){
+        var at = new Date(r.starts_at);
+        document.getElementById('bk-done-title').textContent = 'Requested, ' + name.value.trim().split(' ')[0] + '.';
+        document.getElementById('bk-done-text').textContent = r.treatment + ', ' + api.dayLong(at) + ' at ' + api.time(at) + '. The clinic confirms within two hours during opening hours.';
+        document.getElementById('bk-code').textContent = r.code;
+        try { sessionStorage.setItem('ferrand-code', r.code); } catch(e){} // prefills /status in this tab; the email never leaves the form
+        card.classList.add('is-sent'); foot.textContent = 'Requested · ' + r.code;
+        form.hidden = true; done.hidden = false; done.focus();
+      }, function(err){
+        var c = err.code;
+        if(c === 'slot_taken' || c === 'slot_unavailable'){
+          var r0 = form.querySelector('input[name="slot"]:checked'); if(r0) r0.checked = false;
+          loadSlots().then(function(){ errSlot.textContent = 'That time was just taken. Please pick another one.'; var f = timesEl.querySelector('input') || daysEl.querySelector('.day:not(:disabled)'); if(f) f.focus(); });
+        }
+        else if(c === 'invalid_name'){ setErr(name, 'Please enter your name.'); name.focus(); }
+        else if(c === 'invalid_phone'){ setErr(phone, 'Please enter a phone number we can call.'); phone.focus(); }
+        else if(c === 'invalid_email'){ setErr(email, 'Please enter an email like name@example.com.'); email.focus(); }
+        else if(c === 'too_many_active') errForm.innerHTML = 'You already have two upcoming visits with this email. See them at <a class="tlink" href="status/">your booking</a> or call ' + PHONE + '.';
+        else if(c === 'busy') errForm.textContent = 'We are receiving many requests right now. Please try again in a few minutes.';
+        else errForm.innerHTML = 'We could not send your request, nothing was booked. Please try again or call ' + PHONE + '.';
+      })
+      .then(function(){ sending(false); });
+  });
+
+  document.getElementById('bk-copy').addEventListener('click', function(){
+    var b = this, code = document.getElementById('bk-code').textContent;
+    function okay(){ b.textContent = 'Copied'; setTimeout(function(){ b.textContent = 'Copy code'; }, 2000); }
+    if(navigator.clipboard) navigator.clipboard.writeText(code).then(okay, function(){}); else { var range = document.createRange(); range.selectNodeContents(document.getElementById('bk-code')); getSelection().removeAllRanges(); getSelection().addRange(range); }
   });
   document.getElementById('bk-again').addEventListener('click', function(){
     done.hidden = true; form.hidden = false; card.classList.remove('is-sent'); foot.innerHTML = footText;
+    var r0 = form.querySelector('input[name="slot"]:checked'); if(r0) r0.checked = false;
+    paint(); loadSlots();
     form.querySelector('input[name="what"]').focus();
   });
 })();

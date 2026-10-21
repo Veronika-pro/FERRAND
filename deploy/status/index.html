@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your booking · Ferrand Aesthetic Dentistry</title>
+<meta name="description" content="Check or cancel your consultation at Ferrand Aesthetic Dentistry with your booking code and email.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..600&family=Fraunces:opsz,wght@9..144,300..400&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#FAFAFA">
+<link rel="icon" href="../favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" sizes="512x512" href="../favicon-512.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<style>
+/* tokens: same as the landing (DENTAL-design-passport), light "paper" chapter */
+:root{
+  --porcelain:#FAFAFA; --white:#FFFFFF; --paper:#EEF3F8; --line:#DFE7EF; --ink-soft:#505155; --ink:#111214; --err:#B3261E;
+  --serif:'Fraunces', 'Times New Roman', serif; --sans:'Instrument Sans', system-ui, sans-serif;
+  --s-2:8px; --s-3:12px; --s-4:16px; --s-5:24px; --s-6:32px; --s-7:48px; --s-8:64px; --s-9:96px;
+  --t-label:12px; --t-small:16px; --t-body:16px; --t-num:32px; --t-h2:48px; --lh-h2:56px; --ls-h2:-1px;
+  --edge:clamp(20px, 5vw, 64px); --gap:24px;
+}
+@media (min-width:761px) and (max-width:1279px){ :root{--t-num:28px; --t-h2:40px; --lh-h2:48px} }
+@media (max-width:760px){ :root{--t-num:24px; --t-h2:32px; --lh-h2:36px} }
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;background:var(--porcelain);color:var(--ink);overflow-x:clip}
+body{font-family:var(--sans);font-size:var(--t-body);line-height:24px;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit;text-decoration:none}
+.g12{display:grid;grid-template-columns:repeat(12, minmax(0, 1fr));column-gap:var(--gap);padding:0 var(--edge)}
+
+.nav{align-items:center;padding-top:20px;padding-bottom:20px}
+.brand{grid-column:2 / 8;display:flex;align-items:center;gap:14px}
+.brand b{font-family:var(--serif);font-weight:400;font-size:21px;line-height:1;letter-spacing:.3em;margin-right:-.3em}
+.brand small{font-size:var(--t-label);font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
+.nav .tlink{grid-column:8 / 12;justify-self:end}
+.tlink{padding:0 0 2px;border:0;border-bottom:1px solid rgba(17,18,20,.3);background:none;color:var(--ink);font:500 var(--t-small)/24px var(--sans);cursor:pointer;transition:border-color .3s ease}
+.tlink:hover{border-color:var(--ink)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+
+main{flex:1;padding-top:var(--s-9);padding-bottom:var(--s-9);align-content:start;row-gap:var(--s-7)}
+main:focus{outline:none}
+.intro{grid-column:2 / 7}
+h1{margin:0;font-family:var(--serif);font-weight:300;font-size:var(--t-h2);line-height:var(--lh-h2);letter-spacing:var(--ls-h2)}
+.lead{margin:var(--s-5) 0 0;max-width:40ch;color:var(--ink-soft)}
+
+.find{grid-column:2 / 7;display:grid;gap:var(--s-5);align-content:start}
+.fld{display:flex;flex-direction:column;gap:6px;font-size:var(--t-small);color:var(--ink-soft)}
+.fld input{height:48px;padding:0;border:0;border-bottom:1px solid rgba(17,18,20,.3);border-radius:0;background:transparent;color:var(--ink);font:var(--t-body)/1 var(--sans)}
+.fld input:focus{outline:none;border-bottom-color:var(--ink);box-shadow:0 1px 0 var(--ink)}
+.fld input[aria-invalid="true"]{border-bottom-color:var(--err)}
+#f-code{text-transform:uppercase;letter-spacing:2px}
+.err{min-height:24px;font-size:var(--t-small);line-height:24px;color:var(--err)}
+.err:empty{min-height:0}
+.btn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 24px;border:0;border-radius:999px;background:var(--ink);color:var(--porcelain);font:500 var(--t-small)/1 var(--sans);cursor:pointer;transition:background .3s ease}
+.btn:hover{background:#2A2B2F}
+.btn[disabled]{opacity:.6;cursor:progress}
+.btn-line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px rgba(17,18,20,.3)}
+.btn-line:hover{background:transparent;box-shadow:inset 0 0 0 1px var(--ink)}
+.btn:focus-visible{border-radius:999px}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-5)}
+
+/* the booking on axis B: ice card, status word in Fraunces, the current step carries the 2px rule */
+.result{grid-column:7 / 12;grid-row:1 / span 2;align-self:start}
+.card{display:grid;gap:var(--s-5);padding:var(--s-6);border-radius:20px;background:var(--paper)}
+.card:focus{outline:none}
+.placeholder{display:grid;gap:var(--s-3);padding:var(--s-6);border-radius:20px;border:1px dashed var(--line);color:var(--ink-soft)}
+.placeholder b{font-family:var(--serif);font-weight:300;font-size:var(--t-num);line-height:40px;letter-spacing:-1px;color:rgba(17,18,20,.3)}
+.st-word{margin:0;font-family:var(--serif);font-weight:300;font-size:var(--t-h2);line-height:var(--lh-h2);letter-spacing:var(--ls-h2)}
+.st-text{margin:0;max-width:44ch;color:var(--ink-soft)}
+.steps{display:grid;grid-template-columns:repeat(3, 1fr);gap:var(--s-3);margin:0;padding:0;list-style:none}
+.steps li{padding-top:var(--s-3);border-top:1px solid var(--line);font-size:var(--t-label);line-height:16px;letter-spacing:1px;color:var(--ink-soft)}
+.steps li.done{border-top-color:rgba(17,18,20,.3);color:var(--ink)}
+.steps li[aria-current="step"]{border-top:2px solid var(--ink);padding-top:11px;color:var(--ink);font-weight:500}
+.rows{display:grid;gap:var(--s-4);margin:0}
+.rows div{display:grid;grid-template-columns:96px minmax(0, 1fr);align-items:end;gap:var(--s-4);padding-bottom:var(--s-2);border-bottom:1px solid var(--line)}
+.rows dt{padding-bottom:4px;font-size:var(--t-label);line-height:16px;color:var(--ink-soft)}
+.rows dd{margin:0;font:300 var(--t-num)/40px var(--serif);letter-spacing:-1px;overflow-wrap:anywhere}
+.reason{margin:0;padding:var(--s-4);border-radius:12px;background:var(--white);color:var(--ink)}
+.confirm{display:grid;gap:var(--s-4);padding:var(--s-5);border-radius:12px;background:var(--white)}
+.confirm p{margin:0}
+
+.foot{padding-top:var(--s-5);padding-bottom:var(--s-6);border-top:1px solid var(--line);font-size:var(--t-label);line-height:16px;color:var(--ink-soft)}
+.foot p{grid-column:2 / 12;margin:0}
+
+@media (min-width:761px) and (max-width:1080px){
+  .intro,.find{grid-column:2 / 12}
+  .result{grid-column:2 / 12;grid-row:auto}
+}
+@media (max-width:760px){
+  .g12{grid-template-columns:minmax(0, 1fr);padding:0 20px}
+  .brand,.nav .tlink,.intro,.find,.result,.foot p{grid-column:1}
+  .nav{display:flex;justify-content:space-between}
+  .brand small{display:none}
+  main{padding-top:var(--s-7);padding-bottom:var(--s-8);row-gap:var(--s-6)}
+  .result{grid-row:auto}
+  .card,.placeholder{padding:var(--s-5)}
+  .rows div{grid-template-columns:80px minmax(0, 1fr)}
+  .rows dd{line-height:32px}
+}
+@media (prefers-reduced-motion:no-preference){ .card.in{animation:card-in .5s cubic-bezier(.2,.7,.1,1)} }
+@keyframes card-in{from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header class="g12 nav">
+  <a class="brand" href="../" aria-label="Ferrand Aesthetic Dentistry, home"><b>FERRAND</b><small>Aesthetic dentistry, Paris</small></a>
+  <a class="tlink" href="../#book">Book a consultation</a>
+</header>
+
+<main class="g12" id="main" tabindex="-1">
+  <div class="intro">
+    <h1>Your booking.</h1>
+    <p class="lead">Enter the code you got when you booked and the email you used. You will see where your visit stands, and you can cancel it here.</p>
+  </div>
+
+  <form class="find" id="find" novalidate>
+    <label class="fld">Booking code<input id="f-code" name="code" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="9" placeholder="FR-7K2QXM" aria-required="true" aria-describedby="e-code"><span class="err" id="e-code"></span></label>
+    <label class="fld">Email<input id="f-email" name="email" type="email" autocomplete="email" maxlength="254" aria-required="true" aria-describedby="e-email"><span class="err" id="e-email"></span></label>
+    <div class="actions">
+      <button class="btn" type="submit" id="f-send">Show my booking</button>
+    </div>
+    <p class="err" id="e-form" role="alert"></p>
+  </form>
+
+  <section class="result" id="result" aria-live="polite" aria-label="Booking">
+    <div class="placeholder" id="empty"><b>FR-&middot;&middot;&middot;&middot;&middot;&middot;</b><span>Your visit will appear here.</span></div>
+  </section>
+</main>
+
+<footer class="g12 foot">
+  <p>Concept project. No real appointments or medical data. &middot; 12 rue de Miromesnil, 75008 Paris &middot; <a class="tlink" href="tel:+33184000000">+33 1 84 00 00 00</a></p>
+</footer>
+
+<script src="../api.js"></script>
+<script>
+/* status: code + email → booking_status RPC; cancel through cancel_booking. Nothing personal is kept in the URL or storage */
+(function(){
+  var api = window.FerrandAPI;
+  var form = document.getElementById('find'), code = document.getElementById('f-code'), email = document.getElementById('f-email');
+  var send = document.getElementById('f-send'), eForm = document.getElementById('e-form'), out = document.getElementById('result');
+  var PHONE = '<a class="tlink" href="tel:+33184000000">+33 1 84 00 00 00</a>';
+  var pair = null, busy = false;
+  var STEPS = ['Requested', 'Confirmed', 'Completed'];
+  var TEXT = {
+    requested: function(b){ return 'The clinic confirms within two hours during opening hours. Check back here any time.'; },
+    confirmed: function(b){ return 'See you on ' + api.dayLong(b.at) + ' at ' + api.time(b.at) + ', 12 rue de Miromesnil, Paris 8e. The consultation takes 60 minutes.'; },
+    declined: function(b){ return 'The clinic could not take this visit. Their note is below.'; },
+    completed: function(b){ return 'Thank you for coming in. We hope to see you again.'; },
+    cancelled: function(b){ return 'You cancelled this visit and the time is free again.'; }
+  };
+
+  // the landing passes only the code (never the email) for this tab
+  try { var c0 = sessionStorage.getItem('ferrand-code'); if(c0) code.value = c0; } catch(e){}
+
+  function esc(s){ var d = document.createElement('div'); d.textContent = s == null ? '' : String(s); return d.innerHTML; }
+  function setErr(input, msg){ input.setAttribute('aria-invalid', msg ? 'true' : 'false'); document.getElementById(input.getAttribute('aria-describedby')).textContent = msg; }
+  function sending(on, label){ busy = on; send.disabled = on; send.textContent = on ? 'Looking…' : (label || 'Show my booking'); }
+  function failMsg(c){
+    if(c === 'too_many_attempts') return 'Too many tries for this code. Please wait 15 minutes or call ' + PHONE + '.';
+    if(c === 'not_found') return 'We could not find a booking with this code and email. Check both: the code looks like FR-7K2QXM.';
+    return 'We could not reach the booking system. Please try again, or call ' + PHONE + '.';
+  }
+
+  function render(b){
+    b.at = new Date(b.starts_at);
+    var s = b.status, idx = STEPS.indexOf(s.charAt(0).toUpperCase() + s.slice(1));
+    var steps = (s === 'declined' || s === 'cancelled') ? '' : '<ol class="steps" aria-label="Progress">' + STEPS.map(function(t, i){
+      return '<li' + (i === idx ? ' aria-current="step"' : (i < idx ? ' class="done"' : '')) + '>' + t + '</li>';
+    }).join('') + '</ol>';
+    var html = '<div class="card in" id="card" tabindex="-1">' +
+      '<p class="st-word">' + esc(s.charAt(0).toUpperCase() + s.slice(1)) + '.</p>' + steps +
+      '<p class="st-text">' + esc(TEXT[s] ? TEXT[s](b) : '') + '</p>' +
+      (s === 'declined' && b.decline_reason ? '<p class="reason">' + esc(b.decline_reason) + '</p>' : '') +
+      '<dl class="rows"><div><dt>Treatment</dt><dd>' + esc(b.treatment) + '</dd></div>' +
+      '<div><dt>When</dt><dd>' + esc(api.dayShort(b.at) + ', ' + api.time(b.at)) + '</dd></div>' +
+      '<div><dt>Code</dt><dd>' + esc(b.code) + '</dd></div></dl>' +
+      '<div class="actions">' +
+        (b.can_cancel ? '<button class="btn btn-line" type="button" id="c-ask">Cancel this visit</button>' : '') +
+        (s === 'declined' || s === 'cancelled' || s === 'completed' ? '<a class="btn" href="../#book">Book another time <span aria-hidden="true">&rarr;</span></a>' : '') +
+      '</div><div id="c-box"></div></div>';
+    out.innerHTML = html;
+  }
+
+  function look(focusCard){
+    return api.rpc('booking_status', { p_code: pair.code, p_email: pair.email }).then(function(r){
+      if(r && r.error){ out.innerHTML = '<div class="placeholder" id="empty"><b>FR-&middot;&middot;&middot;&middot;&middot;&middot;</b><span>Your visit will appear here.</span></div>'; eForm.innerHTML = failMsg(r.error); return; }
+      render(r);
+      if(focusCard) document.getElementById('card').focus();
+    });
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(busy) return;
+    var c = code.value.trim().toUpperCase().replace(/\s+/g, ''), m = email.value.trim(), ok = true;
+    if(/^[A-Z2-9]{6}$/.test(c)) c = 'FR-' + c;
+    eForm.textContent = '';
+    if(!/^FR-[A-Z2-9]{6}$/.test(c)){ setErr(code, 'The code looks like FR-7K2QXM.'); ok = false; } else setErr(code, '');
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(m)){ setErr(email, 'Please enter the email you booked with.'); ok = false; } else setErr(email, '');
+    if(!ok){ (code.getAttribute('aria-invalid') === 'true' ? code : email).focus(); return; }
+    code.value = c; pair = { code: c, email: m };
+    sending(true);
+    look(true).catch(function(err){ eForm.innerHTML = failMsg(err.code); }).then(function(){ sending(false); });
+  });
+
+  // cancel: one confirm step, because it is the only action that cannot be undone here
+  out.addEventListener('click', function(e){
+    var box = document.getElementById('c-box');
+    if(e.target.id === 'c-ask'){
+      box.innerHTML = '<div class="confirm"><p>Cancel this visit? The time goes back to other patients.</p><div class="actions"><button class="btn" type="button" id="c-yes">Yes, cancel it</button><button class="tlink" type="button" id="c-no">Keep my visit</button></div><p class="err" id="c-err" role="alert"></p></div>';
+      document.getElementById('c-ask').hidden = true; document.getElementById('c-yes').focus();
+    }
+    if(e.target.id === 'c-no'){ box.innerHTML = ''; var a = document.getElementById('c-ask'); a.hidden = false; a.focus(); }
+    if(e.target.id === 'c-yes'){
+      var yes = e.target; yes.disabled = true; yes.textContent = 'Cancelling…';
+      api.rpc('cancel_booking', { p_code: pair.code, p_email: pair.email }).then(function(r){
+        if(r && r.error === 'cannot_cancel'){ return look(true).then(function(){ eForm.textContent = 'This visit can no longer be cancelled online. Please call us.'; }); }
+        if(r && r.error){ throw { code: r.error }; }
+        render(r); document.getElementById('card').focus();
+      }).catch(function(err){
+        var ce = document.getElementById('c-err'); if(ce){ ce.innerHTML = failMsg(err.code); yes.disabled = false; yes.textContent = 'Yes, cancel it'; }
+      });
+    }
+  });
+})();
+</script>
+</body>
+</html>
