@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clinic · Ferrand Aesthetic Dentistry</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..600&family=Fraunces:opsz,wght@9..144,300..400&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#FAFAFA">
+<link rel="icon" href="../favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" sizes="512x512" href="../favicon-512.png">
+<style>
+/* tokens: same as the landing and /status (DENTAL-design-passport), quiet "paper" interface */
+:root{
+  --porcelain:#FAFAFA; --white:#FFFFFF; --paper:#EEF3F8; --line:#DFE7EF; --ink-soft:#505155; --ink:#111214; --err:#B3261E;
+  --serif:'Fraunces', 'Times New Roman', serif; --sans:'Instrument Sans', system-ui, sans-serif;
+  --s-2:8px; --s-3:12px; --s-4:16px; --s-5:24px; --s-6:32px; --s-7:48px; --s-8:64px; --s-9:96px;
+  --t-label:12px; --t-small:16px; --t-body:16px; --t-num:32px; --t-h2:48px; --lh-h2:56px; --ls-h2:-1px;
+  --edge:clamp(20px, 5vw, 64px); --gap:24px;
+}
+@media (min-width:761px) and (max-width:1279px){ :root{--t-num:28px; --t-h2:40px; --lh-h2:48px} }
+@media (max-width:760px){ :root{--t-num:24px; --t-h2:32px; --lh-h2:36px} }
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;background:var(--porcelain);color:var(--ink);overflow-x:clip}
+body{font-family:var(--sans);font-size:var(--t-body);line-height:24px;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit;text-decoration:none}
+[hidden]{display:none !important}
+.g12{display:grid;grid-template-columns:repeat(12, minmax(0, 1fr));column-gap:var(--gap);padding:0 var(--edge)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* header: brand on A, tabs on B, account to col 11 */
+.nav{align-items:center;padding-top:20px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.brand{grid-column:2 / 7;display:flex;align-items:center;gap:14px}
+.brand b{font-family:var(--serif);font-weight:400;font-size:21px;line-height:1;letter-spacing:.3em;margin-right:-.3em}
+.brand small{font-size:var(--t-label);font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
+.tabs{grid-column:7 / 10;display:flex;gap:var(--s-5)}
+.tab{padding:2px 0 4px;border:0;border-bottom:2px solid transparent;background:none;color:var(--ink-soft);font:500 var(--t-small)/24px var(--sans);cursor:pointer}
+.tab:hover{color:var(--ink)}
+.tab[aria-current="page"]{color:var(--ink);border-bottom-color:var(--ink)}
+.tab .n{margin-left:6px;font-size:var(--t-label);color:var(--ink-soft)}
+.who{grid-column:10 / 12;justify-self:end;display:flex;align-items:center;gap:var(--s-4);min-width:0}
+.who span{font-size:var(--t-label);color:var(--ink-soft);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tlink{padding:0 0 2px;border:0;border-bottom:1px solid rgba(17,18,20,.3);background:none;color:var(--ink);font:500 var(--t-small)/24px var(--sans);cursor:pointer;transition:border-color .3s ease;white-space:nowrap}
+.tlink:hover{border-color:var(--ink)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+
+main{flex:1;padding-top:var(--s-8);padding-bottom:var(--s-9);align-content:start;row-gap:var(--s-7)}
+main:focus{outline:none}
+.view{display:contents}
+.head{grid-column:2 / 12;display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:var(--s-4) var(--s-6)}
+h1{margin:0;font-family:var(--serif);font-weight:300;font-size:var(--t-h2);line-height:var(--lh-h2);letter-spacing:var(--ls-h2)}
+.sub{margin:var(--s-3) 0 0;color:var(--ink-soft)}
+h2{margin:0 0 var(--s-4);font-size:var(--t-label);line-height:16px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft)}
+.colA{grid-column:2 / 7;min-width:0}
+.colB{grid-column:7 / 12;min-width:0}
+.wide{grid-column:2 / 12;min-width:0}
+
+/* fields and buttons (as /status) */
+.fld{display:flex;flex-direction:column;gap:6px;font-size:var(--t-small);color:var(--ink-soft)}
+.fld input,.fld select{height:48px;padding:0;border:0;border-bottom:1px solid rgba(17,18,20,.3);border-radius:0;background:transparent;color:var(--ink);font:var(--t-body)/1 var(--sans)}
+.fld select{cursor:pointer}
+.fld textarea{min-height:96px;padding:var(--s-3);border:1px solid rgba(17,18,20,.3);border-radius:12px;background:var(--white);color:var(--ink);font:var(--t-body)/24px var(--sans);resize:vertical}
+.fld input:focus,.fld select:focus{outline:none;border-bottom-color:var(--ink);box-shadow:0 1px 0 var(--ink)}
+.fld [aria-invalid="true"]{border-color:var(--err)}
+.err{min-height:24px;font-size:var(--t-small);line-height:24px;color:var(--err)}
+.err:empty{min-height:0}
+.hint{margin:0;font-size:var(--t-label);line-height:16px;color:var(--ink-soft)}
+.btn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 24px;border:0;border-radius:999px;background:var(--ink);color:var(--porcelain);font:500 var(--t-small)/1 var(--sans);cursor:pointer;transition:background .3s ease;white-space:nowrap}
+.btn:hover{background:#2A2B2F}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.btn[aria-busy="true"]{cursor:progress}
+.btn-line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px rgba(17,18,20,.3)}
+.btn-line:hover{background:transparent;box-shadow:inset 0 0 0 1px var(--ink)}
+.btn-sm{height:40px;padding:0 18px}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-4)}
+
+/* sign in */
+.login{grid-column:2 / 6;display:grid;gap:var(--s-5);align-content:start}
+.gate{grid-column:7 / 12;align-self:start;display:grid;gap:var(--s-3);padding:var(--s-6);border-radius:20px;background:var(--paper);color:var(--ink-soft)}
+.gate b{font:300 var(--t-num)/40px var(--serif);letter-spacing:-1px;color:var(--ink)}
+
+/* status mark: Requested is the only filled one, because it is the only one waiting on the clinic */
+.st{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;box-shadow:inset 0 0 0 1px rgba(17,18,20,.3);font-size:var(--t-label);font-weight:500;line-height:1;white-space:nowrap}
+.st-requested{background:var(--ink);color:var(--porcelain);box-shadow:none}
+.st-declined,.st-cancelled{color:var(--ink-soft);box-shadow:inset 0 0 0 1px var(--line)}
+
+/* booking lists */
+.list{display:grid;margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:128px minmax(0, 1fr) auto;align-items:center;gap:var(--s-4);width:100%;padding:var(--s-4) 0;border:0;border-bottom:1px solid var(--line);background:none;color:var(--ink);font:inherit;text-align:left;cursor:pointer;transition:background .2s ease}
+.row:hover{background:linear-gradient(90deg, transparent, var(--paper) 12%, var(--paper) 88%, transparent)}
+.row time{font:300 20px/24px var(--serif);letter-spacing:-.5px}
+.row time small{display:block;font:var(--t-label)/16px var(--sans);letter-spacing:0;color:var(--ink-soft)}
+.row .who2{min-width:0}
+.row .who2 b{display:block;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .who2 span{display:block;font-size:var(--t-label);line-height:16px;color:var(--ink-soft)}
+.row.full{grid-template-columns:160px minmax(0, 1.2fr) minmax(0, 1fr) 112px 104px}
+.row .code{font-size:var(--t-label);letter-spacing:1px;color:var(--ink-soft)}
+.empty{padding:var(--s-6);border-radius:20px;border:1px dashed var(--line);color:var(--ink-soft)}
+.loading{color:var(--ink-soft)}
+.count{font:300 var(--t-num)/40px var(--serif);letter-spacing:-1px}
+
+/* filters */
+.filters{grid-column:2 / 12;display:grid;grid-template-columns:repeat(10, minmax(0, 1fr));column-gap:var(--gap);row-gap:var(--s-4);align-items:end}
+.chips{grid-column:1 / 7;display:flex;flex-wrap:wrap;gap:var(--s-2)}
+.chip{height:40px;padding:0 16px;border:0;border-radius:999px;background:transparent;box-shadow:inset 0 0 0 1px rgba(17,18,20,.3);color:var(--ink);font:500 var(--t-small)/1 var(--sans);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--porcelain);box-shadow:none}
+.filters .f-tr{grid-column:7 / 9}
+.filters .f-day{grid-column:9 / 11}
+
+/* booking card: A = who and when, B = decision and history */
+.back{grid-column:2 / 12;justify-self:start}
+.card{display:grid;gap:var(--s-5);padding:var(--s-6);border-radius:20px;background:var(--paper)}
+.st-word{margin:0;font-family:var(--serif);font-weight:300;font-size:var(--t-h2);line-height:var(--lh-h2);letter-spacing:var(--ls-h2)}
+.rows{display:grid;gap:var(--s-4);margin:0}
+.rows div{display:grid;grid-template-columns:96px minmax(0, 1fr);align-items:end;gap:var(--s-4);padding-bottom:var(--s-2);border-bottom:1px solid var(--line)}
+.rows dt{padding-bottom:4px;font-size:var(--t-label);line-height:16px;color:var(--ink-soft)}
+.rows dd{margin:0;font:300 24px/32px var(--serif);letter-spacing:-.5px;overflow-wrap:anywhere}
+.rows dd a{border-bottom:1px solid rgba(17,18,20,.3)}
+.rows dd a:hover{border-color:var(--ink)}
+.decide{display:grid;gap:var(--s-5)}
+.decide p{margin:0;color:var(--ink-soft)}
+.reason-box{display:grid;gap:var(--s-4);padding:var(--s-5);border-radius:12px;background:var(--white)}
+.note{margin:0;padding:var(--s-4);border-radius:12px;background:var(--white)}
+.log{display:grid;margin:0;padding:0;list-style:none}
+.log li{display:grid;grid-template-columns:112px minmax(0, 1fr);gap:var(--s-4);padding:var(--s-3) 0;border-top:1px solid var(--line);font-size:var(--t-small)}
+.log time{font-size:var(--t-label);line-height:24px;color:var(--ink-soft)}
+.log q{display:block;margin-top:4px;color:var(--ink-soft);quotes:none}
+
+/* slots: one week, a column per day */
+.week{grid-column:2 / 12;display:grid;grid-template-columns:repeat(6, minmax(0, 1fr));gap:var(--gap)}
+.day h3{margin:0 0 var(--s-3);padding-bottom:var(--s-3);border-bottom:1px solid var(--line);font:500 var(--t-small)/24px var(--sans)}
+.day h3 span{display:block;font-size:var(--t-label);line-height:16px;font-weight:400;color:var(--ink-soft)}
+.day.today h3{border-bottom:2px solid var(--ink);padding-bottom:11px}
+.day ul{display:grid;gap:var(--s-2);margin:0;padding:0;list-style:none}
+.slot{display:flex;justify-content:space-between;align-items:center;gap:var(--s-2);width:100%;height:48px;padding:0 14px;border:0;border-radius:12px;background:var(--white);box-shadow:inset 0 0 0 1px var(--line);color:var(--ink);font:500 var(--t-small)/1 var(--sans);cursor:pointer;text-align:left}
+.slot small{font-size:var(--t-label);font-weight:400;color:var(--ink-soft);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.slot:hover{box-shadow:inset 0 0 0 1px var(--ink)}
+.slot.closed{background:transparent;box-shadow:inset 0 0 0 1px var(--line);color:var(--ink-soft)}
+.slot.closed b{text-decoration:line-through;font-weight:500}
+.slot.booked{background:var(--paper);box-shadow:none}
+.slot[disabled]{cursor:default;opacity:.5}
+.slot[disabled]:hover{box-shadow:inset 0 0 0 1px var(--line)}
+.legend{display:flex;flex-wrap:wrap;gap:var(--s-5);margin:0;font-size:var(--t-label);color:var(--ink-soft)}
+
+.toast{position:fixed;left:50%;bottom:24px;z-index:9;transform:translateX(-50%);max-width:calc(100vw - 40px);padding:12px 20px;border-radius:999px;background:var(--ink);color:var(--porcelain);font-size:var(--t-small)}
+.foot{padding-top:var(--s-5);padding-bottom:var(--s-6);border-top:1px solid var(--line);font-size:var(--t-label);line-height:16px;color:var(--ink-soft)}
+.foot p{grid-column:2 / 12;margin:0}
+
+@media (min-width:761px) and (max-width:1080px){
+  .tabs{grid-column:6 / 10}
+  .login,.gate,.colA,.colB{grid-column:2 / 12}
+  .row.full{grid-template-columns:128px minmax(0, 1fr) minmax(0, 1fr) 104px}
+  .row.full .code{display:none}
+  .chips{grid-column:1 / 11}
+  .filters .f-tr{grid-column:1 / 6} .filters .f-day{grid-column:6 / 11}
+  .week{grid-template-columns:repeat(3, minmax(0, 1fr));row-gap:var(--s-6)}
+}
+@media (max-width:760px){
+  .g12{grid-template-columns:minmax(0, 1fr);padding:0 20px}
+  .nav{display:grid;grid-template-columns:1fr auto;row-gap:var(--s-4)}
+  .brand{grid-column:1} .who{grid-column:2} .who span{display:none}
+  .tabs{grid-column:1 / -1;grid-row:2}
+  .brand small{display:none}
+  .head,.login,.gate,.colA,.colB,.wide,.filters,.back,.week,.foot p{grid-column:1}
+  main{padding-top:var(--s-7);padding-bottom:var(--s-8);row-gap:var(--s-6)}
+  .card,.gate{padding:var(--s-5)}
+  .row,.row.full{grid-template-columns:96px minmax(0, 1fr) auto}
+  .row.full .tr,.row.full .code{display:none}
+  .filters{grid-template-columns:1fr 1fr}
+  .chips{grid-column:1 / -1;flex-wrap:nowrap;overflow-x:auto;margin:0 -20px;padding:0 20px;scrollbar-width:none}
+  .filters .f-tr{grid-column:1} .filters .f-day{grid-column:2}
+  .week{grid-template-columns:minmax(0, 1fr);row-gap:var(--s-6)}
+  .rows div{grid-template-columns:80px minmax(0, 1fr)}
+  .log li{grid-template-columns:1fr;gap:0}
+}
+@media (prefers-reduced-motion:no-preference){ .card.in{animation:card-in .5s cubic-bezier(.2,.7,.1,1)} }
+@keyframes card-in{from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header class="g12 nav">
+  <a class="brand" href="./" aria-label="Ferrand clinic desk, home"><b>FERRAND</b><small>Clinic desk</small></a>
+  <nav class="tabs" id="tabs" aria-label="Clinic desk" hidden>
+    <button class="tab" type="button" data-go="today">Today<span class="n" id="n-new"></span></button>
+    <button class="tab" type="button" data-go="bookings">Bookings</button>
+    <button class="tab" type="button" data-go="slots">Slots</button>
+  </nav>
+  <div class="who" id="who" hidden><span id="who-mail"></span><button class="tlink" type="button" id="out">Sign out</button></div>
+</header>
+
+<main class="g12" id="main" tabindex="-1">
+  <p class="wide loading" id="boot">Opening the desk…</p>
+
+  <!-- sign in -->
+  <section class="view" id="v-login" hidden aria-labelledby="h-login">
+    <div class="login">
+      <div><h1 id="h-login">Clinic desk.</h1><p class="sub">For the Ferrand team. Patients check their visit on <a class="tlink" href="../status/">the booking page</a>.</p></div>
+      <form id="login" class="login" style="grid-column:auto" novalidate>
+        <label class="fld">Email<input id="l-email" type="email" autocomplete="username" maxlength="254" aria-describedby="e-l-email" required><span class="err" id="e-l-email"></span></label>
+        <label class="fld">Password<input id="l-pass" type="password" autocomplete="current-password" maxlength="256" aria-describedby="e-l-pass" required><span class="err" id="e-l-pass"></span></label>
+        <div class="actions"><button class="btn" type="submit" id="l-send">Sign in</button></div>
+        <p class="err" id="e-login" role="alert"></p>
+      </form>
+    </div>
+    <div class="gate" id="gate" hidden><b>No clinic access.</b><span id="gate-text">This account is signed in but is not on the clinic team. Ask the clinic owner to add it, or sign out and use the clinic account.</span></div>
+  </section>
+
+  <!-- today -->
+  <section class="view" id="v-today" hidden aria-labelledby="h-today">
+    <div class="head"><div><h1 id="h-today">Today.</h1><p class="sub" id="today-date"></p></div><button class="tlink" type="button" data-reload>Refresh</button></div>
+    <div class="colA"><h2>Waiting for you <span id="c-new"></span></h2><div id="today-new" class="loading">Loading…</div></div>
+    <div class="colB"><h2>Coming up, 7 days</h2><div id="today-next" class="loading">Loading…</div></div>
+  </section>
+
+  <!-- all bookings -->
+  <section class="view" id="v-bookings" hidden aria-labelledby="h-bookings">
+    <div class="head"><div><h1 id="h-bookings">Bookings.</h1><p class="sub" id="b-sum"></p></div><button class="tlink" type="button" data-reload>Refresh</button></div>
+    <form class="filters" id="filters" role="search" aria-label="Filter bookings" onsubmit="return false">
+      <div class="chips" id="chips" role="group" aria-label="Status">
+        <button class="chip" type="button" data-st="" aria-pressed="true">All</button>
+        <button class="chip" type="button" data-st="requested" aria-pressed="false">Requested</button>
+        <button class="chip" type="button" data-st="confirmed" aria-pressed="false">Confirmed</button>
+        <button class="chip" type="button" data-st="completed" aria-pressed="false">Completed</button>
+        <button class="chip" type="button" data-st="declined" aria-pressed="false">Declined</button>
+        <button class="chip" type="button" data-st="cancelled" aria-pressed="false">Cancelled</button>
+      </div>
+      <label class="fld f-tr">Treatment<select id="f-tr"><option value="">All treatments</option></select></label>
+      <label class="fld f-day">Visit day<input id="f-day" type="date"></label>
+    </form>
+    <div class="wide loading" id="b-list">Loading…</div>
+  </section>
+
+  <!-- one booking -->
+  <section class="view" id="v-booking" hidden aria-label="Booking">
+    <button class="tlink back" type="button" id="back">&larr; Back</button>
+    <div class="colA" id="bk-a"></div>
+    <div class="colB" id="bk-b"></div>
+  </section>
+
+  <!-- slots -->
+  <section class="view" id="v-slots" hidden aria-labelledby="h-slots">
+    <div class="head">
+      <div><h1 id="h-slots">Slots.</h1><p class="sub" id="s-range"></p></div>
+      <div class="actions">
+        <button class="btn btn-line btn-sm" type="button" id="w-prev" aria-label="Previous week">&larr;</button>
+        <button class="btn btn-line btn-sm" type="button" id="w-now">This week</button>
+        <button class="btn btn-line btn-sm" type="button" id="w-next" aria-label="Next week">&rarr;</button>
+      </div>
+    </div>
+    <div class="wide actions" style="justify-content:space-between">
+      <p class="legend"><span>White: open to patients</span><span>Ice: booked</span><span>Struck: closed</span></p>
+      <div class="actions"><span class="hint" id="s-until"></span><button class="btn btn-sm" type="button" id="s-add">Add 3 weeks</button></div>
+    </div>
+    <div class="week" id="week"><p class="loading">Loading…</p></div>
+  </section>
+</main>
+
+<footer class="g12 foot">
+  <p>Concept project. No real appointments or medical data. &middot; Clinic desk, staff only.</p>
+</footer>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js" integrity="sha384-GFr3yTh5lJznCbZfpTtXnwboFsxqtTQoeTZCRHhE0579KrRmlCzen5AA8ohaB5ug" crossorigin="anonymous"></script>
+<script src="../api.js"></script>
+<script>
+/* Clinic desk: Supabase Auth (email + password) → is_admin() → tables through RLS, every change through admin_* functions.
+   The page only hides and shows; the database decides who may read or change anything. */
+(function(){
+  var api = window.FerrandAPI;
+  var $ = function(id){ return document.getElementById(id); };
+  if(!window.supabase){ $('boot').textContent = 'The desk could not load. Check the connection and reload the page.'; return; }
+  var sb = window.supabase.createClient(api.url, api.key, { auth: { persistSession: true, autoRefreshToken: true, storageKey: 'ferrand-desk' } });
+
+  var LABEL = { requested: 'Requested', confirmed: 'Confirmed', declined: 'Declined', completed: 'Completed', cancelled: 'Cancelled' };
+  var ERR = {
+    forbidden: 'This account is not on the clinic team.',
+    invalid_transition: 'This booking has already changed. The card is refreshed.',
+    reason_required: 'Write a short reason for the patient (at least 3 characters).',
+    note_too_long: 'Keep the reason under 500 characters.',
+    visit_not_started: 'A visit can be marked completed once it has started.',
+    slot_has_booking: 'This time has a booking. Decide the booking first.',
+    not_found: 'This item no longer exists.'
+  };
+  var user = null, all = [], treatments = [], filter = { st: '', tr: '', day: '' }, weekOffset = 0, view = '';
+
+  function esc(s){ var d = document.createElement('div'); d.textContent = s == null ? '' : String(s); return d.innerHTML; }
+  function msg(e){ var c = e && (e.message || e.code); return ERR[c] || 'Something went wrong. Please try again.'; }
+  function toast(t){ var el = $('toast'); el.textContent = t; el.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(function(){ el.hidden = true; }, 3200); }
+  function stMark(s){ return '<span class="st st-' + esc(s) + '">' + esc(LABEL[s] || s) + '</span>'; }
+  function at(b){ return new Date(b.slots.starts_at); }
+  function isToday(d){ return api.dayKey(d) === api.dayKey(new Date()); }
+  function when(d){ return (isToday(d) ? 'Today' : api.dayShort(d)) ; }
+  function q(p){ return p.then(function(r){ if(r.error) throw r.error; return r.data; }); }
+
+  // ---------- views ----------
+  var VIEWS = ['login', 'today', 'bookings', 'booking', 'slots'];
+  function show(name, focus){
+    view = name;
+    $('boot').hidden = true;
+    VIEWS.forEach(function(v){ $('v-' + v).hidden = v !== name; });
+    var signed = name !== 'login';
+    $('tabs').hidden = !signed; $('who').hidden = !(user);
+    [].forEach.call(document.querySelectorAll('.tab'), function(t){
+      var on = t.dataset.go === name || (name === 'booking' && t.dataset.go === 'bookings');
+      if(on) t.setAttribute('aria-current', 'page'); else t.removeAttribute('aria-current');
+    });
+    if(focus !== false){ var h = document.querySelector('#v-' + name + ' h1') || $('main'); h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); window.scrollTo(0, 0); }
+  }
+  function route(){
+    if(!user || !user.admin) return;
+    var h = location.hash.replace(/^#/, ''), m = h.match(/^booking\/([0-9a-f-]{36})$/);
+    if(m) return openBooking(m[1]);
+    if(h === 'bookings'){ show('bookings'); return renderList(); }
+    if(h === 'slots'){ show('slots'); return loadWeek(); }
+    show('today'); renderToday();
+  }
+  window.addEventListener('hashchange', route);
+  $('tabs').addEventListener('click', function(e){ var t = e.target.closest('.tab'); if(!t) return; var go = t.dataset.go === 'today' ? '' : t.dataset.go; if(location.hash.replace('#', '') === go) route(); else location.hash = go; });
+  document.addEventListener('click', function(e){
+    if(e.target.closest('[data-reload]')){ loadAll().then(route); }
+    var r = e.target.closest('[data-open]'); if(r) location.hash = 'booking/' + r.dataset.open;
+  });
+  $('back').addEventListener('click', function(){ if(history.length > 1 && document.referrer.indexOf(location.pathname) > -1) history.back(); else location.hash = 'bookings'; });
+
+  // ---------- sign in / out ----------
+  function setErr(input, t){ input.setAttribute('aria-invalid', t ? 'true' : 'false'); $(input.getAttribute('aria-describedby')).textContent = t; }
+  $('login').addEventListener('submit', function(e){
+    e.preventDefault();
+    var em = $('l-email'), pw = $('l-pass'), send = $('l-send'), ok = true;
+    $('e-login').textContent = '';
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em.value.trim())){ setErr(em, 'Enter the clinic email.'); ok = false; } else setErr(em, '');
+    if(!pw.value){ setErr(pw, 'Enter the password.'); ok = false; } else setErr(pw, '');
+    if(!ok){ (em.getAttribute('aria-invalid') === 'true' ? em : pw).focus(); return; }
+    send.disabled = true; send.setAttribute('aria-busy', 'true'); send.textContent = 'Signing in…';
+    sb.auth.signInWithPassword({ email: em.value.trim(), password: pw.value }).then(function(r){
+      pw.value = '';
+      if(r.error){
+        // one neutral answer: never tells whether the email exists
+        $('e-login').textContent = r.error.status === 429 ? 'Too many tries. Wait a few minutes and try again.' : 'The email or password is not right.';
+        return;
+      }
+      return start(r.data.session);
+    }).catch(function(){ $('e-login').textContent = 'Could not reach the sign-in service. Please try again.'; })
+      .then(function(){ send.disabled = false; send.removeAttribute('aria-busy'); send.textContent = 'Sign in'; });
+  });
+  $('out').addEventListener('click', function(){
+    sb.auth.signOut().finally(function(){ user = null; all = []; history.replaceState(null, '', location.pathname); $('gate').hidden = true; $('login').hidden = false; show('login'); });
+  });
+
+  function start(session){
+    if(!session){ user = null; show('login', false); return Promise.resolve(); }
+    user = { id: session.user.id, email: session.user.email, admin: false };
+    $('who-mail').textContent = user.email;
+    return q(sb.rpc('is_admin')).then(function(isAdmin){
+      user.admin = isAdmin === true;
+      if(!user.admin){ $('login').hidden = true; $('gate').hidden = false; show('login'); $('who').hidden = false; return; }
+      return Promise.all([loadAll(), loadTreatments()]).then(route);
+    }).catch(function(){ $('boot').hidden = false; $('boot').textContent = 'Could not reach the booking system. Reload the page in a moment.'; });
+  }
+
+  // ---------- data ----------
+  function loadAll(){
+    return q(sb.from('bookings')
+      .select('id,code,name,phone,email,status,decline_reason,created_at,treatments(name,slug),slots(starts_at)')
+      .order('created_at', { ascending: false }).limit(1000))
+      .then(function(rows){
+        all = rows || [];
+        var n = all.filter(function(b){ return b.status === 'requested'; }).length;
+        $('n-new').textContent = n ? String(n) : '';
+        $('n-new').setAttribute('aria-label', n ? n + ' waiting' : '');
+      })
+      .catch(function(e){ toast(msg(e)); });
+  }
+  function loadTreatments(){
+    return q(sb.from('treatments').select('slug,name').order('sort')).then(function(t){
+      treatments = t || [];
+      $('f-tr').innerHTML = '<option value="">All treatments</option>' + treatments.map(function(x){ return '<option value="' + esc(x.slug) + '">' + esc(x.name) + '</option>'; }).join('');
+    });
+  }
+
+  function rowShort(b){
+    var d = at(b);
+    return '<li><button class="row" type="button" data-open="' + esc(b.id) + '">' +
+      '<time datetime="' + esc(b.slots.starts_at) + '">' + esc(api.time(d)) + '<small>' + esc(when(d)) + '</small></time>' +
+      '<span class="who2"><b>' + esc(b.name) + '</b><span>' + esc(b.treatments.name) + '</span></span>' + stMark(b.status) + '</button></li>';
+  }
+  function byVisit(a, b){ return at(a) - at(b); }
+
+  // ---------- today ----------
+  function renderToday(){
+    var now = new Date(), week = new Date(now.getTime() + 7 * 864e5), todayKey = api.dayKey(now);
+    $('today-date').textContent = api.dayLong(now);
+    // waiting = new requests + confirmed visits whose time has passed (they still need "Completed")
+    var fresh = all.filter(function(b){ return b.status === 'requested' || (b.status === 'confirmed' && at(b) <= now); }).sort(byVisit);
+    var next = all.filter(function(b){ var d = at(b); return b.status === 'confirmed' && d > now && d < week; }).sort(byVisit);
+    $('c-new').textContent = fresh.length ? '· ' + fresh.length : '';
+    $('today-new').className = ''; $('today-next').className = '';
+    $('today-new').innerHTML = fresh.length ? '<ul class="list">' + fresh.map(rowShort).join('') + '</ul>'
+      : '<p class="empty">Nothing waits for you. New bookings from the website land here first.</p>';
+    $('today-next').innerHTML = next.length ? '<ul class="list">' + next.map(rowShort).join('') + '</ul>'
+      : '<p class="empty">No confirmed visits in the next 7 days.</p>';
+  }
+
+  // ---------- list with filters ----------
+  $('chips').addEventListener('click', function(e){
+    var c = e.target.closest('.chip'); if(!c) return;
+    [].forEach.call(this.children, function(x){ x.setAttribute('aria-pressed', x === c ? 'true' : 'false'); });
+    filter.st = c.dataset.st; renderList();
+  });
+  $('f-tr').addEventListener('change', function(){ filter.tr = this.value; renderList(); });
+  $('f-day').addEventListener('change', function(){ filter.day = this.value; renderList(); });
+
+  function renderList(){
+    var rows = all.filter(function(b){
+      return (!filter.st || b.status === filter.st) && (!filter.tr || b.treatments.slug === filter.tr) && (!filter.day || api.dayKey(at(b)) === filter.day);
+    });
+    // waiting first, then the rest by visit time, newest visit on top
+    rows.sort(function(a, b){ return (a.status === 'requested') !== (b.status === 'requested') ? (a.status === 'requested' ? -1 : 1) : at(b) - at(a); });
+    $('b-sum').textContent = rows.length + (rows.length === 1 ? ' booking' : ' bookings') + (rows.length !== all.length ? ' of ' + all.length : '');
+    var el = $('b-list'); el.className = 'wide';
+    if(!rows.length){ el.innerHTML = '<p class="empty">' + (all.length ? 'Nothing matches these filters.' : 'No bookings yet. They appear here as soon as a patient books on the website.') + '</p>'; return; }
+    el.innerHTML = '<ul class="list">' + rows.map(function(b){
+      var d = at(b);
+      return '<li><button class="row full" type="button" data-open="' + esc(b.id) + '">' +
+        '<time datetime="' + esc(b.slots.starts_at) + '">' + esc(api.time(d)) + '<small>' + esc(when(d)) + '</small></time>' +
+        '<span class="who2"><b>' + esc(b.name) + '</b><span>' + esc(b.phone) + '</span></span>' +
+        '<span class="tr">' + esc(b.treatments.name) + '</span>' + stMark(b.status) + '<span class="code">' + esc(b.code) + '</span></button></li>';
+    }).join('') + '</ul>';
+  }
+
+  // ---------- one booking ----------
+  function openBooking(id){
+    show('booking');
+    $('bk-a').innerHTML = '<p class="loading">Loading…</p>'; $('bk-b').innerHTML = '';
+    return Promise.all([
+      q(sb.from('bookings').select('id,code,name,phone,email,status,decline_reason,created_at,treatments(name,slug),slots(starts_at)').eq('id', id).maybeSingle()),
+      q(sb.from('booking_events').select('id,actor_id,from_status,to_status,note,created_at').eq('booking_id', id).order('created_at'))
+    ]).then(function(r){
+      var b = r[0];
+      if(!b){ $('bk-a').innerHTML = '<p class="empty">This booking was not found.</p>'; return; }
+      for(var i = 0; i < all.length; i++) if(all[i].id === b.id) all[i] = b;
+      renderBooking(b, r[1] || []);
+    }).catch(function(e){ $('bk-a').innerHTML = '<p class="empty">' + esc(msg(e)) + '</p>'; });
+  }
+
+  function renderBooking(b, events){
+    var d = at(b), started = d <= new Date();
+    $('bk-a').innerHTML = '<div class="card in">' +
+      '<div class="actions" style="justify-content:space-between"><p class="st-word">' + esc(b.name) + '</p>' + stMark(b.status) + '</div>' +
+      '<dl class="rows">' +
+        '<div><dt>When</dt><dd>' + esc(api.dayShort(d) + ', ' + api.time(d)) + '</dd></div>' +
+        '<div><dt>Treatment</dt><dd>' + esc(b.treatments.name) + '</dd></div>' +
+        '<div><dt>Phone</dt><dd><a href="tel:' + esc(b.phone.replace(/[^0-9+]/g, '')) + '">' + esc(b.phone) + '</a></dd></div>' +
+        '<div><dt>Email</dt><dd><a href="mailto:' + esc(encodeURIComponent(b.email).replace(/%40/g, '@')) + '">' + esc(b.email) + '</a></dd></div>' +
+        '<div><dt>Code</dt><dd>' + esc(b.code) + '</dd></div>' +
+      '</dl></div>';
+
+    var act = '';
+    if(b.status === 'requested'){
+      act = '<p>The patient waits for an answer and sees it on the booking page with their code.</p>' +
+        '<div class="actions"><button class="btn" type="button" data-do="confirmed">Confirm visit</button><button class="tlink" type="button" data-ask-decline>Decline…</button></div>';
+    } else if(b.status === 'confirmed'){
+      act = '<p>' + (started ? 'The visit time has passed. Mark it completed when the patient came in.' : 'Confirmed. The patient sees “Confirmed” on the booking page.') + '</p>' +
+        '<div class="actions"><button class="btn" type="button" data-do="completed"' + (started ? '' : ' disabled aria-describedby="h-done"') + '>Mark completed</button><button class="tlink" type="button" data-ask-decline>Decline…</button></div>' +
+        (started ? '' : '<p class="hint" id="h-done">Available once the visit has started.</p>');
+    } else {
+      act = '<p>This booking is closed. No more actions.</p>' + (b.decline_reason ? '<p class="note">' + esc(b.decline_reason) + '</p>' : '');
+    }
+    var log = events.map(function(ev){
+      var e = new Date(ev.created_at);
+      var actor = !ev.actor_id ? 'Patient' : (ev.actor_id === user.id ? 'You' : 'Clinic');
+      var what = !ev.from_status ? 'booked online' : LABEL[ev.to_status].toLowerCase();
+      if(ev.to_status === 'confirmed') what = 'confirmed'; if(ev.to_status === 'cancelled') what = 'cancelled';
+      return '<li><time datetime="' + esc(ev.created_at) + '">' + esc(api.dayShort(e) + ', ' + api.time(e)) + '</time><span>' + esc(actor + ' ' + what) +
+        (ev.note ? '<q>' + esc(ev.note) + '</q>' : '') + '</span></li>';
+    }).join('');
+    $('bk-b').innerHTML = '<div class="decide"><h2>Decision</h2>' + act + '<div id="decline-box"></div><p class="err" id="e-act" role="alert"></p>' +
+      '<div><h2>History</h2><ol class="log">' + (log || '<li><span>No events.</span></li>') + '</ol></div></div>';
+    $('bk-b').dataset.id = b.id;
+  }
+
+  function act(to, note, btn){
+    var id = $('bk-b').dataset.id;
+    btn.disabled = true; btn.setAttribute('aria-busy', 'true');
+    return q(sb.rpc('admin_set_status', { p_booking_id: id, p_to: to, p_note: note || null })).then(function(){
+      toast(LABEL[to] + '. The patient sees it on the booking page.');
+      return loadAll().then(function(){ return openBooking(id); });
+    }).catch(function(e){
+      btn.disabled = false; btn.removeAttribute('aria-busy');
+      var c = e && e.message;
+      if(c === 'invalid_transition') return openBooking(id).then(function(){ $('e-act').textContent = ERR.invalid_transition; });
+      var box = $('e-decline') || $('e-act'); box.textContent = msg(e);
+    });
+  }
+  $('bk-b').addEventListener('click', function(e){
+    var t = e.target;
+    if(t.dataset.do){ act(t.dataset.do, null, t); }
+    if(t.hasAttribute('data-ask-decline')){
+      $('decline-box').innerHTML = '<form class="reason-box" id="decline" novalidate>' +
+        '<label class="fld">Reason for the patient<textarea id="d-why" maxlength="500" aria-describedby="e-decline d-count" required></textarea></label>' +
+        '<p class="hint" id="d-count">The patient reads this on the booking page. 0 / 500</p><p class="err" id="e-decline" role="alert"></p>' +
+        '<div class="actions"><button class="btn" type="submit">Decline visit</button><button class="tlink" type="button" id="d-keep">Keep it</button></div></form>';
+      t.hidden = true; $('d-why').focus();
+    }
+    if(t.id === 'd-keep'){ $('decline-box').innerHTML = ''; var a = document.querySelector('[data-ask-decline]'); a.hidden = false; a.focus(); }
+  });
+  $('bk-b').addEventListener('input', function(e){ if(e.target.id === 'd-why') $('d-count').textContent = 'The patient reads this on the booking page. ' + e.target.value.length + ' / 500'; });
+  $('bk-b').addEventListener('submit', function(e){
+    e.preventDefault();
+    var why = $('d-why'), v = why.value.trim();
+    if(v.length < 3){ why.setAttribute('aria-invalid', 'true'); $('e-decline').textContent = ERR.reason_required; why.focus(); return; }
+    why.setAttribute('aria-invalid', 'false');
+    act('declined', v, e.target.querySelector('.btn'));
+  });
+
+  // ---------- slots: one week, Monday to Saturday, Paris days ----------
+  var DOW = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  function keyDate(k){ return new Date(k + 'T12:00:00Z'); }            // noon UTC is the same calendar day in Paris
+  function addDays(k, n){ return new Date(keyDate(k).getTime() + n * 864e5).toISOString().slice(0, 10); }
+  function monday(off){ var k = api.dayKey(new Date()); return addDays(k, -DOW.indexOf(api.weekday(keyDate(k))) + off * 7); }
+
+  function loadWeek(quiet){
+    var mon = monday(weekOffset), days = [0, 1, 2, 3, 4, 5].map(function(i){ return addDays(mon, i); });
+    var from = new Date(keyDate(mon).getTime() - 864e5), to = new Date(keyDate(mon).getTime() + 7 * 864e5);
+    $('s-range').textContent = api.dayShort(keyDate(days[0])) + ' to ' + api.dayShort(keyDate(days[5]));
+    $('w-prev').disabled = weekOffset <= 0;
+    if(quiet !== true) $('week').innerHTML = '<p class="loading">Loading…</p>'; // a slot toggle redraws in place, no flash
+    lastSlot();
+    return q(sb.from('slots').select('id,starts_at,is_open,bookings(id,status,name)').gte('starts_at', from.toISOString()).lt('starts_at', to.toISOString()).order('starts_at'))
+      .then(function(slots){
+        var now = new Date(), today = api.dayKey(now);
+        $('week').innerHTML = days.map(function(k){
+          var list = (slots || []).filter(function(s){ return api.dayKey(new Date(s.starts_at)) === k; });
+          return '<div class="day' + (k === today ? ' today' : '') + '"><h3>' + esc(api.dayShort(keyDate(k))) + '<span>' + (k === today ? 'Today' : list.length + ' times') + '</span></h3>' +
+            (list.length ? '<ul>' + list.map(function(s){
+              var d = new Date(s.starts_at), live = (s.bookings || []).filter(function(b){ return b.status === 'requested' || b.status === 'confirmed'; })[0];
+              var past = d <= now, label = esc(api.time(d));
+              if(live) return '<li><button class="slot booked" type="button" data-open="' + esc(live.id) + '" aria-label="' + label + ', booked by ' + esc(live.name) + ', ' + esc(LABEL[live.status]) + '. Open booking"><b>' + label + '</b><small>' + esc(live.name) + '</small></button></li>';
+              return '<li><button class="slot' + (s.is_open ? '' : ' closed') + '" type="button" data-slot="' + s.id + '" data-open-now="' + s.is_open + '"' + (past ? ' disabled' : '') +
+                ' aria-label="' + label + ', ' + (s.is_open ? 'open. Close this time' : 'closed. Open this time') + '"><b>' + label + '</b><small>' + (past ? 'Past' : s.is_open ? 'Open' : 'Closed') + '</small></button></li>';
+            }).join('') + '</ul>' : '<p class="hint">No times. Closed day.</p>') + '</div>';
+        }).join('');
+      }).catch(function(e){ $('week').innerHTML = '<p class="empty">' + esc(msg(e)) + '</p>'; });
+  }
+  function lastSlot(){
+    return q(sb.from('slots').select('starts_at').order('starts_at', { ascending: false }).limit(1)).then(function(r){
+      var last = r && r[0] ? new Date(r[0].starts_at) : null;
+      $('s-until').textContent = last ? 'Times open until ' + api.dayShort(last) : 'No times yet';
+      $('s-add').dataset.last = last ? api.dayKey(last) : '';
+    });
+  }
+  $('week').addEventListener('click', function(e){
+    var b = e.target.closest('[data-slot]'); if(!b || b.disabled) return;
+    var open = b.dataset.openNow !== 'true';
+    b.disabled = true;
+    q(sb.rpc('admin_set_slot', { p_slot_id: Number(b.dataset.slot), p_open: open })).then(function(){
+      toast(open ? 'Time opened. Patients can book it.' : 'Time closed. Patients no longer see it.');
+      return loadWeek(true);
+    }).catch(function(err){ b.disabled = false; toast(msg(err)); loadWeek(true); });
+  });
+  $('w-prev').addEventListener('click', function(){ if(weekOffset > 0){ weekOffset--; loadWeek(); } });
+  $('w-next').addEventListener('click', function(){ weekOffset++; loadWeek(); });
+  $('w-now').addEventListener('click', function(){ weekOffset = 0; loadWeek(); });
+  $('s-add').addEventListener('click', function(){
+    var btn = this, last = btn.dataset.last, today = api.dayKey(new Date());
+    // generate_slots counts from today, so reach 21 days past the current last time (the database caps it at 60)
+    var days = Math.min(60, (last && last > today ? Math.round((keyDate(last) - keyDate(today)) / 864e5) : 0) + 21);
+    btn.disabled = true; btn.setAttribute('aria-busy', 'true');
+    q(sb.rpc('admin_generate_slots', { p_days: days })).then(function(n){
+      toast(n ? n + ' new times added.' : 'Times are already open that far ahead.');
+      return loadWeek();
+    }).catch(function(e){ toast(msg(e)); }).then(function(){ btn.disabled = false; btn.removeAttribute('aria-busy'); });
+  });
+
+  // ---------- boot ----------
+  sb.auth.getSession().then(function(r){ return start(r.data.session); });
+  sb.auth.onAuthStateChange(function(ev){ if(ev === 'SIGNED_OUT' && user){ user = null; show('login'); } });
+})();
+</script>
+</body>
+</html>

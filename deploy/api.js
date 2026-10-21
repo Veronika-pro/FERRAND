@@ -29,6 +29,7 @@
       fMon = fmt({ month: 'short' }), fMonLong = fmt({ month: 'long' }), fTime = fmt({ hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
 
   window.FerrandAPI = {
+    url: URL, key: KEY, // the admin page builds its signed-in client from these
     rpc: rpc,
     dayKey: function(d){ return fKey.format(d); },              // 2026-10-22, Paris calendar day
     time: function(d){ return fTime.format(d); },                // 10:30
