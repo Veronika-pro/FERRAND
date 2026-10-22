@@ -7,7 +7,7 @@
 <meta name="description" content="How the Ferrand concept site handles the name, phone and email you leave when you request a consultation.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..600&family=Fraunces:opsz,wght@9..144,300..400&family=Literata:opsz,wght@7..72,300..400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..600&family=Newsreader:opsz,wght@6..72,300..600&family=Literata:opsz,wght@7..72,300..400&display=swap" rel="stylesheet">
 <meta name="theme-color" content="#FAFAFA">
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" type="image/png" sizes="512x512" href="../favicon-512.png">
@@ -16,7 +16,7 @@
 /* tokens: same as /status (DENTAL-design-passport), a quiet reading page */
 :root{
   --porcelain:#FAFAFA; --white:#FFFFFF; --paper:#EEF3F8; --line:#DFE7EF; --ink-soft:#505155; --ink:#111214;
-  --serif:'Fraunces', 'Literata', 'Times New Roman', serif; --sans:'Instrument Sans', system-ui, sans-serif;
+  --serif:'Newsreader', 'Literata', 'Times New Roman', serif; --sans:'Instrument Sans', system-ui, sans-serif;
   --s-2:8px; --s-3:12px; --s-4:16px; --s-5:24px; --s-6:32px; --s-7:48px; --s-8:64px; --s-9:96px;
   --t-label:12px; --t-small:16px; --t-body:16px; --t-num:32px; --t-h2:48px; --lh-h2:56px; --ls-h2:-1px;
   --edge:clamp(20px, 5vw, 64px); --gap:24px;
@@ -30,7 +30,7 @@ a{color:inherit}
 .g12{display:grid;grid-template-columns:repeat(12, minmax(0, 1fr));column-gap:var(--gap);padding:0 var(--edge)}
 .nav{align-items:center;padding-top:20px;padding-bottom:20px}
 .brand{grid-column:2 / 8;display:flex;align-items:center;gap:14px;text-decoration:none}
-.brand b{font-family:var(--serif);font-weight:400;font-size:20px;line-height:1;letter-spacing:.3em;margin-right:-.3em}
+.brand b{font-family:var(--serif);font-weight:500;font-size:20px;line-height:1;letter-spacing:6px;margin-right:-6px}
 .brand small{font-size:var(--t-label);font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
 .tlink{padding:0 0 2px;border-bottom:1px solid rgba(17,18,20,.3);text-decoration:none;font-weight:500;transition:border-color .3s ease}
 .tlink:hover{border-color:var(--ink)}
@@ -80,8 +80,8 @@ h1{margin:0;font-family:var(--serif);font-weight:300;font-size:var(--t-h2);line-
   <section class="part" aria-labelledby="p1">
     <h2 id="p1">Who is responsible</h2>
     <div class="body">
-      <p>The controller of this website and of the booking requests sent through it is the author of the concept, acting as <b>Ferrand Aesthetic Dentistry (concept)</b>, [author name and contact address].</p>
-      <p>Contact for anything on this page: <b>[privacy contact email]</b>.</p>
+      <p>This website is a design concept published by its author as a portfolio piece. There is no clinic behind it: requests are not read by anyone outside the author and are never used to contact you.</p>
+      <p>Because no real controller exists, the protections below are built into the system itself rather than handled by a person.</p>
     </div>
   </section>
 
@@ -141,7 +141,7 @@ h1{margin:0;font-family:var(--serif);font-weight:300;font-size:var(--t-h2);line-
   <section class="part" aria-labelledby="p7">
     <h2 id="p7">Your rights</h2>
     <div class="body">
-      <p>You can ask to <b>see</b>, <b>correct</b> or <b>delete</b> your data, to <b>restrict</b> or <b>object</b> to its use, to receive it in a portable format, and to leave instructions for what happens to it after your death. Write to <b>[privacy contact email]</b> with your booking code; we answer within one month.</p>
+      <p>You can ask to <b>see</b>, <b>correct</b> or <b>delete</b> your data, to <b>restrict</b> or <b>object</b> to its use, to receive it in a portable format, and to leave instructions for what happens to it after your death. Every request is deleted automatically 30 days after its time, and you can stop it at once yourself.</p>
       <p>To stop a request at once, cancel it on <a class="tlink" href="../status/">the booking page</a>.</p>
       <p>If you think your data is mishandled, you can complain to the French data protection authority, the <b>CNIL</b>: 3 Place de Fontenoy, TSA 80715, 75334 Paris Cedex 07, <a class="tlink" href="https://www.cnil.fr/fr/plaintes" rel="noopener">cnil.fr</a>.</p>
     </div>

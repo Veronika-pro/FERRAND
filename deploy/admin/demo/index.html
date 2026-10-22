@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Clinic desk demo · Ferrand</title>
+</head>
+<body>
+<!-- the real clinic desk (../index.html) running on sample bookings: the Supabase client is swapped for mock.js, so reviewers can click everything and nothing is saved -->
+<script>
+(async function(){
+  var html = await (await fetch('../index.html', { cache: 'no-store' })).text();
+  html = html.replace(/<script src="https:\/\/cdn\.jsdelivr[^>]*><\/script>/, '<script src="demo/mock.js"><\/script>')
+             .replace('<head>', '<head><base href="../">')
+             .replace('<title>Clinic · Ferrand Aesthetic Dentistry</title>', '<title>Clinic desk demo · Ferrand</title>')
+             .replace('<body>', '<body><p style="position:fixed;left:50%;bottom:16px;z-index:20;transform:translateX(-50%);margin:0;padding:8px 16px;border-radius:999px;background:#111214;color:#FAFAFA;font:500 12px/16px system-ui;white-space:nowrap">Demo &middot; sample bookings, nothing is saved</p>');
+  document.open(); document.write(html); document.close();
+})();
+</script>
+<noscript>The clinic desk demo needs JavaScript.</noscript>
+</body>
+</html>

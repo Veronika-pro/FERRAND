@@ -7,7 +7,7 @@
 <meta name="description" content="Aesthetic dentistry by Dr. Claire Ferrand. Veneers, implants, whitening and aligners, made to look like nothing was done.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..600&family=Fraunces:opsz,wght@9..144,300..500&family=Literata:opsz,wght@7..72,300..500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..600&family=Newsreader:opsz,wght@6..72,300..600&family=Literata:opsz,wght@7..72,300..500&display=swap" rel="stylesheet">
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%23111214%27/%3E%3Ctext x=%2732%27 y=%2746%27 text-anchor=%27middle%27 font-family=%27Times New Roman,serif%27 font-size=%2740%27 fill=%27%23FAFAFA%27%3EF%3C/text%3E%3C/svg%3E">
 <link rel="icon" href="favicon.ico" sizes="32x32">
@@ -923,6 +923,7 @@ body{font-size:var(--t-body);line-height:24px}
   .faq-title{grid-column:1}
   .faq-a{padding:0 0 var(--s-5)}
   .faq-a p{font-size:var(--t-body);line-height:24px;letter-spacing:0}
+  body .faq-a p{font-weight:400} /* serif at 16 px needs the regular weight; beats the 300 in the serif list below */
   .foot-mark{margin-left:0;font-size:var(--t-h2);line-height:var(--lh-h2);letter-spacing:var(--ls-h2)}
   .foot-bot::before{left:0}
 }
@@ -930,7 +931,7 @@ body{font-size:var(--t-body);line-height:24px}
    reeded-glass Atelier, notes around 4.9, prices in two halves, the line that finishes itself.
    GRID: 12 columns; the content FIELD is columns 2-11 (1 and 12 are air). A = column 2, B = column 7: two halves of 5.
    Three kinds of block only: two halves (A | B), the whole field (A to 11), full screen (photographs and video only). ---------- */
-:root{--serif:'Fraunces', 'Literata', 'Times New Roman', serif; /* Fraunces has no Cyrillic: names like «Ника» fall to Literata, not Times */ --ls-h2:-1px; --ls-display:-2px; --ls-h1:-3px}
+:root{--serif:'Newsreader', 'Literata', 'Times New Roman', serif; /* Newsreader has no Cyrillic: names like «Ника» fall to Literata, not Times */ --ls-h2:-1px; --ls-display:-2px; --ls-h1:-3px}
 .nav .btn .long{display:none}
 .sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 /* display = Fraunces Light, figures = Fraunces Regular, text and interface stay Instrument Sans */
@@ -963,7 +964,7 @@ body{font-size:var(--t-body);line-height:24px}
    and left white blocks behind when scrolling back up */
 .hero-mask{position:absolute;inset:0;width:100%;height:100%}
 .hm-paper{fill:var(--porcelain);opacity:var(--mp,1)}
-#hm-text{font-family:var(--serif);font-weight:500;font-variation-settings:'opsz' 144}
+#hm-text{font-family:var(--serif)}
 .hero-copy{grid-template-rows:auto 1fr auto;padding-top:120px}
 .h1 .pre{display:block;color:var(--ink);font-size:var(--t-h2);line-height:var(--lh-h2);letter-spacing:-1px}
 .hero-side{grid-column:2 / 7;grid-row:3;align-self:end}
@@ -1353,7 +1354,6 @@ html.lenis,html.lenis body{height:auto}
 }
 /* v9 (2026-10-22): the light motif everywhere: hero washes to white, buttons catch a line of light, chapter hairlines are drawn by light */
 .tr-img img[src*="t-whitening-v9"]{object-position:52% 36%} .tr-img img[src*="t-aligners-v9"]{object-position:50% 40%}
-.h3-wash{position:absolute;inset:0;z-index:2;pointer-events:none;background:var(--porcelain);opacity:var(--wash,0)}
 .hero .hero-copy{opacity:calc(1 - var(--wash,0))}
 .btn{position:relative;overflow:hidden;isolation:isolate}
 .btn::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;transform:translateX(-110%);
@@ -1378,7 +1378,36 @@ html.lenis,html.lenis body{height:auto}
 .bk-privacy{margin:var(--s-5) 0 0;font-size:var(--t-label);line-height:16px}
 .bk-privacy .tlink{white-space:nowrap}
 .hero .btn:focus-visible,.hero a:focus-visible{outline-color:#FFFFFF}
+/* hero clip: desktop only, inside the letters (fades with the paper) */
+.h3-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 50%;opacity:0;transition:opacity .8s ease;pointer-events:none}
+.h3-vid.on{opacity:var(--mp,1);transition:none}
+/* v10 (2026-10-23): one big word per chapter â€” Bodoni at poster size crosses the seam between text and photograph */
+#hm-text{font-variation-settings:'opsz' 72;font-weight:500} /* Newsreader display cut; 500 keeps the letters wide enough to carry the video */
+@media (min-width:1081px){
+  /* treatments: the name is the headline of the whole card and runs over the photograph */
+  .tr-card .tr-name{font-size:192px;line-height:168px;letter-spacing:-7px;margin-top:var(--s-8)}
+  .tr-card .tr-text{padding-top:var(--s-6)}
+  /* founder: portrait to the screen edge, full height; the name overlaps it */
+  #team .doc-lead{grid-column:1 / 7;margin-left:calc(-1 * var(--edge))}
+  #team .doc-lead .doc-img{border-radius:0 var(--r) var(--r) 0;min-height:100svh}
+  #team .doc-lead .doc-img img{object-position:40% 30%}
+  #team .fd-name{font-size:176px;line-height:152px;letter-spacing:-6px;margin-left:-280px}
+  /* your visit: no photographs (hands again and again); four big words, the active one in ink */
+  .journey .jr-media{display:none}
+  .journey .jr-title{grid-column:2 / 7}
+  .journey .jr-steps{grid-column:2 / 12}
+  .journey .jr-head h3{font-size:80px;line-height:80px;letter-spacing:-3px}
+}
+@media (min-width:1280px){ .tr-card .tr-name{font-size:192px} } /* h1 hero stays the largest line on the page */
+@media (min-width:1081px) and (max-width:1279px){ .tr-card .tr-name{font-size:176px;line-height:152px;letter-spacing:-6px} #team .fd-name{font-size:136px;line-height:120px;margin-left:-200px} }
+@media (max-width:1080px){ .journey .jr-thumb{display:none} }
+/* QA 2026-10-22: Newsreader wordmark needs 500 at 20 px to hold its spaced caps; menu phone gets the 44 px hit area */
+.brand b,.bc-mark{font-weight:500}
+.menu-foot a{position:relative}
+.menu-foot a::after{content:"";position:absolute;left:-4px;right:-4px;top:50%;height:44px;transform:translateY(-50%)}
 </style>
+
+
 
 
 
@@ -1426,7 +1455,7 @@ try { if(!sessionStorage.getItem('ferrand-line') && !matchMedia('(prefers-reduce
 </script>
 <section class="hero" id="hero" aria-label="Introduction">
     <div class="hero-pin" data-dark="on"><div class="h3-intro" aria-hidden="true"><i></i></div>
-      <div class="hero-photo"><img class="muse h3" src="images/h3-hero.webp" width="2752" height="1536" alt="A single porcelain veneer held between two gloved fingertips against a bright Paris window, light passing through its thin edge" decoding="async" fetchpriority="high"><i class="h3-sweep" aria-hidden="true"></i><i class="h3-light" aria-hidden="true"></i><i class="h3-wash" aria-hidden="true"></i></div>
+      <div class="hero-photo"><img class="muse h3" src="images/h3-hero.webp" width="2752" height="1536" alt="A single porcelain veneer held between two gloved fingertips against a bright Paris window, light passing through its thin edge" decoding="async" fetchpriority="high"><video class="h3-vid" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video><i class="h3-sweep" aria-hidden="true"></i><i class="h3-light" aria-hidden="true"></i></div>
       <!-- paper with the headline cut out of it: the photograph shows through the letters; on scroll the paper scales away -->
       <svg class="hero-mask" id="hero-mask" aria-hidden="true" focusable="false">
         <defs><mask id="hm" maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%"><rect width="100%" height="100%" fill="#fff"/><g id="hm-g"><text id="hm-text" fill="#000"></text></g></mask></defs>
@@ -1457,7 +1486,7 @@ try { if(!sessionStorage.getItem('ferrand-line') && !matchMedia('(prefers-reduce
 
   <section class="sec" id="team" aria-label="The founder">
     <div class="g12 team-body">
-      <figure class="doc doc-lead"><div class="doc-img"><img width="1194" height="1493" alt="Dr. Claire Ferrand, portrait by a window" loading="lazy" decoding="async" src="images/p1-ice.webp" onerror="this.onerror=null;this.src='images/p1-ferrand.webp'" onload="if(/-ice\./.test(this.src))this.classList.add('gloss')"></div></figure>
+      <figure class="doc doc-lead"><div class="doc-img"><img width="1194" height="1493" alt="Dr. Claire Ferrand in a white coat by the window of her Paris practice" loading="lazy" decoding="async" class="gloss" src="images/p1-v10.webp"></div></figure>
       <div class="team-side">
         <p class="fd-name" aria-hidden="true">Claire<br>Ferrand</p>
         <blockquote class="quote">
@@ -2149,7 +2178,7 @@ try { if(!sessionStorage.getItem('ferrand-line') && !matchMedia('(prefers-reduce
       var a = h1.getBoundingClientRect().left - P.left, col = a - pad - parseFloat(getComputedStyle(copy).columnGap || 24);
       var x1 = phone ? W - pad : W - pad - col - parseFloat(getComputedStyle(copy).columnGap || 24);
       var top = h1.getBoundingClientRect().bottom - P.top + 24, bottom = side.getBoundingClientRect().top - P.top - 24;
-      ctx.font = '500 100px Fraunces';
+      ctx.font = '500 100px "Newsreader"';
       var w = Math.max.apply(null, lines.map(function(l){ return ctx.measureText(l).width - l.length * 2; }));
       var fs = Math.min(100 * (x1 - a) / w, (bottom - top) / (lines.length * .92));
       fs = Math.max(48, Math.floor(fs / 4) * 4);
@@ -2172,7 +2201,6 @@ try { if(!sessionStorage.getItem('ferrand-line') && !matchMedia('(prefers-reduce
       s.setProperty('--hx', (62 * (1 - e)).toFixed(1) + '%');
       s.setProperty('--veil', seg(p, .45, .85).toFixed(3));
       s.setProperty('--trust', (1 - seg(p, .3, .55)).toFixed(3));
-      var w = seg(p, .84, 1); s.setProperty('--wash', w.toFixed(3)); pin.setAttribute('data-dark', w > .5 ? 'off' : 'on');
       s.setProperty('--cap', seg(p, .62, .86).toFixed(3));
     }
     window.__heroMask = render;
@@ -2181,7 +2209,7 @@ try { if(!sessionStorage.getItem('ferrand-line') && !matchMedia('(prefers-reduce
       var r = hero.getBoundingClientRect();
       render(clamp(-r.top / Math.max(1, r.height - innerHeight), 0, 1));
     });
-    (document.fonts ? document.fonts.load('500 100px Fraunces') : Promise.resolve()).then(layout, layout);
+    (document.fonts ? document.fonts.load('500 100px "Newsreader"') : Promise.resolve()).then(layout, layout);
     addEventListener('resize', layout);
     layout();
   })();
@@ -2302,6 +2330,13 @@ addEventListener('DOMContentLoaded', function(){
     setTimeout(function(){ intro.classList.add('run'); }, 250);
     setTimeout(function(){ intro.classList.add('open'); }, 1250);
     setTimeout(function(){ root.classList.remove('has-intro'); intro.remove(); try { sessionStorage.setItem('ferrand-line', '1'); } catch(e){} }, 2450);
+  }
+  // the clip: wide screens with motion allowed and no data saver; paused while the hero is off screen
+  var vid = pin.querySelector('.h3-vid'), conn = navigator.connection;
+  if(vid && matchMedia('(min-width: 761px)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches && !(conn && conn.saveData)){
+    vid.src = 'images/h3-hero.mp4'; vid.play().catch(function(){}); // the hero is the first screen
+    vid.addEventListener('playing', function(){ vid.classList.add('on'); }, { once: true });
+    new IntersectionObserver(function(es){ if(es[0].isIntersecting) vid.play().catch(function(){}); else vid.pause(); }).observe(pin);
   }
   if(!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
   var x = 52, y = 48, tx = 52, ty = 48, raf = 0;
