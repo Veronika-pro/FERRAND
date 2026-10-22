@@ -948,7 +948,12 @@ body{font-size:var(--t-body);line-height:24px}
   .philo-text{grid-column:2 / 12}
   .pr-side,.bk-side{grid-column:7 / 12}
   .foot-col:nth-child(4),.foot-bot a{grid-column:11 / 12}
+  /* QA 2026-10-22: Explore has the shortest lines, Contact needs two columns so the phone never breaks */
+  .foot-col:nth-child(2){grid-column:7 / 8}
+  .foot-col:nth-child(3){grid-column:8 / 10}
+  .foot-col:nth-child(4){grid-column:10 / 12}
 }
+.foot a[href^="tel:"]{white-space:nowrap}
 
 /* ---------- hero: the headline is cut out of the paper; the photograph shows through it, then the paper scales away ---------- */
 .hero{height:220vh;height:220svh;min-height:0}
