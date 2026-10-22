@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy · Ferrand Aesthetic Dentistry</title>
+<meta name="description" content="How the Ferrand concept site handles the name, phone and email you leave when you request a consultation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..600&family=Fraunces:opsz,wght@9..144,300..400&family=Literata:opsz,wght@7..72,300..400&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#FAFAFA">
+<link rel="icon" href="../favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" sizes="512x512" href="../favicon-512.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<style>
+/* tokens: same as /status (DENTAL-design-passport), a quiet reading page */
+:root{
+  --porcelain:#FAFAFA; --white:#FFFFFF; --paper:#EEF3F8; --line:#DFE7EF; --ink-soft:#505155; --ink:#111214;
+  --serif:'Fraunces', 'Literata', 'Times New Roman', serif; --sans:'Instrument Sans', system-ui, sans-serif;
+  --s-2:8px; --s-3:12px; --s-4:16px; --s-5:24px; --s-6:32px; --s-7:48px; --s-8:64px; --s-9:96px;
+  --t-label:12px; --t-small:16px; --t-body:16px; --t-num:32px; --t-h2:48px; --lh-h2:56px; --ls-h2:-1px;
+  --edge:clamp(20px, 5vw, 64px); --gap:24px;
+}
+@media (min-width:761px) and (max-width:1279px){ :root{--t-h2:40px; --lh-h2:48px} }
+@media (max-width:760px){ :root{--t-h2:32px; --lh-h2:36px} }
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;background:var(--porcelain);color:var(--ink);overflow-x:clip}
+body{font-family:var(--sans);font-size:var(--t-body);line-height:24px;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit}
+.g12{display:grid;grid-template-columns:repeat(12, minmax(0, 1fr));column-gap:var(--gap);padding:0 var(--edge)}
+.nav{align-items:center;padding-top:20px;padding-bottom:20px}
+.brand{grid-column:2 / 8;display:flex;align-items:center;gap:14px;text-decoration:none}
+.brand b{font-family:var(--serif);font-weight:400;font-size:20px;line-height:1;letter-spacing:.3em;margin-right:-.3em}
+.brand small{font-size:var(--t-label);font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
+.tlink{padding:0 0 2px;border-bottom:1px solid rgba(17,18,20,.3);text-decoration:none;font-weight:500;transition:border-color .3s ease}
+.tlink:hover{border-color:var(--ink)}
+.nav .tlink{grid-column:8 / 12;justify-self:end}
+a:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+main.g12{flex:1;padding-top:var(--s-9);padding-bottom:var(--s-9);align-content:start;row-gap:var(--s-7)}
+.intro{grid-column:2 / 8}
+h1{margin:0;font-family:var(--serif);font-weight:300;font-size:var(--t-h2);line-height:var(--lh-h2);letter-spacing:var(--ls-h2)}
+.lead{margin:var(--s-5) 0 0;max-width:52ch;color:var(--ink-soft)}
+.note{grid-column:2 / 12;margin:0;padding:var(--s-5) var(--s-6);border-radius:20px;background:var(--paper)}
+.note b{font-weight:500}
+/* each section: heading on axis A, text on axis B, one hairline between */
+.part{grid-column:2 / 12;display:grid;grid-template-columns:repeat(10, minmax(0, 1fr));column-gap:var(--gap);padding-top:var(--s-5);border-top:1px solid var(--line)}
+.part h2{grid-column:1 / 5;margin:0;font-family:var(--serif);font-weight:300;font-size:24px;line-height:32px;letter-spacing:-1px}
+.part .body{grid-column:6 / 11;display:grid;gap:var(--s-4)}
+.part p,.part ul{margin:0;color:var(--ink-soft)}
+.part ul{padding-left:20px;display:grid;gap:var(--s-2)}
+.part b{color:var(--ink);font-weight:500}
+.foot{padding-top:var(--s-5);padding-bottom:var(--s-6);border-top:1px solid var(--line);font-size:var(--t-label);line-height:16px;color:var(--ink-soft)}
+.foot p{grid-column:2 / 12;margin:0}
+@media (max-width:1080px){ .intro{grid-column:2 / 12} .part h2{grid-column:1 / -1;margin-bottom:var(--s-3)} .part .body{grid-column:1 / -1} }
+@media (max-width:760px){
+  .g12{grid-template-columns:minmax(0, 1fr);padding:0 20px}
+  .brand,.nav .tlink,.intro,.note,.part,.foot p{grid-column:1}
+  .nav{display:flex;justify-content:space-between}
+  .brand small{display:none}
+  main.g12{padding-top:var(--s-7);padding-bottom:var(--s-8);row-gap:var(--s-6)}
+  .part{grid-template-columns:minmax(0, 1fr)}
+  .note{padding:var(--s-5)}
+}
+</style>
+</head>
+<body>
+<header class="g12 nav">
+  <a class="brand" href="../" aria-label="Ferrand Aesthetic Dentistry, home"><b>FERRAND</b><small>Aesthetic dentistry, Paris</small></a>
+  <a class="tlink" href="../#book">Book a consultation</a>
+</header>
+
+<main class="g12" id="main">
+  <div class="intro">
+    <h1>Your data, plainly.</h1>
+    <p class="lead">What happens to the name, phone number and email you leave when you request a consultation, who sees them, how long they stay, and how to have them removed.</p>
+  </div>
+
+  <p class="note"><b>Concept project.</b> Ferrand Aesthetic Dentistry is a portfolio concept, not a real clinic: no one will call you and no appointment exists. Please do not enter real personal or medical details. If you already did, see &ldquo;Your rights&rdquo; below.</p>
+
+  <section class="part" aria-labelledby="p1">
+    <h2 id="p1">Who is responsible</h2>
+    <div class="body">
+      <p>The controller of this website and of the booking requests sent through it is the author of the concept, acting as <b>Ferrand Aesthetic Dentistry (concept)</b>, [author name and contact address].</p>
+      <p>Contact for anything on this page: <b>[privacy contact email]</b>.</p>
+    </div>
+  </section>
+
+  <section class="part" aria-labelledby="p2">
+    <h2 id="p2">What we collect</h2>
+    <div class="body">
+      <p>Only what you type into the booking form:</p>
+      <ul>
+        <li>your <b>name</b>, <b>phone number</b> and <b>email</b>;</li>
+        <li>the <b>treatment</b> you are thinking about and the <b>time</b> you chose;</li>
+        <li>the <b>booking code</b> we create for you, and the history of its status (requested, confirmed, declined, completed, cancelled).</li>
+      </ul>
+      <p>We do not ask for and do not store any health information, photographs or payment details. There are no patient accounts.</p>
+    </div>
+  </section>
+
+  <section class="part" aria-labelledby="p3">
+    <h2 id="p3">Why, and on what basis</h2>
+    <div class="body">
+      <p><b>To arrange the consultation you asked for:</b> hold the time, let the clinic confirm or decline it, and let you check or cancel it with your code. Basis: steps taken at your request before an agreement (GDPR, Article 6(1)(b)).</p>
+      <p><b>To keep the booking system safe:</b> we limit the number of active requests per email and log failed attempts to open a booking (the code only, for one day). Basis: our legitimate interest in preventing abuse (Article 6(1)(f)).</p>
+      <p>We do not use your data for advertising, profiling or newsletters.</p>
+    </div>
+  </section>
+
+  <section class="part" aria-labelledby="p4">
+    <h2 id="p4">Who can see it</h2>
+    <div class="body">
+      <p>Only the clinic team signed in to the clinic desk. You see your own booking with your code and email; nobody else can read it.</p>
+      <ul>
+        <li><b>Supabase</b> stores the bookings in its European region (Ireland), as our processor.</li>
+        <li><b>Vercel</b> hosts the website and keeps short technical logs of visits (such as IP address).</li>
+        <li>Typefaces are loaded from <b>Google Fonts</b> and one script from the <b>unpkg</b> CDN; these services see your IP address when the page loads.</li>
+      </ul>
+      <p>Vercel and Google are US companies; where data leaves the European Union they rely on the EU&ndash;US Data Privacy Framework or standard contractual clauses.</p>
+    </div>
+  </section>
+
+  <section class="part" aria-labelledby="p5">
+    <h2 id="p5">How long it stays</h2>
+    <div class="body">
+      <ul>
+        <li><b>Booking requests:</b> deleted 30 days after the chosen time, whatever their status.</li>
+        <li><b>Failed attempts to open a booking:</b> one day.</li>
+        <li><b>Clinic team accounts:</b> until the person leaves the team.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="part" aria-labelledby="p6">
+    <h2 id="p6">Cookies</h2>
+    <div class="body">
+      <p>This site sets <b>no cookies</b> and uses no analytics. Your browser keeps two small notes for the current tab only: your booking code (so the booking page can fill it in) and whether you have already seen the opening animation. The clinic desk keeps its team members signed in on their own device.</p>
+    </div>
+  </section>
+
+  <section class="part" aria-labelledby="p7">
+    <h2 id="p7">Your rights</h2>
+    <div class="body">
+      <p>You can ask to <b>see</b>, <b>correct</b> or <b>delete</b> your data, to <b>restrict</b> or <b>object</b> to its use, to receive it in a portable format, and to leave instructions for what happens to it after your death. Write to <b>[privacy contact email]</b> with your booking code; we answer within one month.</p>
+      <p>To stop a request at once, cancel it on <a class="tlink" href="../status/">the booking page</a>.</p>
+      <p>If you think your data is mishandled, you can complain to the French data protection authority, the <b>CNIL</b>: 3 Place de Fontenoy, TSA 80715, 75334 Paris Cedex 07, <a class="tlink" href="https://www.cnil.fr/fr/plaintes" rel="noopener">cnil.fr</a>.</p>
+    </div>
+  </section>
+
+  <section class="part" aria-labelledby="p8">
+    <h2 id="p8">Changes</h2>
+    <div class="body">
+      <p>If this page changes, the new version and its date appear here. <b>In force since 22 October 2026.</b></p>
+    </div>
+  </section>
+</main>
+
+<footer class="g12 foot">
+  <p>Concept project. No real appointments or medical data. &middot; 12 rue de Miromesnil, 75008 Paris (fictional address)</p>
+</footer>
+</body>
+</html>
