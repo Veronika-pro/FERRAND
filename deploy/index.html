@@ -1165,7 +1165,10 @@ body{font-size:var(--t-body);line-height:24px}
 .foot-bot > a{position:relative}
 .foot .foot-bot{margin-top:var(--s-6)}
 /* the wordmark: as wide as the field (size fitted by script), standing on the bottom edge so its feet are cut by the page */
-.ff-word{display:block;margin:var(--s-6) 0 -.3em calc(var(--c2) - var(--edge));font-family:var(--serif);font-weight:400;font-size:200px;line-height:1;letter-spacing:.04em;white-space:nowrap;color:var(--ink);user-select:none}
+.ff-word{display:block;margin:var(--s-6) 0 var(--s-5) calc(var(--c2) - var(--edge));font-family:var(--serif);font-weight:400;font-size:200px;line-height:.8;letter-spacing:.04em;white-space:nowrap;color:var(--ink);user-select:none}
+/* the rise: each letter sits in the slot of the word's own box and comes up out of it as the last of the page scrolls away */
+.ff-rise .ff-word{clip-path:inset(-.3em -.1em 0 -.1em)}
+.ff-rise .ff-word span{display:inline-block;will-change:transform}
 /* tablet 761-1080: the new portraits (p1-v11, p2-v11) have her face near the middle, so the tall tablet crops aim at it */
 @media (min-width:761px) and (max-width:1080px){
   .doc-lead .doc-img img{object-position:56% 30%}
@@ -2148,20 +2151,43 @@ try { if(!sessionStorage.getItem('ferrand-line') && !matchMedia('(prefers-reduce
 /* footer: the wordmark spans the field from the first column to the last (size on the 4 px grid); the curtain only when the footer fits the screen */
 (function(){
   var foot = document.querySelector('.foot'); if(!foot) return;
-  var word = foot.querySelector('.ff-word');
+  var word = foot.querySelector('.ff-word'), letters = [];
+  var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(word && !still){ // the wordmark rises out of the page edge, letter by letter, scrubbed by the last stretch of scroll
+    word.innerHTML = word.textContent.split('').map(function(c){ return '<span>' + c + '</span>'; }).join('');
+    letters = [].slice.call(word.children);
+    foot.classList.add('ff-rise');
+  }
+  function rise(){
+    if(!letters.length) return;
+    var main = document.querySelector('main'), H = foot.offsetHeight;
+    var shown = innerHeight - Math.max(main.getBoundingClientRect().bottom, foot.getBoundingClientRect().top); // how much of the footer is on screen (curtain or plain flow)
+    var D = Math.min(H, innerHeight * .6), p = Math.max(0, Math.min(1, (shown - (H - D)) / D));
+    letters.forEach(function(s, i){
+      var k = Math.max(0, Math.min(1, (p - i * .05) / .7)), e = 1 - Math.pow(1 - k, 3);
+      s.style.transform = 'translateY(' + ((1 - e) * 105).toFixed(2) + '%)';
+      s.style.filter = e < 1 ? 'blur(' + ((1 - e) * 6).toFixed(2) + 'px)' : '';
+    });
+  }
+  var ticking = false;
+  addEventListener('scroll', function(){ if(!ticking){ ticking = true; requestAnimationFrame(function(){ ticking = false; rise(); }); } }, { passive: true });
   function fit(){
     if(!word) return;
     var cols = [].slice.call(foot.querySelectorAll('.ff-col')), L = Infinity, R = -Infinity;
     cols.forEach(function(c){ var r = c.getBoundingClientRect(); L = Math.min(L, r.left); R = Math.max(R, r.right); });
-    word.style.fontSize = '100px';
+    word.style.fontSize = '100px'; word.style.letterSpacing = '4px';
     var rg = document.createRange(); rg.selectNodeContents(word);
-    var tw = rg.getBoundingClientRect().width - 4; // minus the trailing .04em of tracking
-    word.style.fontSize = Math.floor((R - L) / tw * 100 / 4) * 4 + 'px';
+    var tw = rg.getBoundingClientRect().width - 4; // minus the trailing tracking
+    var fs = Math.floor((R - L) / tw * 100 / 4) * 4;
+    word.style.fontSize = fs + 'px';
+    word.style.letterSpacing = Math.round(fs * .04) + 'px'; // tracking stays on whole pixels
   }
   function check(){
     fit();
     foot.classList.toggle('no-curtain', foot.offsetHeight > innerHeight);
     if(window.__lenis && window.__lenis.resize) window.__lenis.resize();
+    if(window.__lenis && window.__lenis.on && !check.hooked){ window.__lenis.on('scroll', rise); check.hooked = true; } // smooth scroll drives the rise frame by frame
+    rise();
   }
   (document.fonts ? document.fonts.ready : Promise.resolve()).then(check);
   var t; addEventListener('resize', function(){ clearTimeout(t); t = setTimeout(check, 120); });
