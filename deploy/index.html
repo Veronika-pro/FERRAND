@@ -1419,6 +1419,36 @@ html.lenis,html.lenis body{height:auto}
 .brand b,.bc-mark{font-weight:500}
 .menu-foot a{position:relative}
 .menu-foot a::after{content:"";position:absolute;left:-4px;right:-4px;top:50%;height:44px;transform:translateY(-50%)}
+/* RHYTHM (2026-10-23): one vertical system. Section edge 160 / 128 / 64, sub-block 128 / 128 / 64, title to body 64 / 64 / 32 (desktop / tablet / phone) */
+@media (min-width:1081px){
+  .bk4 .bk-info{margin-top:80px}
+  /* reviews v4: 4.9 and all six notes are on screen from the first frame; scrolling only straightens them onto their columns */
+  .note:nth-child(odd){--dx:6vw} .note:nth-child(even){--dx:-6vw}
+  .note:nth-child(1),.note:nth-child(2){--dy:6vh} .note:nth-child(5),.note:nth-child(6){--dy:-6vh}
+  .note{transform:translate(calc((1 - var(--k,1)) * var(--dx)), calc((1 - var(--k,1)) * var(--dy,0px))) rotate(calc((1 - var(--k,1)) * var(--r,0deg))) scale(calc(.96 + .04 * var(--k,1)))}
+  .reviews{height:160vh;height:160svh}
+}
+@media (min-width:761px) and (max-width:1080px){ .bk4 .bk-body{padding-bottom:var(--s-10)} .bk4 .bk-info{margin-top:var(--s-7)} }
+@media (max-width:760px){
+  .sec,.philo{padding-top:var(--s-8);padding-bottom:var(--s-8)}
+  .res-body,.pr-body,.team-body,.case{margin-top:var(--s-6)}
+  .team-facts{margin-top:0}
+  #team .team-body{margin-top:0}
+  .faq{margin-top:var(--s-8)}
+  .tr-index{padding-bottom:0}
+  .tr-card{padding:var(--s-5) 20px}
+  .tr-card .tr-name,.tr-name{margin-top:0}
+  .tr-facts{margin-top:0}
+  .at-copy{padding-top:var(--s-8)}
+  .jr-pin{padding:var(--s-8) 20px}
+  .jr-title{margin-top:0}
+  .rv-pin{padding:var(--s-8) 20px}
+  .book.has-photo .bk-head{padding-top:var(--s-8);padding-bottom:var(--s-6)}
+  .bk4 .bk-body{padding:var(--s-6) 20px var(--s-8)}
+  .bk4 .bk-info{margin-top:var(--s-2)}
+  .foot{padding-top:var(--s-8)}
+  .ff-line,.ff-cta{grid-column:1 / -1} /* the closing line gets the full width, Book and Directions sit under it */
+}
 </style>
 
 
