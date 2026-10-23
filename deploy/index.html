@@ -392,15 +392,6 @@ button.tlink{border:0;border-bottom:1px solid}
 
 /* ---------- 11 footer: dark, the wordmark across the full width ---------- */
 .foot{position:relative;padding:var(--s-9) var(--edge) var(--s-6);background:var(--ink);color:var(--porcelain);border-top:1px solid rgba(250,250,250,.1)}
-.foot-top{row-gap:var(--s-6)}
-.foot-col:nth-child(1){grid-column:2 / 5}
-.foot-col:nth-child(2){grid-column:6 / 8}
-.foot-col:nth-child(3){grid-column:8 / 11}
-.foot-col:nth-child(4){grid-column:11 / -1}
-.foot-col h3{margin:0 0 var(--s-4);font-size:var(--t-label);font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,250,250,.62)}
-.foot-col ul{margin:0;padding:0;list-style:none;display:grid;gap:var(--s-2)}
-.foot-col p{margin:0}
-.foot-col,.foot-col a{font-size:var(--t-small);line-height:1.6}
 .foot a{transition:opacity .3s ease}
 .foot a:hover{opacity:.62}
 .foot-mark{margin:var(--s-9) 0 var(--s-6);font-family:var(--serif);font-weight:400;font-size:12vw;line-height:.8;letter-spacing:.2em;margin-right:-.2em;white-space:nowrap;text-align:center}
@@ -436,8 +427,6 @@ body.menu-open{overflow:hidden}
   .pr-side{grid-column:8 / -1}
   .bk-form,.bk-done{grid-column:2 / -1}
   .bk-info{grid-column:2 / -1;grid-template-columns:repeat(3, 1fr)}
-  .foot-col:nth-child(odd){grid-column:2 / 7}
-  .foot-col:nth-child(even){grid-column:8 / -1}
 }
 @media (max-width:760px){
   :root{--gap:12px}
@@ -487,7 +476,7 @@ body.menu-open{overflow:hidden}
   /* shared chapters: one column */
   .sec{padding:var(--s-9) 20px}
   .g12{grid-template-columns:1fr;row-gap:var(--s-5)}
-  .g12 > *,.sec-title,.compare,.res-side,.rv-main,.rv-facts,.pr-card,.pr-side,.faq-list,.doc-lead,.team-side,.bk-form,.bk-done,.bk-info,.foot-col,.foot-col:first-child{grid-column:1}
+  .g12 > *,.sec-title,.compare,.res-side,.rv-main,.rv-facts,.pr-card,.pr-side,.faq-list,.doc-lead,.team-side,.bk-form,.bk-done,.bk-info{grid-column:1}
   .compare{aspect-ratio:1/1}
   .res-side{margin-top:var(--s-3);gap:var(--s-5)}
   .journey{height:auto}
@@ -520,9 +509,6 @@ body.menu-open{overflow:hidden}
   .fields{grid-template-columns:1fr}
   .bk-info{grid-template-columns:1fr}
   .foot{padding:var(--s-8) 20px var(--s-5)}
-  .foot-top{grid-template-columns:1fr 1fr;column-gap:var(--s-5)}
-  .foot-col:nth-child(odd),.foot-col:nth-child(even){grid-column:auto}
-  .foot-col:nth-child(1){grid-column:1 / -1}
   .foot-bot p:first-child,.foot-bot p:nth-child(2),.foot-bot a{grid-column:1;justify-self:start}
 }
 @media (prefers-reduced-motion:reduce){
@@ -661,10 +647,8 @@ body{font-size:var(--t-body);line-height:24px}
 .res-name,.jr-head h3,.pr-table dt,.faq summary,.menu li a{font-size:var(--t-num);line-height:40px;letter-spacing:-1px}
 .facts,.philo-sign{line-height:20px}
 .brand b{font-size:20px;letter-spacing:6px;margin-right:-6px}
-.label,.brand small,.jr-head span,.pr-card h3,.bk-form legend,.bk-info dt,.foot-col h3,.cmp-tag,.rail span,.co span,.jr-cap span{letter-spacing:2px}
+.label,.brand small,.jr-head span,.pr-card h3,.bk-form legend,.bk-info dt,.cmp-tag,.rail span,.co span,.jr-cap span{letter-spacing:2px}
 .day span{letter-spacing:1px}
-.foot-col h3{line-height:16px}
-.foot-col p,.foot-col li{line-height:24px}
 .foot-mark{line-height:1}
 .bk-done h3{line-height:var(--lh-h2);letter-spacing:var(--ls-h2)}
 /* Book: the live poster. The chosen day set like €150 (display size), the one bold object in the dark chapter */
@@ -681,7 +665,6 @@ body{font-size:var(--t-body);line-height:24px}
 @media (max-width:760px){ .bk-side{display:contents} .bk-poster{grid-column:1;order:-1} }
 .btn{letter-spacing:0}
 .menu-btn,button.tlink{line-height:24px}
-.foot-col a{line-height:24px}
 @media (min-width:761px){ .team-side .quote p{font-size:var(--t-num);line-height:40px;letter-spacing:-1px} }
 @media (min-width:761px) and (max-width:1279px){
   :root{--t-num:28px; --t-h2:40px; --t-display:64px; --t-h1:72px; --lh-h2:48px; --lh-display:60px; --lh-h1:68px; --ls-display:-2px; --ls-h1:-3px}
@@ -831,7 +814,6 @@ body{font-size:var(--t-body);line-height:24px}
 .tr-name{margin-top:var(--s-7)}
 .tr-text{padding-top:var(--s-6)}
 .tr-facts{grid-row:3;align-self:start;margin-top:var(--s-7)}
-.tr-img img[src*="t-veneers"]{transform:scale(3);transform-origin:57% 50%}
 .tr-img img[src*="t-whitening-g"]{transform:scale(2.4);transform-origin:56% 52%}
 
 /* the case: a diptych and what changed (the slider itself is the hero) */
@@ -891,10 +873,6 @@ body{font-size:var(--t-body);line-height:24px}
 
 /* footer: columns on A and B, the address instead of a giant wordmark, the rule from A */
 @media (min-width:761px){
-  .foot-col:nth-child(1){grid-column:2 / 7}
-  .foot-col:nth-child(2){grid-column:7 / 9}
-  .foot-col:nth-child(3){grid-column:9 / 11}
-  .foot-col:nth-child(4){grid-column:11 / -1}
   .foot-bot p:first-child{grid-column:2 / 7}
   .foot-bot p:nth-child(2){grid-column:7 / 11}
 }
@@ -947,11 +925,8 @@ body{font-size:var(--t-body);line-height:24px}
   .team-side{grid-column:7 / 12}
   .philo-text{grid-column:2 / 12}
   .pr-side,.bk-side{grid-column:7 / 12}
-  .foot-col:nth-child(4),.foot-bot a{grid-column:11 / 12}
-  /* QA 2026-10-22: Explore has the shortest lines, Contact needs two columns so the phone never breaks */
-  .foot-col:nth-child(2){grid-column:7 / 8}
-  .foot-col:nth-child(3){grid-column:8 / 10}
-  .foot-col:nth-child(4){grid-column:10 / 12}
+  .foot-bot a{grid-column:11 / 12}
+  
 }
 .foot a[href^="tel:"]{white-space:nowrap}
 
@@ -1155,51 +1130,77 @@ body{font-size:var(--t-body);line-height:24px}
   .foot{position:sticky;bottom:0;z-index:0}
 }
 .foot{background:var(--paper);color:var(--ink);border-top:0}
-.foot .label,.foot-col h3,.foot-bot{color:var(--ink-soft)}
+.foot .label,.foot-bot{color:var(--ink-soft)}
 .foot-bot a{color:var(--ink)}
 .foot-bot::before{border-top-color:rgba(17,18,20,.16)}
 .foot a:focus-visible{outline-color:var(--ink)}
-.foot-live{margin:var(--s-9) 0 var(--s-6) calc(var(--c2) - var(--edge));display:grid;gap:var(--s-4)}
-.foot-live .foot-mark{margin:0}
 .foot-status{display:flex;align-items:center;gap:var(--s-3);margin:0;font-variant-numeric:tabular-nums;color:var(--ink-soft)}
 .foot-status i{width:8px;height:8px;border-radius:50%;background:var(--ink-soft);opacity:.5}
 .foot-status.is-open i{background:var(--ink);opacity:1;box-shadow:0 0 0 4px rgba(17,18,20,.08)}
-@media (max-width:760px){ .foot-live{margin-left:0} }
+
 /* ---------- final pass (2026-10-19) ---------- */
 /* hero: the trust figures step out as the photograph opens, so nothing sits on her */
 .hero .trust{opacity:var(--trust,1)}
-/* veneers: a macro of the finished case (R1 after) */
-.tr-img img[src*="r1-after"]{object-position:46% 44%;transform:scale(1.9);transform-origin:46% 44%}
-/* footer v11 (2026-10-23): clean ice, the address steps down, the page signs off with the wordmark across the field (size fitted by script) */
+
+/* footer v12 «arrival» (2026-10-23): the last question is where to go, so the footer is the address on A and a line map of the block on B; no effects */
 .foot{overflow:hidden}
-.foot-live .foot-mark{font-size:48px;line-height:56px;letter-spacing:-1px}
-.foot-word{margin:var(--s-8) 0 16px calc(var(--c2) - var(--edge));font-family:var(--serif);font-weight:300;font-size:200px;line-height:.72;letter-spacing:.06em;white-space:nowrap;color:var(--ink);user-select:none}
-@media (max-width:760px){ .foot-live .foot-mark{font-size:32px;line-height:36px} .foot-word{margin-left:0} }
 .foot.no-curtain{position:relative}
-/* the last glint: letters rise one by one, then the hero's line of light passes through them once */
-.foot-word{position:relative}
-.foot-word span{display:inline-block}
-.fw-ready .foot-word span{opacity:0;transform:translateY(.24em);transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i) * 60ms)}
-.fw-ready .foot-word.is-on span{opacity:1;transform:none}
-.foot-word::after{content:"";position:absolute;inset:-.1em 0;pointer-events:none;mix-blend-mode:lighten;opacity:0;
-  background:linear-gradient(100deg, transparent 40%, #C7D9E8 50%, transparent 60%);background-size:300% 100%;background-position:100% 0}
-.foot-word.is-on::after{animation:fw-glint 1.6s cubic-bezier(.4,0,.2,1) .7s 1 both}
-@keyframes fw-glint{from{opacity:1;background-position:100% 0}to{opacity:1;background-position:0 0}}
-.foot.is-on .foot-status.is-open i{animation:fw-dot 1.4s ease-out 1.8s 1}
-@keyframes fw-dot{from{box-shadow:0 0 0 0 rgba(17,18,20,.28)}to{box-shadow:0 0 0 12px rgba(17,18,20,0)}}
-@media (prefers-reduced-motion:reduce){
-  .fw-ready .foot-word span{opacity:1;transform:none;transition:none}
-  .foot-word::after,.foot.is-on .foot-status.is-open i{display:none;animation:none}
+.fa{row-gap:var(--s-8);align-items:start}
+.fa-text{grid-column:2 / 6;display:grid;gap:var(--s-4);align-content:start}
+.fa-map{grid-column:7 / 12}
+.fa-label{margin:0;font-size:var(--t-label);line-height:16px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft)}
+.fa .foot-mark{margin:0;font-family:var(--serif);font-weight:300;font-size:48px;line-height:56px;letter-spacing:-1px;color:var(--ink)}
+.fa-city{margin:0;font-size:var(--t-small);line-height:24px;color:var(--ink-soft)}
+.fa-facts{margin:var(--s-4) 0 0;display:grid;gap:var(--s-4);padding-top:var(--s-5);border-top:1px solid rgba(17,18,20,.16)}
+.fa-facts div{display:grid;grid-template-columns:88px 1fr;column-gap:var(--s-4)}
+.fa-facts dt{font-size:var(--t-label);line-height:24px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft)}
+.fa-facts dd{margin:0;font-size:var(--t-small);line-height:24px;color:var(--ink)}
+.fa-facts a{color:var(--ink);white-space:nowrap}
+.fa-actions{margin:var(--s-4) 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-5)}
+.fa-actions .tlink{font-size:var(--t-small)}
+/* the map: hairlines like the chapter rules, type from the site, two pins and the walk between them */
+.fa-map{position:relative;margin:0;aspect-ratio:4 / 3;border-radius:20px;overflow:hidden;background:#FFFFFF;box-shadow:inset 0 0 0 1px rgba(17,18,20,.08)}
+.fa-map svg{position:absolute;inset:0;width:100%;height:100%}
+.fa-map path{fill:none;vector-effect:non-scaling-stroke}
+.fm-minor path{stroke:rgba(17,18,20,.08);stroke-width:1}
+.fm-street path{stroke:rgba(17,18,20,.22);stroke-width:1}
+.fm-main{stroke:var(--ink);stroke-width:1.5}
+.fm-route{stroke:var(--ink);stroke-width:2;stroke-dasharray:2 6;stroke-linecap:round}
+.fm-name{position:absolute;left:0;top:0;transform-origin:0 100%;white-space:nowrap;font-size:var(--t-label);line-height:16px;letter-spacing:1px;color:var(--ink-soft)} /* placed along its street by script */
+.fm-main-name{color:var(--ink)}
+.fm-pin{position:absolute;display:flex;align-items:center;gap:var(--s-3);transform:translate(-12px,-50%);white-space:nowrap}
+.fm-pin b{font-size:var(--t-label);line-height:16px;font-weight:500;letter-spacing:1px;color:var(--ink);background:#FFFFFF;padding:4px 8px;border-radius:999px;box-shadow:0 0 0 1px rgba(17,18,20,.1)}
+.fm-metro i{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#FFFFFF;box-shadow:0 0 0 1.5px var(--ink);font:500 12px/1 var(--sans, 'Instrument Sans', sans-serif);font-style:normal;color:var(--ink)}
+.fm-here i{width:24px;height:24px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 6px rgba(17,18,20,.08)}
+.fm-walk{position:absolute;transform:translateY(-50%);font-size:var(--t-label);line-height:16px;letter-spacing:1px;color:var(--ink-soft)}
+.fm-n{position:absolute;top:16px;right:16px;font-size:var(--t-label);line-height:16px;letter-spacing:1px;color:var(--ink-soft)}
+.fa-nav{margin-top:var(--s-9);padding-top:var(--s-5);border-top:1px solid rgba(17,18,20,.16);align-items:center;row-gap:var(--s-4)}
+.fa-brand{grid-column:2 / 7;margin:0;font-size:var(--t-small);line-height:24px;color:var(--ink-soft)}
+.fa-nav ul{grid-column:7 / 12;margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:var(--s-2) var(--s-5)}
+.fa-nav a{position:relative;font-size:var(--t-small);line-height:24px;color:var(--ink)}
+.fa-nav a::after,.fa-facts a::after,.foot-bot > a::after{content:"";position:absolute;left:-4px;right:-4px;top:50%;height:44px;transform:translateY(-50%)}
+.fa-facts a,.foot-bot > a{position:relative}
+/* tablet 761-1080: the new portraits (p1-v11, p2-v11) have her face near the middle, so the tall tablet crops aim at it */
+@media (min-width:761px) and (max-width:1080px){
+  .doc-lead .doc-img img{object-position:56% 30%}
+  .book .bk-img img,.book .bk-img img.gloss{object-position:40% 30%}
+}
+@media (min-width:761px) and (max-width:1080px) and (orientation:landscape){ .book .bk-img img,.book .bk-img img.gloss{object-position:12% 30%} }
+.foot .foot-bot{margin-top:var(--s-5)}
+@media (min-width:761px) and (max-width:1080px){
+  .fa-text{grid-column:2 / 7} .fa-map{grid-column:7 / 12}
+  .fa-brand{grid-column:2 / 12} .fa-nav ul{grid-column:2 / 12}
+}
+@media (max-width:760px){
+  .fa .foot-mark{font-size:32px;line-height:36px}
+  .fa-text,.fa-map,.fa-brand,.fa-nav ul{grid-column:1}
+  .fa-map{aspect-ratio:1 / 1}
+  .fa-nav{margin-top:var(--s-8)}
 }
 /* tablet 761-1080: the treatments index stays in the left half; footer columns get room */
 @media (min-width:761px) and (max-width:1080px){
   .tr-index nav{display:none}
-  .foot-col:nth-child(1){grid-column:2 / 12}
-  .foot-col:nth-child(2){grid-column:2 / 5}
-  .foot-col:nth-child(3){grid-column:5 / 9}
-  .foot-col:nth-child(4){grid-column:9 / 12}
-}/* footer links: 44px tap area without changing the list rhythm */
-.foot-col a{position:relative}.foot-col a::after{content:"";position:absolute;left:-4px;right:-4px;top:50%;height:44px;transform:translateY(-50%)}
+}
 /* grid fixes after the audit: fr columns never grow with content; tablet notes start on A; phone Book line on the one axis */
 .jr-pin,.rv-pin{grid-template-columns:repeat(12, minmax(0, 1fr))}
 @media (min-width:761px) and (max-width:1080px){ .rv-pin{padding-inline:var(--c2)} .rv-notes{margin:0 calc(-1 * var(--c2));padding:0 var(--c2) var(--s-3);scroll-padding-inline:var(--c2)} }
@@ -1545,7 +1546,7 @@ try { if(!sessionStorage.getItem('ferrand-line') && !matchMedia('(prefers-reduce
           <div><dt>3</dt><dd>weeks, start to finish</dd></div>
           <div><dt>&euro;1,200</dt><dd>from, per tooth</dd></div>
         </dl>
-        <figure class="tr-img"><img width="2000" height="1116" class="muse" src="images/muse-smile.webp" alt="Close-up of a natural smile with even, softly white front teeth" loading="lazy" decoding="async"></figure>
+        <figure class="tr-img"><img width="928" height="1152" class="gloss" src="images/veneer-v12.jpg" alt="A single porcelain veneer, thin and translucent at the edge, resting on a gloved fingertip by the window" loading="lazy" decoding="async"></figure>
       </article>
 
       <article class="tr-card" id="t-implants" aria-labelledby="t-implants-h">
@@ -1794,34 +1795,45 @@ try { if(!sessionStorage.getItem('ferrand-line') && !matchMedia('(prefers-reduce
 </main>
 
 <footer class="foot">
-  <div class="g12 foot-top">
-    <div class="foot-col">
-      <h3>Ferrand</h3>
-      <p>Aesthetic dentistry in Paris 8e, since 2009.</p>
+  <div class="g12 fa">
+    <div class="fa-text">
+      <h2 class="fa-label">How to find us</h2>
+      <p class="foot-mark">12 rue de Miromesnil</p>
+      <p class="fa-city">75008 Paris, a short walk from the Élysée</p>
+      <p class="foot-status" id="foot-status"><i aria-hidden="true"></i><span>Paris 8e &middot; Monday to Saturday</span></p>
+      <dl class="fa-facts">
+        <div><dt>Métro</dt><dd>Miromesnil, lines 9 and 13. Four minutes on foot.</dd></div>
+        <div><dt>Hours</dt><dd>Mon to Fri, 9:00 to 19:30<br>Saturday, 10:00 to 14:00</dd></div>
+        <div><dt>Phone</dt><dd><a href="tel:+33184000000">+33 1 84 00 00 00</a></dd></div>
+      </dl>
+      <p class="fa-actions"><a class="btn" href="#book"><span>Book a consultation</span> <span class="arr" aria-hidden="true">&rarr;</span></a><a class="tlink" href="https://www.google.com/maps/search/?api=1&amp;query=12+rue+de+Miromesnil+75008+Paris" target="_blank" rel="noopener">Directions <span class="arr" aria-hidden="true">&rarr;</span></a></p>
     </div>
-    <div class="foot-col">
-      <h3>Explore</h3>
-      <ul><li><a href="#treatments">Treatments</a></li><li><a href="#results">The case</a></li><li><a href="#journey">Your visit</a></li><li><a href="#team">Founder</a></li><li><a href="#prices">Prices</a></li></ul>
-    </div>
-    <div class="foot-col">
-      <h3>Visit</h3>
-      <p>12 rue de Miromesnil, 75008 Paris<br>Mon to Fri, 9:00 to 19:30<br>Saturday, 10:00 to 14:00</p>
-    </div>
-    <div class="foot-col">
-      <h3>Contact</h3>
-      <ul><li><a href="tel:+33184000000">+33 1 84 00 00 00</a></li><li><a href="#book">Book a consultation</a></li></ul>
-    </div>
+    <figure class="fa-map" role="img" aria-label="Map of the block: Ferrand at number 12 rue de Miromesnil, near rue du Faubourg Saint-Honoré, four minutes on foot from Miromesnil métro at rue La Boétie">
+      <svg viewBox="0 0 400 500" preserveAspectRatio="none" aria-hidden="true">
+        <g class="fm-minor"><path d="M62 520 L104 -20"/><path d="M334 520 L362 -20"/><path d="M-20 344 L420 306"/><path d="M-20 34 L420 -8"/><path d="M118 238 L84 520"/><path d="M300 210 L318 -20"/></g>
+        <g class="fm-street"><path d="M-20 120 L420 70"/><path d="M-20 262 L420 218"/><path d="M-20 452 L420 404"/></g>
+        <path class="fm-main" d="M232 520 L196 -20"/>
+        <path class="fm-route" d="M213 239 L223 385"/>
+      </svg>
+      <span class="fm-name" data-line="-20 120 420 70 .1">Boulevard Haussmann</span>
+      <span class="fm-name" data-line="-20 262 420 218 .1">Rue La Bo&eacute;tie</span>
+      <span class="fm-name" data-line="-20 452 420 404 .06">Faubourg Saint-Honor&eacute;</span>
+      <span class="fm-name fm-main-name" data-line="232 520 196 -20 .93">Rue de Miromesnil</span>
+      <span class="fm-pin fm-metro" style="left:53.25%;top:47.8%"><i>M</i><b>Miromesnil &middot; 9 &middot; 13</b></span>
+      <span class="fm-walk" style="left:58.5%;top:62%">4 min</span>
+      <span class="fm-pin fm-here" style="left:55.75%;top:77%"><i></i><b>Ferrand, n&deg;&nbsp;12</b></span>
+      <span class="fm-n" aria-hidden="true">N&nbsp;&uarr;</span>
+    </figure>
   </div>
-  <div class="foot-live">
-    <p class="foot-mark">12 rue de Miromesnil</p>
-    <p class="foot-status" id="foot-status"><i aria-hidden="true"></i><span>Paris 8e &middot; Monday to Saturday</span></p>
-  </div>
+  <nav class="g12 fa-nav" aria-label="Footer">
+    <p class="fa-brand">Ferrand Aesthetic Dentistry &middot; Paris 8e, since 2009</p>
+    <ul><li><a href="#treatments">Treatments</a></li><li><a href="#results">The case</a></li><li><a href="#journey">Your visit</a></li><li><a href="#team">Founder</a></li><li><a href="#prices">Prices</a></li></ul>
+  </nav>
   <div class="g12 foot-bot">
     <p>&copy; 2026 Ferrand Aesthetic Dentistry</p>
     <p>Concept project. Names, prices and reviews are fictional. Patient portraits: Pexels, the models are not patients; Dr. Ferrand, the hands, the objects and the case are AI-generated. <a class="tlink" href="privacy/">Privacy</a></p>
     <a href="#top">Back to top <span aria-hidden="true">&uarr;</span></a>
   </div>
-  <p class="foot-word" aria-hidden="true">FERRAND</p>
 </footer>
 
 <script src="api.js"></script>
@@ -2149,27 +2161,27 @@ try { if(!sessionStorage.getItem('ferrand-line') && !matchMedia('(prefers-reduce
 })();
 
 
-/* footer wordmark: FERRAND spans the field exactly, from the first footer column to the last; size kept on the 4 px grid */
+/* footer curtain only when the footer fits the screen: a taller one would hide its top under the page */
 (function(){
-  var w = document.querySelector('.foot-word'); if(!w) return;
-  w.innerHTML = w.textContent.split('').map(function(c, i){ return '<span style="--i:' + i + '">' + c + '</span>'; }).join('');
-  if('IntersectionObserver' in window){
-    document.documentElement.classList.add('fw-ready');
-    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ w.classList.add('is-on'); w.closest('.foot').classList.add('is-on'); io.disconnect(); } }); }, { threshold: .6 });
-    io.observe(w);
+  var foot = document.querySelector('.foot'); if(!foot) return;
+  var map = foot.querySelector('.fa-map');
+  function streets(){ // each street name sits on its line, at the line's real on-screen angle (the map stretches with its box)
+    if(!map) return;
+    var W = map.clientWidth, H = map.clientHeight, sx = W / 400, sy = H / 500;
+    [].forEach.call(map.querySelectorAll('[data-line]'), function(el){
+      var v = el.getAttribute('data-line').split(' ').map(Number), x1 = v[0] * sx, y1 = v[1] * sy, x2 = v[2] * sx, y2 = v[3] * sy, t = v[4];
+      var a = Math.atan2(y2 - y1, x2 - x1); if(a > Math.PI / 2 || a < -Math.PI / 2){ a += Math.PI; }
+      var px = x1 + (x2 - x1) * t, py = y1 + (y2 - y1) * t;
+      el.style.transform = 'translate(' + (px + 10 * Math.sin(a)).toFixed(1) + 'px,' + (py - 16 - 6 * Math.cos(a)).toFixed(1) + 'px) rotate(' + (a * 180 / Math.PI).toFixed(2) + 'deg)';
+    });
   }
-  function fit(){
-    var cols = [].slice.call(document.querySelectorAll('.foot-col')), L = Infinity, R = -Infinity;
-    cols.forEach(function(c){ var r = c.getBoundingClientRect(); L = Math.min(L, r.left); R = Math.max(R, r.right); });
-    w.style.fontSize = '100px';
-    var rg = document.createRange(); rg.selectNodeContents(w);
-    var tw = rg.getBoundingClientRect().width - 6; // minus the trailing .06em of tracking
-    w.style.fontSize = Math.floor((R - L) / tw * 100 / 4) * 4 + 'px';
-    var foot = w.closest('.foot'); foot.classList.toggle('no-curtain', foot.offsetHeight > innerHeight); // a footer taller than the screen would hide its top under the page
-    if(window.__lenis && window.__lenis.resize) window.__lenis.resize(); // page height changed
+  function check(){
+    streets();
+    foot.classList.toggle('no-curtain', foot.offsetHeight > innerHeight);
+    if(window.__lenis && window.__lenis.resize) window.__lenis.resize();
   }
-  (document.fonts ? document.fonts.ready : Promise.resolve()).then(fit);
-  var t; addEventListener('resize', function(){ clearTimeout(t); t = setTimeout(fit, 120); });
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(check);
+  var t; addEventListener('resize', function(){ clearTimeout(t); t = setTimeout(check, 120); });
 })();
 
 /* nav and rail turn light over any dark chapter (craft once open, book, footer) */
