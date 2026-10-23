@@ -756,8 +756,8 @@ body{font-size:var(--t-body);line-height:24px}
 .book.has-photo .bk-img{position:relative;inset:auto;height:100vh;height:100svh;min-height:560px;overflow:hidden}
 .book.has-photo .bk-head{padding-top:var(--s-10)}
 .book.has-photo .bk-lead{color:rgba(250,250,250,.62)}
-.book .bk-img img,.book .bk-img img.gloss{filter:none;object-position:64% 30%}
-@media (max-width:760px){ .book .bk-img img,.book .bk-img img.gloss{object-position:65% 30%} }
+.book .bk-img img,.book .bk-img img.gloss{filter:none;object-position:20% 30%} /* p2-v11: keep her right of the headline */
+@media (max-width:760px){ .book .bk-img img,.book .bk-img img.gloss{object-position:55% 30%} } /* phone gets its own vertical frame (picture source) */
 .bk-intro{margin:0 0 var(--s-7);max-width:40ch;color:rgba(250,250,250,.78)}
 /* "When suits you": three words, the chosen one in white with the 2px rule (the site's one selected style) */
 .prefs{display:flex;flex-wrap:wrap;gap:0 var(--s-6)}
@@ -1170,14 +1170,27 @@ body{font-size:var(--t-body);line-height:24px}
 .hero .trust{opacity:var(--trust,1)}
 /* veneers: a macro of the finished case (R1 after) */
 .tr-img img[src*="r1-after"]{object-position:46% 44%;transform:scale(1.9);transform-origin:46% 44%}
-/* footer: the atelier seen through reeded glass, pale and blurred, behind the address */
+/* footer v11 (2026-10-23): clean ice, the address steps down, the page signs off with the wordmark across the field (size fitted by script) */
 .foot{overflow:hidden}
-.foot > *:not(.foot-glass){position:relative;z-index:1}
-.foot-glass{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5;filter:blur(3px) saturate(.5)}
-.foot-glass i{position:absolute;top:0;bottom:0;left:calc(var(--i) * 100% / 12);width:calc(100% / 12 + 1px);
-  background:url("images/a1-v7.webp") no-repeat;background-size:1200% auto;background-position:calc(var(--i) * 100% / 11) var(--y)}
-.foot-glass i::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg, rgba(255,255,255,.4), rgba(255,255,255,0) 40%, rgba(17,18,20,.06))}
-.foot-glass::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, var(--paper) 0%, rgba(238,243,248,.5) 45%, rgba(238,243,248,.72) 100%)}
+.foot-live .foot-mark{font-size:48px;line-height:56px;letter-spacing:-1px}
+.foot-word{margin:var(--s-8) 0 16px calc(var(--c2) - var(--edge));font-family:var(--serif);font-weight:300;font-size:200px;line-height:.72;letter-spacing:.06em;white-space:nowrap;color:var(--ink);user-select:none}
+@media (max-width:760px){ .foot-live .foot-mark{font-size:32px;line-height:36px} .foot-word{margin-left:0} }
+.foot.no-curtain{position:relative}
+/* the last glint: letters rise one by one, then the hero's line of light passes through them once */
+.foot-word{position:relative}
+.foot-word span{display:inline-block}
+.fw-ready .foot-word span{opacity:0;transform:translateY(.24em);transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i) * 60ms)}
+.fw-ready .foot-word.is-on span{opacity:1;transform:none}
+.foot-word::after{content:"";position:absolute;inset:-.1em 0;pointer-events:none;mix-blend-mode:lighten;opacity:0;
+  background:linear-gradient(100deg, transparent 40%, #C7D9E8 50%, transparent 60%);background-size:300% 100%;background-position:100% 0}
+.foot-word.is-on::after{animation:fw-glint 1.6s cubic-bezier(.4,0,.2,1) .7s 1 both}
+@keyframes fw-glint{from{opacity:1;background-position:100% 0}to{opacity:1;background-position:0 0}}
+.foot.is-on .foot-status.is-open i{animation:fw-dot 1.4s ease-out 1.8s 1}
+@keyframes fw-dot{from{box-shadow:0 0 0 0 rgba(17,18,20,.28)}to{box-shadow:0 0 0 12px rgba(17,18,20,0)}}
+@media (prefers-reduced-motion:reduce){
+  .fw-ready .foot-word span{opacity:1;transform:none;transition:none}
+  .foot-word::after,.foot.is-on .foot-status.is-open i{display:none;animation:none}
+}
 /* tablet 761-1080: the treatments index stays in the left half; footer columns get room */
 @media (min-width:761px) and (max-width:1080px){
   .tr-index nav{display:none}
@@ -1491,7 +1504,7 @@ try { if(!sessionStorage.getItem('ferrand-line') && !matchMedia('(prefers-reduce
 
   <section class="sec" id="team" aria-label="The founder">
     <div class="g12 team-body">
-      <figure class="doc doc-lead"><div class="doc-img"><img width="1194" height="1493" alt="Dr. Claire Ferrand in a white coat by the window of her Paris practice" loading="lazy" decoding="async" class="gloss" src="images/p1-v10.webp"></div></figure>
+      <figure class="doc doc-lead"><div class="doc-img"><img width="1194" height="1482" alt="Dr. Claire Ferrand in a white coat by the window of her Paris practice" loading="lazy" decoding="async" class="gloss" src="images/p1-v11.jpg"></div></figure>
       <div class="team-side">
         <p class="fd-name" aria-hidden="true">Claire<br>Ferrand</p>
         <blockquote class="quote">
@@ -1709,7 +1722,7 @@ try { if(!sessionStorage.getItem('ferrand-line') && !matchMedia('(prefers-reduce
 
   <section class="book has-photo bk4" id="book" aria-labelledby="bk-title">
     <div class="bk-hero">
-      <div class="bk-img" aria-hidden="true"><img width="2000" height="1116" class="gloss" src="images/p2-v6.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="bk-img" aria-hidden="true"><picture><source media="(max-width: 760px)" srcset="images/p2-v11-phone.jpg" width="1100" height="1366"><img width="2000" height="1116" class="gloss" src="images/p2-v11.jpg" alt="" loading="lazy" decoding="async"></picture></div>
       <div class="g12 bk-head" data-dark="on" data-dark-phone>
         <h2 class="bk-title" id="bk-title">Let&rsquo;s <span class="bk-gap"><span class="bk-word">finish</span></span> your smile.</h2>
         <p class="bk-lead">A 60-minute consultation with Dr. Claire Ferrand. &euro;150, credited to your treatment.</p>
@@ -1781,7 +1794,6 @@ try { if(!sessionStorage.getItem('ferrand-line') && !matchMedia('(prefers-reduce
 </main>
 
 <footer class="foot">
-  <div class="foot-glass" aria-hidden="true"><i style="--i:0;--y:78%"></i><i style="--i:1;--y:84%"></i><i style="--i:2;--y:90%"></i><i style="--i:3;--y:81%"></i><i style="--i:4;--y:87%"></i><i style="--i:5;--y:78%"></i><i style="--i:6;--y:84%"></i><i style="--i:7;--y:90%"></i><i style="--i:8;--y:81%"></i><i style="--i:9;--y:87%"></i><i style="--i:10;--y:78%"></i><i style="--i:11;--y:84%"></i></div>
   <div class="g12 foot-top">
     <div class="foot-col">
       <h3>Ferrand</h3>
@@ -1809,6 +1821,7 @@ try { if(!sessionStorage.getItem('ferrand-line') && !matchMedia('(prefers-reduce
     <p>Concept project. Names, prices and reviews are fictional. Patient portraits: Pexels, the models are not patients; Dr. Ferrand, the hands, the objects and the case are AI-generated. <a class="tlink" href="privacy/">Privacy</a></p>
     <a href="#top">Back to top <span aria-hidden="true">&uarr;</span></a>
   </div>
+  <p class="foot-word" aria-hidden="true">FERRAND</p>
 </footer>
 
 <script src="api.js"></script>
@@ -2135,6 +2148,29 @@ try { if(!sessionStorage.getItem('ferrand-line') && !matchMedia('(prefers-reduce
   addEventListener('keydown', function(e){ if(e.key === 'Escape' && menu.classList.contains('open')){ set(false); btn.focus(); } });
 })();
 
+
+/* footer wordmark: FERRAND spans the field exactly, from the first footer column to the last; size kept on the 4 px grid */
+(function(){
+  var w = document.querySelector('.foot-word'); if(!w) return;
+  w.innerHTML = w.textContent.split('').map(function(c, i){ return '<span style="--i:' + i + '">' + c + '</span>'; }).join('');
+  if('IntersectionObserver' in window){
+    document.documentElement.classList.add('fw-ready');
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ w.classList.add('is-on'); w.closest('.foot').classList.add('is-on'); io.disconnect(); } }); }, { threshold: .6 });
+    io.observe(w);
+  }
+  function fit(){
+    var cols = [].slice.call(document.querySelectorAll('.foot-col')), L = Infinity, R = -Infinity;
+    cols.forEach(function(c){ var r = c.getBoundingClientRect(); L = Math.min(L, r.left); R = Math.max(R, r.right); });
+    w.style.fontSize = '100px';
+    var rg = document.createRange(); rg.selectNodeContents(w);
+    var tw = rg.getBoundingClientRect().width - 6; // minus the trailing .06em of tracking
+    w.style.fontSize = Math.floor((R - L) / tw * 100 / 4) * 4 + 'px';
+    var foot = w.closest('.foot'); foot.classList.toggle('no-curtain', foot.offsetHeight > innerHeight); // a footer taller than the screen would hide its top under the page
+    if(window.__lenis && window.__lenis.resize) window.__lenis.resize(); // page height changed
+  }
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(fit);
+  var t; addEventListener('resize', function(){ clearTimeout(t); t = setTimeout(fit, 120); });
+})();
 
 /* nav and rail turn light over any dark chapter (craft once open, book, footer) */
 (function(){
