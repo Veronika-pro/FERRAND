@@ -1525,6 +1525,42 @@ html.lenis,html.lenis body{height:auto}
   .case-fig b{font-size:80px;line-height:72px;letter-spacing:-3px}
   .case{margin-top:var(--s-8)}
 }
+/* PHONE RHYTHM v2 (2026-10-26): four steps, each clearly smaller than the one above, so a gap inside a block is never as big as the gap between blocks.
+   96 between sections (48 + 48) · 64 between parts of one section · 32 from a title or photo to its text · 16 / 24 inside a group */
+@media (max-width:760px){
+  .sec,.philo,.visit{padding-top:var(--s-7);padding-bottom:var(--s-7)}
+  .philo-more{margin-top:var(--s-2)}
+  /* founder: portrait, name, quote, facts read as one story */
+  #team{padding-top:var(--s-7);padding-bottom:var(--s-6)} /* + the 16 under the last fact row = 48 */
+  .team-side{gap:var(--s-5)}
+  .team-facts{margin-top:0}
+  .team-facts div:first-child,.case-notes div:first-child{padding-top:var(--s-2)}
+  /* treatments: 32 inside a procedure, 64 from one procedure to the next */
+  .tr-card{padding:var(--s-5) 20px;row-gap:var(--s-5)}
+  .tr-card .tr-text{padding-top:var(--s-2)}
+  .tr-text p{margin-bottom:0}
+  .tr-facts{margin:-32px 0 var(--s-4)} /* text, 16 to the rule, 16 to the numbers = 32 */
+  .tr-card:last-of-type .tr-facts{margin-bottom:0}
+  .tr-card:last-of-type{padding-bottom:var(--s-7)}
+  .case-notes{margin-top:0}
+  .case .case-notes{margin-top:calc(-1 * var(--s-4))}
+  .case .case-notes div:first-child{padding-top:var(--s-4)}
+  .rv-score{margin-bottom:var(--s-6)}
+  .rv-pin{padding-bottom:var(--s-6)} /* + the 12 under the swipe row and the cards' own edge = 48 */
+  .case .res-note{margin-top:calc(-1 * var(--s-4))} /* the last note row already has 16 under it */
+  .at-copy{padding-top:var(--s-7)}
+  .rv-pin{padding-top:var(--s-7);padding-bottom:var(--s-7)}
+  .pr-side{margin-top:40px} /* + the button's line box = 64 */
+  .faq{margin-top:var(--s-8)}
+  .faq-title{margin-bottom:var(--s-2)}
+  /* book: photo, then the headline and form close under it */
+  .book.has-photo .bk-head{padding-top:var(--s-6);padding-bottom:var(--s-5)}
+  .bk4 .bk-body{padding:var(--s-2) 20px var(--s-7)}
+  .bk4 .bk-info{margin-top:0}
+  .foot{padding-top:var(--s-7)}
+}
+/* reduced motion: Reviews is not pinned, so it must not keep the 160svh scroll room (RHYTHM sets it later than the older reduce rule) */
+@media (prefers-reduced-motion:reduce){ .reviews{height:auto} }
 </style>
 
 

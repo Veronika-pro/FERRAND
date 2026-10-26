@@ -104,6 +104,37 @@ h2{margin:0 0 var(--s-4);font-size:var(--t-label);line-height:16px;font-weight:5
 .row.full > .st{grid-column:7 / 9;justify-self:start}
 .row.full .code{grid-column:9 / 11;justify-self:end}
 .row .code{font-size:var(--t-label);letter-spacing:1px;color:var(--ink-soft)}
+/* today: each request is a card with the decision on it; the week is a strip with a dot per visit */
+.reqs{display:grid;gap:var(--s-3);margin:0;padding:0;list-style:none}
+/* the time takes two page columns, so the name starts on the same vertical as the names in "Coming up" (card padding 24 subtracted) */
+.req{display:grid;grid-template-columns:calc(2 * (100% + 48px - 4 * var(--gap)) / 5 + var(--gap) - 24px) minmax(0, 1fr);align-items:start;column-gap:var(--gap);row-gap:var(--s-4);padding:var(--s-5);border-radius:20px;background:var(--paper);transition:background .4s ease, box-shadow .4s ease}
+.req time{font:300 40px/40px var(--serif);letter-spacing:-1px}
+.req time small{display:block;margin-top:var(--s-2);font:var(--t-label)/16px var(--sans);letter-spacing:0;color:var(--ink-soft)}
+.req .nm{display:block;max-width:100%;padding:0;border:0;background:none;color:var(--ink);font:300 24px/32px var(--serif);letter-spacing:-1px;text-align:left;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.req .nm:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}
+.req .meta{display:block;font-size:var(--t-label);line-height:16px;color:var(--ink-soft)}
+.req-act{grid-column:2;display:flex;align-items:center;gap:var(--s-4);min-height:40px}
+.req.is-done{background:var(--white);box-shadow:inset 0 0 0 1px var(--line)}
+.req-ok{display:flex;align-items:center;gap:var(--s-2);margin:0;font-size:var(--t-small);white-space:nowrap}
+.req-ok::before{content:"";width:24px;height:24px;border-radius:50%;background:var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 12.5l3.2 3.2L17 9' fill='none' stroke='%23FAFAFA' stroke-width='1.6'/%3E%3C/svg%3E") center/24px no-repeat}
+.req .err{grid-column:2;margin:0}
+.req .err:empty{display:none}
+.wk7{display:grid;grid-template-columns:repeat(7, minmax(0, 1fr));gap:var(--s-2);margin:0 0 var(--s-6);padding:0;list-style:none}
+.wk7 li{display:grid;align-content:start;gap:4px;min-height:104px;padding:var(--s-3);border-radius:12px;box-shadow:inset 0 0 0 1px var(--line)}
+.wk7 small{font-size:var(--t-label);line-height:16px;color:var(--ink-soft)}
+.wk7 b{font:300 24px/32px var(--serif);letter-spacing:-1px}
+.wk7 i{display:flex;flex-wrap:wrap;gap:4px;margin-top:var(--s-2)}
+.wk7 i span{width:8px;height:8px;border-radius:50%;background:var(--ink)}
+.wk7 i span.rq{background:transparent;box-shadow:inset 0 0 0 1px var(--ink)}
+.wk7 li.today{background:var(--ink);box-shadow:none;color:var(--porcelain)}
+.wk7 li.today small{color:rgba(250,250,250,.7)}
+.wk7 li.today i span{background:var(--porcelain)}
+.wk7 li.today i span.rq{background:transparent;box-shadow:inset 0 0 0 1px var(--porcelain)}
+.wk7 li.off{background:transparent;color:var(--ink-soft)} /* keeps its outline so the strip fills its columns edge to edge */
+.dg + .dg{margin-top:var(--s-5)}
+@media (min-width:1081px){ .dg .row time{grid-column:1 / 3} .dg .row .who2{grid-column:3 / 6} }
+.dg .row > .st{display:none}
+.dg .row time small{display:none}
 .empty{margin:0;padding:var(--s-5) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);color:var(--ink-soft)}
 .loading{color:var(--ink-soft)}
 .count{font:300 var(--t-num)/40px var(--serif);letter-spacing:-1px}
@@ -166,6 +197,7 @@ h2{margin:0 0 var(--s-4);font-size:var(--t-label);line-height:16px;font-weight:5
   .chips{grid-column:1 / 11}
   .filters .f-q{grid-column:1 / 11} .filters .f-tr{grid-column:1 / 6} .filters .f-day{grid-column:6 / 11}
   .week{grid-template-columns:repeat(3, minmax(0, 1fr));row-gap:var(--s-6)}
+  .req{grid-template-columns:calc(2 * (100% + 48px - 9 * var(--gap)) / 10 + var(--gap) - 24px) minmax(0, 1fr)} /* the cards span 10 columns here */
 }
 @media (max-width:760px){
   .g12{grid-template-columns:minmax(0, 1fr);padding:0 20px}
@@ -184,6 +216,11 @@ h2{margin:0 0 var(--s-4);font-size:var(--t-label);line-height:16px;font-weight:5
   .filters .f-q{grid-column:1 / -1} .filters .f-tr{grid-column:1} .filters .f-day{grid-column:2}
   .week{grid-template-columns:minmax(0, 1fr);row-gap:var(--s-6)}
   .rows div{grid-template-columns:80px minmax(0, 1fr)}
+  .req{grid-template-columns:80px minmax(0, 1fr);row-gap:var(--s-4);padding:var(--s-4)}
+  .req time{font-size:32px;line-height:32px}
+  .req-act{grid-column:1 / -1}
+  .wk7 li{min-height:80px;padding:var(--s-2)}
+  .wk7 b{font-size:20px;line-height:24px}
   .log li{grid-template-columns:1fr;gap:0}
 }
 @media (prefers-reduced-motion:no-preference){ .card.in{animation:card-in .5s cubic-bezier(.2,.7,.1,1)} }
@@ -447,11 +484,47 @@ h2{margin:0 0 var(--s-4);font-size:var(--t-label);line-height:16px;font-weight:5
     var next = all.filter(function(b){ var d = at(b); return b.status === 'confirmed' && d > now && d < week; }).sort(byVisit);
     $('c-new').textContent = fresh.length ? '· ' + fresh.length : '';
     $('today-new').className = ''; $('today-next').className = '';
-    $('today-new').innerHTML = fresh.length ? '<ul class="list">' + fresh.map(rowShort).join('') + '</ul>'
+    $('today-new').innerHTML = fresh.length ? '<ul class="reqs">' + fresh.map(reqCard).join('') + '</ul>'
       : '<p class="empty">Nothing waits for you. New bookings from the website land here first.</p>';
-    $('today-next').innerHTML = next.length ? '<ul class="list">' + next.map(rowShort).join('') + '</ul>'
-      : '<p class="empty">No confirmed visits in the next 7 days.</p>';
+    // the strip: 7 days from today, a filled dot per confirmed visit, a hollow one per request still waiting
+    var strip = '';
+    for(var i = 0; i < 7; i++){
+      var k = api.dayKey(new Date(now.getTime() + i * 864e5)), kd = new Date(k + 'T12:00:00Z');
+      var dots = all.filter(function(b){ return api.dayKey(at(b)) === k && (b.status === 'confirmed' || b.status === 'requested'); }).sort(byVisit)
+        .map(function(b){ return '<span' + (b.status === 'requested' ? ' class="rq"' : '') + '></span>'; }).join('');
+      var sun = api.weekday(kd) === 'Sun';
+      strip += '<li class="' + (i === 0 ? 'today' : sun ? 'off' : '') + '"><small>' + esc(i === 0 ? 'Today' : api.weekday(kd)) + '</small><b>' + esc(k.slice(8).replace(/^0/, '')) + '</b>' +
+        (sun ? '<small>Closed</small>' : '<i aria-hidden="true">' + dots + '</i>') + '</li>';
+    }
+    var groups = [];
+    next.forEach(function(b){ var k = api.dayKey(at(b)); if(!groups.length || groups[groups.length - 1].k !== k) groups.push({ k: k, d: at(b), list: [] }); groups[groups.length - 1].list.push(b); });
+    $('today-next').innerHTML = '<ol class="wk7" aria-label="The next 7 days">' + strip + '</ol>' + (groups.length ? groups.map(function(g){
+      return '<div class="dg"><h2>' + esc(when(g.d)) + '</h2><ul class="list">' + g.list.map(rowShort).join('') + '</ul></div>';
+    }).join('') : '<p class="empty">No confirmed visits in the next 7 days.</p>');
   }
+  function reqCard(b){
+    var d = at(b), due = b.status === 'confirmed'; // a confirmed visit whose time has passed only needs "Completed"
+    return '<li class="req" data-id="' + esc(b.id) + '"><time datetime="' + esc(b.slots.starts_at) + '">' + esc(api.time(d)) + '<small>' + esc(when(d)) + '</small></time>' +
+      '<span style="min-width:0"><button class="nm" type="button" data-open="' + esc(b.id) + '">' + esc(b.name) + '</button><span class="meta">' + esc(b.treatments.name + ' · ' + b.code) + '</span></span>' +
+      '<span class="req-act">' + (due ? '<button class="btn btn-line btn-sm" type="button" data-quick="completed">Mark completed</button>'
+        : '<button class="btn btn-sm" type="button" data-quick="confirmed">Confirm visit</button><button class="tlink" type="button" data-open="' + esc(b.id) + '">Decline…</button>') + '</span>' +
+      '<p class="err" role="alert"></p></li>';
+  }
+  // one click from Today: the patient's booking page shows the new status on its next check
+  $('today-new').addEventListener('click', function(e){
+    var btn = e.target.closest('[data-quick]'); if(!btn) return;
+    var card = btn.closest('.req'), to = btn.dataset.quick;
+    btn.disabled = true; btn.setAttribute('aria-busy', 'true');
+    q(sb.rpc('admin_set_status', { p_booking_id: card.dataset.id, p_to: to, p_note: null })).then(function(){
+      card.classList.add('is-done');
+      card.querySelector('.req-act').innerHTML = '<p class="req-ok">' + esc(LABEL[to]) + '. The patient sees it now.</p>';
+      return loadAll().then(function(){ setTimeout(function(){ if(view === 'today') renderToday(); }, 1600); });
+    }).catch(function(e){
+      btn.disabled = false; btn.removeAttribute('aria-busy');
+      if(e && e.message === 'invalid_transition') return loadAll().then(renderToday).then(function(){ toast(ERR.invalid_transition); });
+      card.querySelector('.err').textContent = msg(e);
+    });
+  });
 
   // ---------- list with filters ----------
   $('chips').addEventListener('click', function(e){

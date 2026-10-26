@@ -8,7 +8,9 @@
     var x = new Date(now); x.setUTCHours(0, 0, 0, 0); var s = new Date(x.getTime() + d * 24 * H + (t - 2) * H);
     if(s.getUTCDay() !== 0) slots.push({ id: id++, starts_at: s.toISOString(), is_open: !(d === 3 && t === 14) });
   });
-  function bk(i, name, slug, st, slotIdx, reason){ return { id: '00000000-0000-4000-8000-00000000000' + i, code: 'FR-TEST0' + i, name: name, phone: '+33 6 12 34 56 7' + i, email: 'p' + i + '@test.example', status: st, decline_reason: reason || null, created_at: iso(-i), treatment: slug, slot_id: slots[slotIdx].id }; }
+  var CODES = ['', 'FR-7K2QXM', 'FR-H4N8PW', 'FR-3TQ9ZE', 'FR-M2R6KD', 'FR-9BV4XC', 'FR-W5J8NT'];
+  function mail(name){ return name.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ /g, '.') + '@mail.fr'; }
+  function bk(i, name, slug, st, slotIdx, reason){ return { id: '00000000-0000-4000-8000-00000000000' + i, code: CODES[i], name: name, phone: '+33 6 12 34 56 7' + i, email: mail(name), status: st, decline_reason: reason || null, created_at: iso(-i), treatment: slug, slot_id: slots[slotIdx].id }; }
   var bookings = [
     bk(1, 'Camille Laurent', 'veneers', 'requested', 14),
     bk(2, 'Thomas Girard', 'implants', 'requested', 16),
