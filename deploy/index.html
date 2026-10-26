@@ -1330,7 +1330,8 @@ html.lenis,html.lenis body{height:auto}
 }
 /* hero v3 (2026-10-22): ink paper, the veneer at its real size behind the letters; a line of light keeps travelling through them */
 .hero-pin{background:#0B0D10}
-.hm-paper{fill:#0B0D10}
+.hm-paper{fill:url(#hm-veil)} /* the veneer shows faintly through the dark on the right from the first frame; text side stays near-black */
+@media (max-width:760px){ .hm-paper{fill:url(#hm-veil-m)} }
 .hero-photo img.h3{object-position:52% 50%}
 .hero-photo::before{background:linear-gradient(180deg, rgba(11,13,16,.5) 0%, rgba(11,13,16,0) 18%),
   linear-gradient(90deg, rgba(11,13,16,.62) 0%, rgba(11,13,16,.28) 32%, rgba(11,13,16,0) 52%),
@@ -1612,14 +1613,16 @@ html.lenis,html.lenis body{height:auto}
       <div class="hero-photo"><img class="muse h3" src="images/h3-hero.webp" width="2752" height="1536" alt="A single porcelain veneer held between two gloved fingertips against a bright Paris window, light passing through its thin edge" decoding="async" fetchpriority="high"><video class="h3-vid" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video><i class="h3-sweep" aria-hidden="true"></i><i class="h3-light" aria-hidden="true"></i></div>
       <!-- paper with the headline cut out of it: the photograph shows through the letters; on scroll the paper scales away -->
       <svg class="hero-mask" id="hero-mask" aria-hidden="true" focusable="false">
-        <defs><mask id="hm" maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%"><rect width="100%" height="100%" fill="#fff"/><g id="hm-g"><text id="hm-text" fill="#000"></text></g></mask></defs>
+        <defs><linearGradient id="hm-veil"><stop offset="0" stop-color="#0B0D10" stop-opacity=".97"/><stop offset=".38" stop-color="#0B0D10" stop-opacity=".93"/><stop offset=".72" stop-color="#0B0D10" stop-opacity=".74"/><stop offset="1" stop-color="#0B0D10" stop-opacity=".84"/></linearGradient>
+        <linearGradient id="hm-veil-m" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0B0D10" stop-opacity=".95"/><stop offset=".5" stop-color="#0B0D10" stop-opacity=".76"/><stop offset=".78" stop-color="#0B0D10" stop-opacity=".97"/></linearGradient>
+        <mask id="hm" maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%"><rect width="100%" height="100%" fill="#fff"/><g id="hm-g"><text id="hm-text" fill="#000"></text></g></mask></defs>
         <rect class="hm-paper" width="100%" height="100%" mask="url(#hm)"/>
       </svg>
       <div class="hero-copy">
         <h1 class="h1"><span class="pre">Nobody will know.</span> <span class="sr">Everyone will notice.</span></h1>
         <div class="hero-side">
           <p class="offer"><strong>Aesthetic dentistry by Dr. Claire Ferrand.</strong><span class="offer-more"> Veneers, implants, whitening and aligners, made to look like nothing was done.</span></p>
-          <div class="cta"><a class="btn btn-light" href="#book">Book a consultation <span class="arr" aria-hidden="true">&rarr;</span></a><span class="hero-open" id="hero-open"><i aria-hidden="true"></i><span>Rue de Miromesnil, Paris 8e</span></span></div>
+          <div class="cta"><a class="btn btn-light" href="#book">Book a consultation <span class="arr" aria-hidden="true">&rarr;</span></a></div>
         </div>
         <div class="trust" aria-label="Trust">
           <span><b>4.9</b>Google rating</span>
