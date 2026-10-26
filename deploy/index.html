@@ -1504,7 +1504,7 @@ html.lenis,html.lenis body{height:auto}
 @media (max-width:760px){
   .tr-facts{grid-row:auto;margin:0 0 var(--s-7)} /* the global grid-row:3 put the numbers above the description; now name, photo, text, numbers, then 96 to the next treatment */
   .book.has-photo .bk-img{height:72vh;height:72svh;min-height:0} /* Claire, then the headline within one screen */
-  .ff-cols{margin-top:40px} /* closing line to columns: 64 like the rest of the phone rhythm (the buttons' line box adds the rest) */
+  .ff-cols{margin-top:var(--s-5)} /* closing line to columns: 48, a part step (the buttons' line box adds the rest) */
   .ff-word{margin-top:var(--s-4)}
 }
 /* THE CASE v2 (2026-10-26): the proof gets the whole field. Headline with the one number beside it, the comparison across columns 2–11, the three changes under it */
@@ -1526,39 +1526,39 @@ html.lenis,html.lenis body{height:auto}
   .case-fig b{font-size:80px;line-height:72px;letter-spacing:-3px}
   .case{margin-top:var(--s-8)}
 }
-/* PHONE RHYTHM v2 (2026-10-26): four steps, each clearly smaller than the one above, so a gap inside a block is never as big as the gap between blocks.
-   96 between sections (48 + 48) · 64 between parts of one section · 32 from a title or photo to its text · 16 / 24 inside a group */
+/* PHONE RHYTHM v3 (2026-10-26): no gap on the phone is bigger than 64, and each step stays smaller than the one above.
+   64 between sections (32 + 32) · 48 between parts of one section · 32 from a title or photo to its text · 16 / 24 inside a group */
 @media (max-width:760px){
-  .sec,.philo,.visit{padding-top:var(--s-7);padding-bottom:var(--s-7)}
+  .sec,.philo,.visit{padding-top:var(--s-6);padding-bottom:var(--s-6)}
   .philo-more{margin-top:var(--s-2)}
   /* founder: portrait, name, quote, facts read as one story */
-  #team{padding-top:var(--s-7);padding-bottom:var(--s-6)} /* + the 16 under the last fact row = 48 */
+  #team{padding-top:var(--s-6);padding-bottom:var(--s-4)} /* + the 16 under the last fact row = 32 */
   .team-side{gap:var(--s-5)}
   .team-facts{margin-top:0}
   .team-facts div:first-child,.case-notes div:first-child{padding-top:var(--s-2)}
   /* treatments: 32 inside a procedure, 64 from one procedure to the next */
-  .tr-card{padding:var(--s-5) 20px;row-gap:var(--s-5)}
+  .tr-card{padding:var(--s-4) 20px;row-gap:var(--s-5)} /* 16 + 16 + the facts' 16 = 48 from one procedure to the next */
   .tr-card .tr-text{padding-top:var(--s-2)}
   .tr-text p{margin-bottom:0}
   .tr-facts{margin:-32px 0 var(--s-4)} /* text, 16 to the rule, 16 to the numbers = 32 */
   .tr-card:last-of-type .tr-facts{margin-bottom:0}
-  .tr-card:last-of-type{padding-bottom:var(--s-7)}
+  .tr-card:last-of-type{padding-bottom:var(--s-6)}
   .case-notes{margin-top:0}
   .case .case-notes{margin-top:calc(-1 * var(--s-4))}
   .case .case-notes div:first-child{padding-top:var(--s-4)}
   .rv-score{margin-bottom:var(--s-6)}
   .rv-pin{padding-bottom:var(--s-6)} /* + the 12 under the swipe row and the cards' own edge = 48 */
   .case .res-note{margin-top:calc(-1 * var(--s-4))} /* the last note row already has 16 under it */
-  .at-copy{padding-top:var(--s-7)}
-  .rv-pin{padding-top:var(--s-7);padding-bottom:var(--s-7)}
-  .pr-side{margin-top:40px} /* + the button's line box = 64 */
-  .faq{margin-top:var(--s-8)}
+  .at-copy{padding-top:var(--s-6)}
+  .rv-pin{padding-top:var(--s-6);padding-bottom:var(--s-4)} /* + the 12 under the swipe row and the cards' own edge = 32 */
+  .pr-side{margin-top:var(--s-5)} /* + the button's line box = 48 */
+  .faq{margin-top:var(--s-7)}
   .faq-title{margin-bottom:var(--s-2)}
   /* book: photo, then the headline and form close under it */
   .book.has-photo .bk-head{padding-top:var(--s-6);padding-bottom:var(--s-5)}
-  .bk4 .bk-body{padding:var(--s-2) 20px var(--s-7)}
+  .bk4 .bk-body{padding:var(--s-2) 20px var(--s-6)}
   .bk4 .bk-info{margin-top:0}
-  .foot{padding-top:var(--s-7)}
+  .foot{padding-top:var(--s-6)}
 }
 /* reduced motion: Reviews is not pinned, so it must not keep the 160svh scroll room (RHYTHM sets it later than the older reduce rule) */
 @media (prefers-reduced-motion:reduce){ .reviews{height:auto} }
