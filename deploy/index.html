@@ -1562,6 +1562,32 @@ html.lenis,html.lenis body{height:auto}
 }
 /* reduced motion: Reviews is not pinned, so it must not keep the 160svh scroll room (RHYTHM sets it later than the older reduce rule) */
 @media (prefers-reduced-motion:reduce){ .reviews{height:auto} }
+
+/* ---------- LUXE v1 (2026-11-15): editorial edges and fewer numbers ----------
+   1) every framed photo, card, tile and form panel is square; pills stay only on buttons, choice chips and the slider handle
+   2) the "three small numbers" rows in Founder and Treatments become one typeset line; numbers stay in the hero and in Prices */
+:root{--r:0px}
+.tr-card + .tr-card,.at-img,.case-img,.hero-media .compare,.doc-lead .doc-img,#team .doc-lead .doc-img,.vs-photo,
+.tr-img,.compare,.case .compare,.jr-media,.jr-thumb,.pr-tiles li,.bk-card,.bk4 .bk-card,.bk4 .bk-form fieldset,.bk4 .bk-done,.book,.bk4 .day{border-radius:0}
+.cmp-tag,.cmp-note,.case-img figcaption{border-radius:0}
+/* the line that replaces the fact rows */
+.fact-line{margin:0;padding-top:var(--s-4);border-top:1px solid var(--line);font-size:var(--t-body);line-height:1.6;color:var(--ink-soft);max-width:44ch}
+.fact-line b{font-weight:500;color:var(--ink)}
+.tr-card .fact-line{grid-column:2 / 6;grid-row:3;align-self:start;margin-top:var(--s-7)}
+.team-side .fact-line{margin-top:auto}
+@media (max-width:1080px){ .tr-card .fact-line{grid-column:1;grid-row:auto;order:3} }
+@media (max-width:760px){ .tr-card .fact-line,.team-side .fact-line{margin-top:var(--s-6)} }
+
+/* ---------- LUXE v2 · PRICES AS A MENU (2026-11-15): the four treatments read like a spa or restaurant card: name and what it includes on the left, the price set on the right, hairlines between, no tiles ---------- */
+.pr-tiles{display:block;margin:0;padding:0;list-style:none;border-top:1px solid var(--ink)}
+.pr-tiles li{display:grid;grid-template-columns:minmax(0, 1fr) auto;grid-template-areas:"name price" "meta price";column-gap:var(--s-5);row-gap:var(--s-2);align-items:baseline;
+  min-height:0;padding:var(--s-5) 0;border-radius:0;background:none;border-bottom:1px solid var(--line)}
+.pr-tiles h4{grid-area:name;margin:0;font-size:var(--t-num);line-height:32px;letter-spacing:-1px}
+.pr-tiles .pr-meta{grid-area:meta;margin:0;font-size:var(--t-small);line-height:1.5;color:var(--ink-soft)}
+.pr-tiles .pr-from{grid-area:price;align-self:start;margin:0;display:flex;align-items:baseline;gap:var(--s-2);white-space:nowrap;
+  font-family:var(--serif);font-weight:300;font-size:var(--t-num);line-height:32px;letter-spacing:-1px;color:var(--ink)}
+.pr-tiles .pr-from small{font-family:var(--sans);font-size:var(--t-small);letter-spacing:0;color:var(--ink-soft)}
+.pr-note{margin-top:var(--s-5)}
 </style>
 
 
@@ -1650,11 +1676,7 @@ html.lenis,html.lenis body{height:auto}
           <p>&ldquo;I would rather do less, and do it perfectly.&rdquo;</p>
           <footer><b>Dr. Claire Ferrand</b>, founder and prosthodontist. She plans every case herself, sits beside the ceramist for every shade, and fits every veneer in person.</footer>
         </blockquote>
-        <dl class="facts team-facts">
-          <div><dt>17</dt><dd>years in aesthetic dentistry</dd></div>
-          <div><dt>2</dt><dd>schools, Paris and Geneva</dd></div>
-          <div><dt>3</dt><dd>languages: French, English, Italian</dd></div>
-        </dl>
+        <p class="fact-line">Seventeen years in aesthetic dentistry, trained in Paris and Geneva. She consults in French, English and Italian.</p>
       </div>
     </div>
   </section>
@@ -1679,11 +1701,7 @@ html.lenis,html.lenis body{height:auto}
           <p>Porcelain shells about as thin as a fingernail, shaped against your face and shaded tooth by tooth. Chips, gaps and stains go, and your smile stays recognisably yours.</p>
           <a class="tlink" href="#book">Ask about veneers <span class="arr" aria-hidden="true">&rarr;</span></a>
         </div>
-        <dl class="facts tr-facts">
-          <div><dt>3</dt><dd>visits</dd></div>
-          <div><dt>3</dt><dd>weeks, start to finish</dd></div>
-          <div><dt>&euro;1,200</dt><dd>from, per tooth</dd></div>
-        </dl>
+        <p class="fact-line">Three visits over three weeks. <b>From &euro;1,200 per tooth.</b></p>
         <figure class="tr-img"><img width="928" height="1152" class="gloss" src="images/veneer-v12.jpg" alt="A single porcelain veneer, thin and translucent at the edge, resting on a gloved fingertip by the window" loading="lazy" decoding="async"></figure>
       </article>
 
@@ -1693,11 +1711,7 @@ html.lenis,html.lenis body{height:auto}
           <p>A titanium root and a hand-layered porcelain crown, matched to the teeth beside it. A month later, you will forget which one is new.</p>
           <a class="tlink" href="#book">Ask about implants <span class="arr" aria-hidden="true">&rarr;</span></a>
         </div>
-        <dl class="facts tr-facts">
-          <div><dt>2</dt><dd>stages</dd></div>
-          <div><dt>4</dt><dd>months, healing included</dd></div>
-          <div><dt>&euro;2,900</dt><dd>from, with the crown</dd></div>
-        </dl>
+        <p class="fact-line">Two stages over four months, healing included. <b>From &euro;2,900 with the crown.</b></p>
         <figure class="tr-img"><img width="893" height="1116" class="gloss" src="images/t-implants-v11.jpg" alt="Gloved fingertips holding a titanium implant with its porcelain crown up to a bright window" loading="lazy" decoding="async"></figure>
       </article>
 
@@ -1707,11 +1721,7 @@ html.lenis,html.lenis body{height:auto}
           <p>A few shades brighter, never chalk white. We choose the shade against your skin and eyes first, then whiten in the chair or at home.</p>
           <a class="tlink" href="#book">Ask about whitening <span class="arr" aria-hidden="true">&rarr;</span></a>
         </div>
-        <dl class="facts tr-facts">
-          <div><dt>1</dt><dd>visit</dd></div>
-          <div><dt>90</dt><dd>minutes in the chair</dd></div>
-          <div><dt>&euro;450</dt><dd>from</dd></div>
-        </dl>
+        <p class="fact-line">One visit, ninety minutes in the chair. <b>From &euro;450.</b></p>
         <figure class="tr-img"><img width="1229" height="1536" class="gloss" src="images/t-whitening-v9.webp" alt="A gloved hand holding a porcelain shade guide against the daylight, one tab lifted from the row" loading="lazy" decoding="async"></figure>
       </article>
 
@@ -1721,11 +1731,7 @@ html.lenis,html.lenis body{height:auto}
           <p>Near-invisible trays that move teeth gently into line. We plan them on a 3D scan, so you see the finished smile before you start.</p>
           <a class="tlink" href="#book">Ask about aligners <span class="arr" aria-hidden="true">&rarr;</span></a>
         </div>
-        <dl class="facts tr-facts">
-          <div><dt>6&ndash;12</dt><dd>months</dd></div>
-          <div><dt>6</dt><dd>weeks between checks</dd></div>
-          <div><dt>&euro;3,800</dt><dd>from</dd></div>
-        </dl>
+        <p class="fact-line">Six to twelve months, with a check every six weeks. <b>From &euro;3,800.</b></p>
         <figure class="tr-img"><img width="1856" height="2304" class="gloss" src="images/t-aligners-v9.webp" alt="Gloved fingertips holding a clear aligner up to the window, light drawing its edges" loading="lazy" decoding="async"></figure>
       </article>
     </div>
