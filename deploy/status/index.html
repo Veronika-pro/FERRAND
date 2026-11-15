@@ -54,6 +54,7 @@ h1{margin:0;font-family:var(--serif);font-weight:300;font-size:var(--t-h2);line-
 #f-code{text-transform:uppercase;letter-spacing:2px}
 .err{min-height:24px;font-size:var(--t-small);line-height:24px;color:var(--err)}
 .err:empty{min-height:0}
+p.err{margin:0} p.err:empty,#c-box:empty{display:none} /* an empty error line and an empty cancel box were adding 56 + 24 px of blank space on the phone */
 .btn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 24px;border:0;border-radius:999px;background:var(--ink);color:var(--porcelain);font:500 var(--t-small)/1 var(--sans);cursor:pointer;transition:background .3s ease}
 .btn:hover{background:#2A2B2F}
 .btn[disabled]{opacity:.6;cursor:progress}

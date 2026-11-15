@@ -1562,6 +1562,49 @@ html.lenis,html.lenis body{height:auto}
 }
 /* reduced motion: Reviews is not pinned, so it must not keep the 160svh scroll room (RHYTHM sets it later than the older reduce rule) */
 @media (prefers-reduced-motion:reduce){ .reviews{height:auto} }
+
+/* ---------- PHILOSOPHY v2.1 (2026-11-15): «0.3 mm». One claim on A, the proof as a whole number on B (right edge = column 11), a 1 mm scale under it that fills to 0.3 with scroll ---------- */
+.philo.ph2{padding:160px var(--edge) 96px}
+.ph2-in{display:grid;grid-template-columns:repeat(12, 1fr);column-gap:var(--gap);align-items:end}
+.ph2-in .label{grid-column:2 / 6;grid-row:1;align-self:start;padding-top:0}
+.ph2-head{grid-column:2 / 7;grid-row:2;margin:48px 0 0;font-family:var(--serif);font-weight:300;
+  font-size:var(--t-display);line-height:var(--lh-display);letter-spacing:var(--ls-display);color:var(--ink);text-wrap:balance}
+.ph2-text{grid-column:2 / 6;grid-row:3;margin:48px 0 0;max-width:44ch;font-size:var(--t-body);line-height:1.6;color:var(--ink-soft)}
+/* the number: a graphic, not a heading (named exception to the type scale). Whole, right edge on column 11, baseline on the last line of the paragraph */
+.ph2-fig{grid-column:7 / 12;grid-row:1 / 4;align-self:end;display:flex;justify-content:flex-end;align-items:flex-end}
+.ph2-num{display:block;font-family:var(--serif);font-weight:300;font-size:480px;line-height:.72;letter-spacing:-24px;margin-right:-8px;margin-bottom:-4px;
+  color:var(--ink);white-space:nowrap;font-variant-numeric:lining-nums;user-select:none}
+/* the scale: 0 to 1 mm under the number, ticks every 0.1, the site's selected state (ink + 2px line) fills to 0.3 */
+.ph2-ruler{grid-column:7 / 12;grid-row:4;position:relative;height:48px;margin-top:48px}
+.ph2-ruler::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--line)}
+.ph2-ruler .tk{position:absolute;top:0;width:1px;height:8px;background:var(--line)}
+.ph2-ruler .tk.big{height:16px;background:var(--ink-soft)}
+.ph2-ruler .fill{position:absolute;left:0;top:-1px;height:2px;width:calc(30% * var(--p, 1));background:var(--ink)}
+.ph2-ruler .mk{position:absolute;top:-8px;left:calc(30% * var(--p, 1));width:1px;height:24px;background:var(--ink);transform:translateX(-1px)}
+.ph2-ruler span{position:absolute;top:24px;font-size:var(--t-label);font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.ph2-ruler .r0{left:0}
+.ph2-ruler .r1{right:0}
+.ph2-cap{grid-column:7 / 12;grid-row:5;margin:16px 0 0;font-size:var(--t-small);line-height:1.5;color:var(--ink)}
+.ph2-cap b{font-weight:500}
+@media (max-width:1279px){ .ph2-num{font-size:400px;letter-spacing:-20px} }
+@media (max-width:1080px){
+  .philo.ph2{padding:128px var(--edge) 64px}
+  .ph2-head,.ph2-text{grid-column:2 / 8}
+  .ph2-fig{grid-column:2 / 12;grid-row:4;margin-top:64px}
+  .ph2-num{font-size:320px;letter-spacing:-16px}
+  .ph2-ruler{grid-column:2 / 12;grid-row:5}
+  .ph2-cap{grid-column:2 / 12;grid-row:6}
+}
+@media (max-width:760px){
+  .philo.ph2{padding:64px var(--edge)}
+  .ph2-in{grid-template-columns:1fr}
+  .ph2-in .label,.ph2-head,.ph2-text,.ph2-fig,.ph2-ruler,.ph2-cap{grid-column:1}
+  .ph2-head{margin-top:32px}
+  .ph2-text{margin-top:32px}
+  .ph2-fig{margin-top:64px;justify-content:flex-start}
+  .ph2-num{font-size:200px;letter-spacing:-10px;margin-left:-4px}
+  .ph2-ruler{margin-top:32px}
+}
 </style>
 
 
@@ -1633,13 +1676,31 @@ html.lenis,html.lenis body{height:auto}
     </div>
   </section>
 
-  <section class="philo" id="philosophy" aria-labelledby="philo-label">
-    <div class="philo-in">
+  <section class="philo ph2" id="philosophy" aria-labelledby="philo-label">
+    <div class="ph2-in">
       <h2 class="label" id="philo-label">Our philosophy</h2>
-      <p class="philo-text">We do not design new smiles. We finish the one you already have.</p>
-      <p class="philo-more">Every veneer is planned against your face, not a catalogue, and nothing is touched that does not need touching. Afterwards, people tend to say you look rested.</p>
+      <p class="ph2-head">We finish the smile you already have.</p>
+      <p class="ph2-text">Every veneer is planned against your face, and we prepare no more than 0.3&nbsp;mm of enamel, so the tooth underneath stays yours. Afterwards, people tend to say you look rested.</p>
+      <div class="ph2-fig" aria-hidden="true"><span class="ph2-num">0.3</span></div>
+      <div class="ph2-ruler" role="img" aria-label="A one-millimetre scale, filled to 0.3 mm">
+        <i class="tk big" style="left:0"></i><i class="tk" style="left:10%"></i><i class="tk" style="left:20%"></i><i class="tk big" style="left:30%"></i><i class="tk" style="left:40%"></i><i class="tk" style="left:50%"></i><i class="tk" style="left:60%"></i><i class="tk" style="left:70%"></i><i class="tk" style="left:80%"></i><i class="tk" style="left:90%"></i><i class="tk big" style="left:calc(100% - 1px)"></i>
+        <i class="fill"></i><i class="mk"></i>
+        <span class="r0">0</span><span class="r1">1 mm</span>
+      </div>
+      <p class="ph2-cap"><b>0.3&nbsp;mm</b>, the most enamel we prepare for a veneer.</p>
     </div>
   </section>
+  <script>
+  /* the scale fills to 0.3 with scroll, never by timer; reduced motion and no JS: it simply stands at 0.3 */
+  (function(){
+    var s=document.getElementById('philosophy'); if(!s||!window.matchMedia) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var r=s.querySelector('.ph2-ruler');
+    function upd(){ var b=r.getBoundingClientRect(), h=innerHeight; var p=(h*.92-b.top)/(h*.5); p=Math.max(0,Math.min(1,p)); p=1-Math.pow(1-p,3); r.style.setProperty('--p',p.toFixed(3)); }
+    r.style.setProperty('--p','0'); addEventListener('scroll',upd,{passive:true}); addEventListener('resize',upd);
+    if(window.__lenis&&__lenis.on) __lenis.on('scroll',upd); upd();
+  })();
+  </script>
 
   <section class="sec" id="team" aria-label="The founder">
     <div class="g12 team-body">
@@ -1676,7 +1737,7 @@ html.lenis,html.lenis body{height:auto}
       <article class="tr-card" id="t-veneers" aria-labelledby="t-veneers-h">
         <h3 class="tr-name" id="t-veneers-h" aria-label="Porcelain veneers">Veneers</h3>
         <div class="tr-text">
-          <p>Porcelain shells thinner than a contact lens, shaped against your face and shaded tooth by tooth. Chips, gaps and stains go, and your smile stays recognisably yours.</p>
+          <p>Porcelain shells about as thin as a fingernail, shaped against your face and shaded tooth by tooth. Chips, gaps and stains go, and your smile stays recognisably yours.</p>
           <a class="tlink" href="#book">Ask about veneers <span class="arr" aria-hidden="true">&rarr;</span></a>
         </div>
         <dl class="facts tr-facts">
