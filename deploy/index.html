@@ -1660,36 +1660,6 @@ html.lenis,html.lenis body{height:auto}
   #results .res-note{order:4}
 }
 
-/* ---------- ATELIER + VISIT v1 (2026-11-20): one chapter instead of two. The room full screen, the claim on top,
-   the four steps along the floor of the photograph (Apa pattern). One photo fewer on the page ---------- */
-.atv-steps{margin:0;padding:0;list-style:none}
-.atv-steps li{border-top:1px solid var(--ink);padding-top:var(--s-4)}
-.atv-when{display:block;font-size:var(--t-label);line-height:16px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft)}
-.atv-steps h3{margin:var(--s-4) 0 0;font-family:var(--serif);font-weight:300;font-size:40px;line-height:40px;letter-spacing:-2px;color:var(--ink)}
-.atv-steps p{margin:var(--s-3) 0 0;max-width:30ch;color:var(--ink-soft)}
-@media (min-width:761px){
-  .atv{height:100vh;height:100svh;min-height:720px;display:flex}
-  .atv .at-img::before{background:
-    linear-gradient(0deg, rgba(255,255,255,.94) 0%, rgba(255,255,255,.82) 26%, rgba(255,255,255,0) 52%),
-    linear-gradient(180deg, rgba(255,255,255,.72) 0%, rgba(255,255,255,0) 30%)}
-  .atv .at-copy{flex:1;height:auto;align-self:stretch;display:grid;grid-template-rows:auto 1fr auto;align-content:stretch;padding:var(--s-10) var(--edge) var(--s-8)}
-  .atv .at-copy .sec-title{grid-column:2 / 8;grid-row:1;align-self:start;margin:0}
-  .atv-steps{grid-column:2 / 12;grid-row:3;display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));column-gap:var(--gap)}
-}
-@media (min-width:761px) and (max-width:1080px){
-  .atv-steps{grid-template-columns:repeat(2, minmax(0, 1fr));row-gap:var(--s-7)}
-  .atv .at-copy .sec-title{grid-column:2 / 12}
-}
-/* phone: claim, the room, then the steps as a list */
-@media (max-width:760px){
-  .atv .at-copy{display:contents}
-  .atv .at-copy .sec-title{order:1;margin:0;padding:var(--s-8) 20px var(--s-6)}
-  .atv .at-img{order:2}
-  .atv-steps{order:3;padding:var(--s-6) 20px var(--s-8)}
-  .atv-steps li + li{margin-top:var(--s-6)}
-  .atv-steps h3{font-size:32px;line-height:32px;letter-spacing:-1px}
-}
-
 /* ---------- REAL PHOTOS (2026-11-23): frames edited from Pexels photographs. Book: she stands in the right third, the wall carries the headline ---------- */
 .book .bk-img img[src*="p2-v12"]{object-position:78% 30%}
 #results .compare img{object-position:50% 50%}
@@ -1779,7 +1749,7 @@ html.lenis,html.lenis body{height:auto}
 
   <section class="sec" id="team" aria-label="The founder">
     <div class="g12 team-body">
-      <figure class="doc doc-lead"><div class="doc-img"><picture><source media="(max-width: 760px)" srcset="images/p1-v12-phone.jpg" width="1100" height="1366"><img width="1194" height="1482" alt="Dr. Claire Ferrand in a white shirt, a pen in one hand and her notes in the other" loading="lazy" decoding="async" class="gloss" src="images/p1-v12.jpg"></picture></div></figure>
+      <figure class="doc doc-lead"><div class="doc-img"><img width="1194" height="1482" alt="Dr. Claire Ferrand in a white coat by the window of her Paris practice" loading="lazy" decoding="async" class="gloss" src="images/p1-v11.jpg"></div></figure>
       <div class="team-side">
         <p class="fd-name" aria-hidden="true">Claire<br>Ferrand</p>
         <blockquote class="quote">
@@ -1870,16 +1840,25 @@ html.lenis,html.lenis body{height:auto}
     </div>
   </section>
 
-  <!-- the atelier and your visit as one chapter: the room is where every step happens, so the four steps are written over it -->
-  <section class="atelier atv" id="atelier" aria-labelledby="at-title">
+  <section class="atelier" id="atelier" aria-labelledby="at-title">
     <div class="at-img" id="at-img"><img width="1600" height="1986" alt="A white treatment room with one chair, a tall Paris window and late-morning sun on the stone floor, seen through reeded glass" loading="lazy" decoding="async" class="gloss" src="images/a1-v7.webp"></div>
     <div class="at-copy g12">
+      <p class="label">The atelier</p>
       <h2 class="sec-title" id="at-title">An apartment on rue de Miromesnil, with a single chair.</h2>
-      <ol class="atv-steps" id="journey" aria-label="Your visit in four steps">
-        <li><span class="atv-when">First visit</span><h3>Scan</h3><p>A 3D scan of your teeth and portrait photos of your face. Nothing in your mouth for longer than a minute.</p></li>
-        <li><span class="atv-when">Same visit</span><h3>Preview</h3><p>You wear the planned smile as a temporary mock-up and look in the mirror before anything is touched.</p></li>
-        <li><span class="atv-when">Weeks 1 to 3</span><h3>Craft</h3><p>Our ceramist layers every piece by hand, against your photos and your shade, in the lab one floor up.</p></li>
-        <li><span class="atv-when">Week 3</span><h3>Reveal</h3><p>We fit, adjust and polish in one visit. You leave with a smile that looks like it was always yours.</p></li>
+      <p class="at-note">Daylight from a tall window, stone floors, one patient at a time, and no waiting room.</p>
+    </div>
+  </section>
+
+  <!-- your visit: one spread, no pinned scene. The four steps read at once; the one photograph is where they lead -->
+  <section class="visit" id="journey" aria-labelledby="jr-title">
+    <div class="vs-in">
+      <h2 class="vs-title" id="jr-title">Four steps from the first scan to the reveal.</h2>
+      <figure class="vs-photo"><img width="1600" height="1986" class="gloss" src="images/j4-ice.webp" alt="A patient smiling at her reflection in a hand mirror by the window after her fitting" loading="lazy" decoding="async"></figure>
+      <ol class="vs-steps">
+        <li class="vs-step"><div class="vs-head"><h3>Scan</h3><span>First visit</span></div><p>A 3D scan of your teeth and portrait photos of your face. No impressions, and nothing in your mouth for longer than a minute.</p></li>
+        <li class="vs-step"><div class="vs-head"><h3>Preview</h3><span>Same visit</span></div><p>You see the planned smile on screen, then wear it as a temporary mock-up and look in the mirror before anything is touched.</p></li>
+        <li class="vs-step"><div class="vs-head"><h3>Craft</h3><span>Weeks 1 to 3</span></div><p>Our ceramist layers every piece by hand, against your photos and your shade, in the lab one floor up.</p></li>
+        <li class="vs-step"><div class="vs-head"><h3>Reveal</h3><span>Week 3</span></div><p>We fit, adjust and polish in one visit. You leave with a smile that looks like it was always yours.</p></li>
       </ol>
     </div>
   </section>
@@ -1940,7 +1919,7 @@ html.lenis,html.lenis body{height:auto}
 
   <section class="book has-photo bk4" id="book" aria-labelledby="bk-title">
     <div class="bk-hero">
-      <div class="bk-img" aria-hidden="true"><picture><source media="(max-width: 760px)" srcset="images/p2-v12-phone.jpg" width="1100" height="1366"><img width="2000" height="1116" class="gloss" src="images/p2-v12.jpg" alt="" loading="lazy" decoding="async"></picture></div>
+      <div class="bk-img" aria-hidden="true"><picture><source media="(max-width: 760px)" srcset="images/p2-v11-phone.jpg" width="1100" height="1366"><img width="2000" height="1116" class="gloss" src="images/p2-v11.jpg" alt="" loading="lazy" decoding="async"></picture></div>
       <div class="g12 bk-head" data-dark="on" data-dark-phone>
         <h2 class="bk-title" id="bk-title">Let&rsquo;s <span class="bk-gap"><span class="bk-word">finish</span></span> your smile.</h2>
         <p class="bk-lead">A 60-minute consultation with Dr. Claire Ferrand. &euro;150, credited to your treatment.</p>
