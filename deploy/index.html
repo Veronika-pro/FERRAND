@@ -1668,6 +1668,9 @@ html.lenis,html.lenis body{height:auto}
   .book .bk-img img[src*="p2-v12"]{object-position:72% 30%}
 }
 @media (max-width:760px){ .doc-lead .doc-img picture{display:contents} .doc-lead .doc-img img[src*="p1-v12"]{object-position:50% 20%} }
+
+/* Results r4 (2026-11-23): a tighter crop, nose to chin, and a smaller frame (4 columns) so the case reads as a detail, not a poster */
+@media (min-width:1081px){ #results .compare{grid-column:8 / 12} }
 </style>
 
 
@@ -1749,7 +1752,7 @@ html.lenis,html.lenis body{height:auto}
 
   <section class="sec" id="team" aria-label="The founder">
     <div class="g12 team-body">
-      <figure class="doc doc-lead"><div class="doc-img"><img width="1194" height="1482" alt="Dr. Claire Ferrand in a white coat by the window of her Paris practice" loading="lazy" decoding="async" class="gloss" src="images/p1-v11.jpg"></div></figure>
+      <figure class="doc doc-lead"><div class="doc-img"><img width="1194" height="1482" alt="Dr. Claire Ferrand in a white coat by the window of her Paris practice" loading="lazy" decoding="async" class="gloss" src="images/p1-v13.jpg"></div></figure>
       <div class="team-side">
         <p class="fd-name" aria-hidden="true">Claire<br>Ferrand</p>
         <blockquote class="quote">
@@ -1818,22 +1821,22 @@ html.lenis,html.lenis body{height:auto}
   <section class="sec res2" id="results" aria-labelledby="res-title">
     <div class="g12 res2-grid">
       <div class="res2-side">
-        <h2 class="sec-title" id="res-title">Chipped, uneven edges, finished in three weeks.</h2>
+        <h2 class="sec-title" id="res-title">Chipped edges and a small gap, closed in three weeks.</h2>
         <dl class="facts res2-notes">
           <div><dt>Edges</dt><dd>worn tips rebuilt in porcelain</dd></div>
-          <div><dt>Line</dt><dd>six front teeth brought into one line</dd></div>
+          <div><dt>Gap</dt><dd>closed between the front teeth</dd></div>
           <div><dt>Shade</dt><dd>one step lighter, never brighter</dd></div>
         </dl>
         <p class="res-note">Concept project. Before and after images are AI-generated, not real patients.</p>
       </div>
       <div class="compare" id="compare">
-        <div class="cmp-after"><img class="gloss" src="images/r2-after.jpg" width="1200" height="1500" alt="After: an easy smile with even, natural front teeth, one shade lighter" loading="lazy" decoding="async"></div>
-        <div class="cmp-before"><img class="gloss" src="images/r2-before.jpg" width="1200" height="1500" alt="Before: the same smile with chipped, uneven and darker front teeth" loading="lazy" decoding="async"></div>
+        <div class="cmp-after"><img class="gloss" src="images/r4-after.jpg" width="760" height="950" alt="After: an easy smile with even, natural front teeth, one shade lighter" loading="lazy" decoding="async"></div>
+        <div class="cmp-before"><img class="gloss" src="images/r4-before.jpg" width="760" height="950" alt="Before: the same smile with chipped edges, a small gap and darker front teeth" loading="lazy" decoding="async"></div>
         <span class="cmp-tag b" aria-hidden="true">Before</span>
         <span class="cmp-tag a" aria-hidden="true">After</span>
-        <span class="pin" data-x="46" style="--x:46;--y:54" aria-hidden="true"><i></i><b>Edges</b></span>
-        <span class="pin" data-x="58" style="--x:58;--y:48" aria-hidden="true"><i></i><b>Line</b></span>
-        <span class="pin" data-x="68" style="--x:68;--y:43" aria-hidden="true"><i></i><b>Shade</b></span>
+        <span class="pin" data-x="49" style="--x:49;--y:41" aria-hidden="true"><i></i><b>Edges</b></span>
+        <span class="pin" data-x="57" style="--x:57;--y:38" aria-hidden="true"><i></i><b>Gap</b></span>
+        <span class="pin" data-x="66" style="--x:66;--y:37" aria-hidden="true"><i></i><b>Shade</b></span>
         <span class="cmp-handle" aria-hidden="true"><i></i></span>
         <input class="cmp-range" type="range" min="0" max="100" value="50" aria-label="Drag to compare before and after">
       </div>
