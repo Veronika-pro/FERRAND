@@ -1562,6 +1562,115 @@ html.lenis,html.lenis body{height:auto}
 }
 /* reduced motion: Reviews is not pinned, so it must not keep the 160svh scroll room (RHYTHM sets it later than the older reduce rule) */
 @media (prefers-reduced-motion:reduce){ .reviews{height:auto} }
+
+/* ---------- LUXE v1 (2026-11-15): editorial edges and fewer numbers ----------
+   1) every framed photo, card, tile and form panel is square; pills stay only on buttons, choice chips and the slider handle
+   2) the "three small numbers" rows in Founder and Treatments become one typeset line; numbers stay in the hero and in Prices */
+:root{--r:0px}
+/* 2026-11-20: the reveal wipe kept its own rounded clip (round 20-28px), so revealed photos still looked rounded */
+.wipe{clip-path:inset(10% 8% 10% 8%)}
+.wipe.in,.at-img.wipe.in,.vs-photo.wipe.in{clip-path:inset(0)}
+.tr-card + .tr-card,.at-img,.case-img,.hero-media .compare,.doc-lead .doc-img,#team .doc-lead .doc-img,.vs-photo,
+.tr-img,.compare,.case .compare,.jr-media,.jr-thumb,.pr-tiles li,.bk-card,.bk4 .bk-card,.bk4 .bk-form fieldset,.bk4 .bk-done,.book,.bk4 .day{border-radius:0}
+.cmp-tag,.cmp-note,.case-img figcaption{border-radius:0}
+/* the line that replaces the fact rows */
+.fact-line{margin:0;padding-top:var(--s-4);border-top:1px solid var(--line);font-size:var(--t-body);line-height:1.6;color:var(--ink-soft);max-width:44ch}
+.fact-line b{font-weight:500;color:var(--ink)}
+.tr-card .fact-line{grid-column:2 / 6;grid-row:3;align-self:start;margin-top:var(--s-7)}
+.team-side .fact-line{margin-top:auto}
+@media (max-width:1080px){ .tr-card .fact-line{grid-column:1;grid-row:auto;order:3} }
+@media (max-width:760px){ .tr-card .fact-line,.team-side .fact-line{margin-top:var(--s-6)} }
+
+/* ---------- LUXE v2 · PRICES AS A MENU (2026-11-15): the four treatments read like a spa or restaurant card: name and what it includes on the left, the price set on the right, hairlines between, no tiles ---------- */
+.pr-tiles{display:block;margin:0;padding:0;list-style:none;border-top:1px solid var(--ink)}
+.pr-tiles li{display:grid;grid-template-columns:minmax(0, 1fr) auto;grid-template-areas:"name price" "meta price";column-gap:var(--s-5);row-gap:var(--s-2);align-items:baseline;
+  min-height:0;padding:var(--s-5) 0;border-radius:0;background:none;border-bottom:1px solid var(--line)}
+.pr-tiles h4{grid-area:name;margin:0;font-size:var(--t-num);line-height:32px;letter-spacing:-1px}
+.pr-tiles .pr-meta{grid-area:meta;margin:0;font-size:var(--t-small);line-height:1.5;color:var(--ink-soft)}
+.pr-tiles .pr-from{grid-area:price;align-self:start;margin:0;display:flex;align-items:baseline;gap:var(--s-2);white-space:nowrap;
+  font-family:var(--serif);font-weight:300;font-size:var(--t-num);line-height:32px;letter-spacing:-1px;color:var(--ink)}
+.pr-tiles .pr-from small{font-family:var(--sans);font-size:var(--t-small);letter-spacing:0;color:var(--ink-soft)}
+.pr-note{margin-top:var(--s-5)}
+
+/* ---------- TREATMENTS v13 (2026-11-15): plaster-and-porcelain series, subject in the lower right, the word sits on the calm upper left ---------- */
+.tr-img img[src*="-v13"]{object-position:70% 72%}
+
+/* ---------- TREATMENTS v14 (2026-11-20): one chapter instead of four cards. Names as a list on the left, one frame on the right
+   that changes with the scroll (Aventura / Dental Studio pattern). ~2.4 screens of scroll instead of 4.6 ---------- */
+.tl{position:relative;height:240vh;height:240svh;background:var(--porcelain)}
+.tl-pin{position:sticky;top:0;height:100vh;height:100svh;padding:var(--s-9) var(--edge) var(--s-8)}
+.tl-grid{display:grid;grid-template-columns:repeat(12, 1fr);grid-template-rows:auto auto 1fr;column-gap:var(--gap);height:100%}
+/* no other chapter carries a visible label, so this one stays for screen readers only */
+.tl-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;margin:0}
+.tl-names{grid-column:2 / 7;grid-row:2;margin:0;padding:0;list-style:none}
+.tl-names a{display:inline-block;font-family:var(--serif);font-weight:300;font-size:96px;line-height:88px;letter-spacing:-4px;color:#8A9097;transition:color .3s ease}
+.tl-names a:hover{color:var(--ink-soft)}
+.tl-names a[aria-current="true"]{color:var(--ink)}
+.tl-item{display:contents}
+.tl-h{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* every frame sits in the same cell; the next one is uncovered from the bottom, scrubbed by the scroll (a wipe, not a double exposure) */
+.tl-img{grid-column:7 / 12;grid-row:1 / -1;margin:0;position:relative;overflow:hidden;background:var(--ice, #EEF3F8);clip-path:inset(100% 0 0 0);z-index:1}
+.tl-item:first-of-type .tl-img{clip-path:none}
+.tl-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 72%}
+.tl-text{grid-column:2 / 6;grid-row:3;align-self:start;margin-top:var(--s-7);opacity:0;visibility:hidden;transition:opacity .3s ease, visibility .3s}
+.tl-item.on .tl-text{opacity:1;visibility:visible}
+.tl-text p{margin:0 0 var(--s-5);max-width:40ch;color:var(--ink-soft)}
+.tl-text .tl-fact{padding-top:var(--s-4);border-top:1px solid var(--line);color:var(--ink-soft)}
+.tl-text .tl-fact b{font-weight:500;color:var(--ink)}
+.tl-text .tlink{font-size:var(--t-small)}
+@media (min-width:1081px) and (max-width:1279px){
+  .tl-names a{font-size:80px;line-height:72px;letter-spacing:-3px}
+  .tl-text{grid-column:2 / 7}
+}
+/* phones and tablets: no pinning, each treatment reads in order: name, photo, text */
+@media (max-width:1080px){
+  .tl{height:auto}
+  .tl-pin{position:static;height:auto;padding:var(--s-8) var(--edge)}
+  .tl-grid{display:block;height:auto}
+  .tl-names{display:none}
+  .tl-item{display:block}
+  .tl-item + .tl-item{margin-top:var(--s-8)}
+  .tl-h{position:static;width:auto;height:auto;overflow:visible;clip:auto;white-space:normal;margin:0 0 var(--s-5);font-family:var(--serif);font-weight:300;font-size:48px;line-height:48px;letter-spacing:-2px;color:var(--ink)}
+  .tl-img{clip-path:none;aspect-ratio:4/5;max-width:560px}
+  .tl-text{opacity:1;visibility:visible;margin-top:var(--s-5)}
+  .tl-text p{margin-bottom:var(--s-4)}
+}
+
+/* ---------- RESULTS v2 (2026-11-20): one case as a half spread. The story on the left (claim, three changes, honesty note),
+   the before/after as a 4:5 portrait on the right. No full-width macro mouth, no second giant number (0.3 mm lives in Philosophy) ---------- */
+#results .res2-grid{align-items:stretch}
+#results .res2-side{grid-column:2 / 6;display:flex;flex-direction:column}
+#results .res2-side .sec-title{margin:0}
+#results .res2-notes{display:block;margin:auto 0 0;padding:0;border:0}
+#results .res2-notes div{display:grid;grid-template-columns:96px minmax(0, 1fr);align-items:baseline;column-gap:var(--s-5);padding:var(--s-4) 0;border-top:1px solid var(--line)}
+#results .res2-notes dt{margin:0;font-family:var(--serif);font-weight:300;font-size:24px;line-height:32px;color:var(--ink)}
+#results .res2-notes dd{margin:0;color:var(--ink-soft)}
+#results .res-note{margin:var(--s-5) 0 0;font-size:var(--t-small);color:var(--ink-soft)}
+#results .compare{grid-column:7 / 12;grid-row:1;aspect-ratio:4 / 5;border-radius:0}
+#results .compare img{object-fit:cover;object-position:50% 50%}
+#results .pin{left:calc(var(--x) * 1%);top:calc(var(--y) * 1%)}
+@media (min-width:1081px) and (max-width:1279px){ #results .res2-side{grid-column:2 / 7} #results .compare{grid-column:7 / 12} }
+@media (max-width:1080px){
+  /* phone and tablet: claim, then the photo, then what changed */
+  #results .res2-grid{display:flex;flex-direction:column}
+  #results .res2-side{display:contents}
+  #results .res2-side .sec-title{order:1}
+  #results .compare{order:2;width:100%;margin-top:var(--s-6);max-width:560px}
+  #results .res2-notes{order:3;margin-top:var(--s-6)}
+  #results .res-note{order:4}
+}
+
+/* ---------- REAL PHOTOS (2026-11-23): frames edited from Pexels photographs. Book: she stands in the right third, the wall carries the headline ---------- */
+.book .bk-img img[src*="p2-v12"]{object-position:78% 30%}
+#results .compare img{object-position:50% 50%}
+@media (min-width:761px) and (max-width:1080px){
+  .doc-lead .doc-img img[src*="p1-v12"]{object-position:60% 24%}
+  .book .bk-img img[src*="p2-v12"]{object-position:72% 30%}
+}
+@media (max-width:760px){ .doc-lead .doc-img picture{display:contents} .doc-lead .doc-img img[src*="p1-v12"]{object-position:50% 20%} }
+
+/* Results r4 (2026-11-23): a tighter crop, nose to chin, and a smaller frame (4 columns) so the case reads as a detail, not a poster */
+@media (min-width:1081px){ #results .compare{grid-column:8 / 12} }
 </style>
 
 
@@ -1643,117 +1752,94 @@ html.lenis,html.lenis body{height:auto}
 
   <section class="sec" id="team" aria-label="The founder">
     <div class="g12 team-body">
-      <figure class="doc doc-lead"><div class="doc-img"><img width="1194" height="1482" alt="Dr. Claire Ferrand in a white coat by the window of her Paris practice" loading="lazy" decoding="async" class="gloss" src="images/p1-v11.jpg"></div></figure>
+      <figure class="doc doc-lead"><div class="doc-img"><img width="1194" height="1482" alt="Dr. Claire Ferrand in a white coat by the window of her Paris practice" loading="lazy" decoding="async" class="gloss" src="images/p1-v13.jpg"></div></figure>
       <div class="team-side">
         <p class="fd-name" aria-hidden="true">Claire<br>Ferrand</p>
         <blockquote class="quote">
           <p>&ldquo;I would rather do less, and do it perfectly.&rdquo;</p>
           <footer><b>Dr. Claire Ferrand</b>, founder and prosthodontist. She plans every case herself, sits beside the ceramist for every shade, and fits every veneer in person.</footer>
         </blockquote>
-        <dl class="facts team-facts">
-          <div><dt>17</dt><dd>years in aesthetic dentistry</dd></div>
-          <div><dt>2</dt><dd>schools, Paris and Geneva</dd></div>
-          <div><dt>3</dt><dd>languages: French, English, Italian</dd></div>
-        </dl>
+        <p class="fact-line">Seventeen years in aesthetic dentistry, trained in Paris and Geneva. She consults in French, English and Italian.</p>
       </div>
     </div>
   </section>
 
-  <section class="treat" id="treatments" aria-labelledby="treat-title">
-    <div class="stack" id="stack">
-      <div class="tr-index">
-        <h2 class="label" id="treat-title">Treatments</h2>
-        <nav aria-label="Treatments">
-          <ol>
-            <li><a href="#t-veneers" aria-current="true">Veneers</a></li>
-            <li><a href="#t-implants">Implants</a></li>
-            <li><a href="#t-whitening">Whitening</a></li>
-            <li><a href="#t-aligners">Aligners</a></li>
-          </ol>
-        </nav>
+  <section class="treat tl" id="treatments" aria-labelledby="treat-title">
+    <div class="tl-pin">
+      <div class="tl-grid">
+        <h2 class="tl-label" id="treat-title">Treatments</h2>
+        <ol class="tl-names" aria-label="Choose a treatment">
+          <li><a href="#t-veneers" data-i="0" aria-current="true">Veneers</a></li>
+          <li><a href="#t-implants" data-i="1">Implants</a></li>
+          <li><a href="#t-whitening" data-i="2">Whitening</a></li>
+          <li><a href="#t-aligners" data-i="3">Aligners</a></li>
+        </ol>
+
+        <article class="tl-item on" id="t-veneers" aria-labelledby="t-veneers-h">
+          <h3 class="tl-h" id="t-veneers-h">Veneers</h3>
+          <figure class="tl-img"><img width="1200" height="1500" class="gloss" src="images/tr-veneers-v14.jpg" alt="One porcelain tooth with a translucent edge among the grey plaster teeth of a lab model" loading="lazy" decoding="async"></figure>
+          <div class="tl-text">
+            <p>Porcelain shells about as thin as a fingernail, shaped against your face and shaded tooth by tooth. Chips, gaps and stains go, and your smile stays recognisably yours.</p>
+            <p class="tl-fact">Three visits over three weeks. <b>From &euro;1,200 per tooth.</b></p>
+            <a class="tlink" href="#book">Ask about veneers <span class="arr" aria-hidden="true">&rarr;</span></a>
+          </div>
+        </article>
+
+        <article class="tl-item" id="t-implants" aria-labelledby="t-implants-h">
+          <h3 class="tl-h" id="t-implants-h">Implants</h3>
+          <figure class="tl-img"><img width="1200" height="1500" class="gloss" src="images/tr-implants-v14.jpg" alt="A porcelain implant crown on a plaster model, a window in the plaster showing the titanium screw" loading="lazy" decoding="async"></figure>
+          <div class="tl-text">
+            <p>A titanium root and a hand-layered porcelain crown, matched to the teeth beside it. A month later, you will forget which one is new.</p>
+            <p class="tl-fact">Two stages over four months, healing included. <b>From &euro;2,900 with the crown.</b></p>
+            <a class="tlink" href="#book">Ask about implants <span class="arr" aria-hidden="true">&rarr;</span></a>
+          </div>
+        </article>
+
+        <article class="tl-item" id="t-whitening" aria-labelledby="t-whitening-h">
+          <h3 class="tl-h" id="t-whitening-h">Whitening</h3>
+          <figure class="tl-img"><img width="1200" height="1500" class="gloss" src="images/tr-whitening-v14.jpg" alt="A row of porcelain shade tabs, warm ivory to natural white, in front of a plaster model" loading="lazy" decoding="async"></figure>
+          <div class="tl-text">
+            <p>A few shades brighter, never chalk white. We choose the shade against your skin and eyes first, then whiten in the chair or at home.</p>
+            <p class="tl-fact">One visit, ninety minutes in the chair. <b>From &euro;450.</b></p>
+            <a class="tlink" href="#book">Ask about whitening <span class="arr" aria-hidden="true">&rarr;</span></a>
+          </div>
+        </article>
+
+        <article class="tl-item" id="t-aligners" aria-labelledby="t-aligners-h">
+          <h3 class="tl-h" id="t-aligners-h">Aligners</h3>
+          <figure class="tl-img"><img width="1200" height="1500" class="gloss" src="images/tr-aligners-v14.jpg" alt="A crystal-clear aligner fitted over the teeth of a plaster model" loading="lazy" decoding="async"></figure>
+          <div class="tl-text">
+            <p>Near-invisible trays that move teeth gently into line. We plan them on a 3D scan, so you see the finished smile before you start.</p>
+            <p class="tl-fact">Six to twelve months, with a check every six weeks. <b>From &euro;3,800.</b></p>
+            <a class="tlink" href="#book">Ask about aligners <span class="arr" aria-hidden="true">&rarr;</span></a>
+          </div>
+        </article>
       </div>
-
-      <article class="tr-card" id="t-veneers" aria-labelledby="t-veneers-h">
-        <h3 class="tr-name" id="t-veneers-h" aria-label="Porcelain veneers">Veneers</h3>
-        <div class="tr-text">
-          <p>Porcelain shells about as thin as a fingernail, shaped against your face and shaded tooth by tooth. Chips, gaps and stains go, and your smile stays recognisably yours.</p>
-          <a class="tlink" href="#book">Ask about veneers <span class="arr" aria-hidden="true">&rarr;</span></a>
-        </div>
-        <dl class="facts tr-facts">
-          <div><dt>3</dt><dd>visits</dd></div>
-          <div><dt>3</dt><dd>weeks, start to finish</dd></div>
-          <div><dt>&euro;1,200</dt><dd>from, per tooth</dd></div>
-        </dl>
-        <figure class="tr-img"><img width="928" height="1152" class="gloss" src="images/veneer-v12.jpg" alt="A single porcelain veneer, thin and translucent at the edge, resting on a gloved fingertip by the window" loading="lazy" decoding="async"></figure>
-      </article>
-
-      <article class="tr-card" id="t-implants" aria-labelledby="t-implants-h">
-        <h3 class="tr-name" id="t-implants-h" aria-label="Implants">Implants</h3>
-        <div class="tr-text">
-          <p>A titanium root and a hand-layered porcelain crown, matched to the teeth beside it. A month later, you will forget which one is new.</p>
-          <a class="tlink" href="#book">Ask about implants <span class="arr" aria-hidden="true">&rarr;</span></a>
-        </div>
-        <dl class="facts tr-facts">
-          <div><dt>2</dt><dd>stages</dd></div>
-          <div><dt>4</dt><dd>months, healing included</dd></div>
-          <div><dt>&euro;2,900</dt><dd>from, with the crown</dd></div>
-        </dl>
-        <figure class="tr-img"><img width="893" height="1116" class="gloss" src="images/t-implants-v11.jpg" alt="Gloved fingertips holding a titanium implant with its porcelain crown up to a bright window" loading="lazy" decoding="async"></figure>
-      </article>
-
-      <article class="tr-card" id="t-whitening" aria-labelledby="t-whitening-h">
-        <h3 class="tr-name" id="t-whitening-h" aria-label="Whitening">Whitening</h3>
-        <div class="tr-text">
-          <p>A few shades brighter, never chalk white. We choose the shade against your skin and eyes first, then whiten in the chair or at home.</p>
-          <a class="tlink" href="#book">Ask about whitening <span class="arr" aria-hidden="true">&rarr;</span></a>
-        </div>
-        <dl class="facts tr-facts">
-          <div><dt>1</dt><dd>visit</dd></div>
-          <div><dt>90</dt><dd>minutes in the chair</dd></div>
-          <div><dt>&euro;450</dt><dd>from</dd></div>
-        </dl>
-        <figure class="tr-img"><img width="1229" height="1536" class="gloss" src="images/t-whitening-v9.webp" alt="A gloved hand holding a porcelain shade guide against the daylight, one tab lifted from the row" loading="lazy" decoding="async"></figure>
-      </article>
-
-      <article class="tr-card" id="t-aligners" aria-labelledby="t-aligners-h">
-        <h3 class="tr-name" id="t-aligners-h" aria-label="Clear aligners">Aligners</h3>
-        <div class="tr-text">
-          <p>Near-invisible trays that move teeth gently into line. We plan them on a 3D scan, so you see the finished smile before you start.</p>
-          <a class="tlink" href="#book">Ask about aligners <span class="arr" aria-hidden="true">&rarr;</span></a>
-        </div>
-        <dl class="facts tr-facts">
-          <div><dt>6&ndash;12</dt><dd>months</dd></div>
-          <div><dt>6</dt><dd>weeks between checks</dd></div>
-          <div><dt>&euro;3,800</dt><dd>from</dd></div>
-        </dl>
-        <figure class="tr-img"><img width="1856" height="2304" class="gloss" src="images/t-aligners-v9.webp" alt="Gloved fingertips holding a clear aligner up to the window, light drawing its edges" loading="lazy" decoding="async"></figure>
-      </article>
     </div>
   </section>
 
-  <section class="sec" id="results" aria-labelledby="res-title">
-    <div class="g12 case-head">
-      <h2 class="sec-title" id="res-title">Chipped edges and a small gap, closed in three weeks.</h2>
-      <p class="case-fig"><b>0.3&nbsp;mm</b><span>of enamel prepared for six porcelain veneers. Nothing else was touched.</span></p>
-    </div>
-    <div class="g12 case">
+  <section class="sec res2" id="results" aria-labelledby="res-title">
+    <div class="g12 res2-grid">
+      <div class="res2-side">
+        <h2 class="sec-title" id="res-title">Chipped edges and a small gap, closed in three weeks.</h2>
+        <dl class="facts res2-notes">
+          <div><dt>Edges</dt><dd>worn tips rebuilt in porcelain</dd></div>
+          <div><dt>Gap</dt><dd>closed between the front teeth</dd></div>
+          <div><dt>Shade</dt><dd>one step lighter, never brighter</dd></div>
+        </dl>
+        <p class="res-note">Concept project. Before and after images are AI-generated, not real patients.</p>
+      </div>
       <div class="compare" id="compare">
-        <div class="cmp-after"><img class="gloss" src="images/r1-after-mouth.webp" width="1100" height="550" alt="After: natural, even front teeth, one shade lighter" loading="lazy" decoding="async"></div>
-        <div class="cmp-before"><img class="gloss" src="images/r1-before-mouth.webp" width="1100" height="550" alt="Before: worn, chipped front teeth with a small gap" loading="lazy" decoding="async"></div>
+        <div class="cmp-after"><img class="gloss" src="images/r4-after.jpg" width="760" height="950" alt="After: an easy smile with even, natural front teeth, one shade lighter" loading="lazy" decoding="async"></div>
+        <div class="cmp-before"><img class="gloss" src="images/r4-before.jpg" width="760" height="950" alt="Before: the same smile with chipped edges, a small gap and darker front teeth" loading="lazy" decoding="async"></div>
         <span class="cmp-tag b" aria-hidden="true">Before</span>
         <span class="cmp-tag a" aria-hidden="true">After</span>
-        <span class="pin" data-x="36.4" style="--x:36.4;--y:54.7" aria-hidden="true"><i></i><b>Edges</b></span>
-        <span class="pin" data-x="46.4" style="--x:46.4;--y:47.3" aria-hidden="true"><i></i><b>Gap</b></span>
-        <span class="pin" data-x="56.4" style="--x:56.4;--y:40" aria-hidden="true"><i></i><b>Shade</b></span>
+        <span class="pin" data-x="49" style="--x:49;--y:41" aria-hidden="true"><i></i><b>Edges</b></span>
+        <span class="pin" data-x="57" style="--x:57;--y:38" aria-hidden="true"><i></i><b>Gap</b></span>
+        <span class="pin" data-x="66" style="--x:66;--y:37" aria-hidden="true"><i></i><b>Shade</b></span>
         <span class="cmp-handle" aria-hidden="true"><i></i></span>
         <input class="cmp-range" type="range" min="0" max="100" value="50" aria-label="Drag to compare before and after">
       </div>
-      <dl class="facts case-notes">
-        <div><dt>Edges</dt><dd>worn tips rebuilt in porcelain</dd></div>
-        <div><dt>Gap</dt><dd>closed between the front teeth</dd></div>
-        <div><dt>Shade</dt><dd>one step lighter, never brighter</dd></div>
-      </dl>
-      <p class="res-note">Concept project. Before and after images are AI-generated, not real patients.</p>
     </div>
   </section>
 
@@ -2471,6 +2557,52 @@ addEventListener('DOMContentLoaded', function(){
     e.target.classList.add('lit'); io.unobserve(e.target);
   }); }, { threshold: .12 });
   secs.forEach(function(s){ io.observe(s); });
+})();
+
+/* 03 treatments v14: the chapter is pinned; scrolling through it moves through the four names. Each next photo is
+   scrubbed in by the scroll over the previous one (never on a timer); the text under the list follows the name. */
+(function(){
+  var sec = document.querySelector('.tl');
+  if(!sec) return;
+  var items = [].slice.call(sec.querySelectorAll('.tl-item'));
+  var imgs = items.map(function(it){ return it.querySelector('.tl-img'); });
+  var links = [].slice.call(sec.querySelectorAll('.tl-names a'));
+  var n = items.length, last = -1;
+  var desk = matchMedia('(min-width:1081px)');
+  function progress(){
+    var r = sec.getBoundingClientRect(), run = r.height - innerHeight;
+    return run > 0 ? Math.min(1, Math.max(0, -r.top / run)) : 0;
+  }
+  function onScroll(){
+    if(!desk.matches){ imgs.forEach(function(f){ f.style.clipPath = ''; }); return; }
+    var p = progress() * (n - 1), active = Math.min(n - 1, Math.round(p));
+    imgs.forEach(function(f, i){
+      if(i === 0) return;
+      var o = Math.min(1, Math.max(0, (p - (i - .5) + .25) / .5));
+      f.style.clipPath = 'inset(' + ((1 - o) * 100).toFixed(2) + '% 0 0 0)';
+    });
+    if(active !== last){
+      last = active;
+      items.forEach(function(it, i){
+        it.classList.toggle('on', i === active);
+        it.querySelector('.tl-text').setAttribute('aria-hidden', i === active ? 'false' : 'true');
+      });
+      links.forEach(function(a, i){ a.setAttribute('aria-current', i === active ? 'true' : 'false'); });
+    }
+  }
+  links.forEach(function(a, i){
+    a.addEventListener('click', function(e){
+      if(!desk.matches) return;
+      e.preventDefault();
+      var top = sec.getBoundingClientRect().top + scrollY, run = sec.offsetHeight - innerHeight;
+      var y = top + run * (i / (n - 1)) + 1;
+      if(window.__lenis) __lenis.scrollTo(y); else scrollTo({top:y, behavior:'smooth'});
+    });
+  });
+  window.__treat = onScroll;
+  addEventListener('scroll', onScroll, {passive:true});
+  addEventListener('resize', onScroll);
+  onScroll();
 })();
 </script>
 </body>
